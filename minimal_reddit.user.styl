@@ -15,6 +15,7 @@
 	"Default**": "none",
 	"OnColor": "#1a1a1b" 
 }
+@var checkbox acrylic '⚠️Acrylic Background⚠️' 0
 @var checkbox widePosts 'Wide Posts' 1
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
 @var checkbox createCommunity 'Create Community' 0
@@ -29,16 +30,16 @@
 @-moz-document domain("reddit.com") {
 
 
+
 	i=!important
 
 
-
-	/* 	 Themes  */
+	/* Themes */
 	._31N0dvxfpsO6Ur5AKx4O5d {
 		background-color: theme;
 	}
 
-	/* 	 Wide Posts  */
+	/* Wide Posts */
 	if widePosts {
 
 
@@ -75,26 +76,27 @@
 		}
 	}
 
-	/* 	 Width Post  */
+	/* Width Post */
 	._1OVBBWLtHoSPfGCRaPzpTf {
 		margin: 0 widthPosts 0 widthPosts;
 		transition: .5s ease;
 	}
 
-	/* 	 Create Community  */
+	/* Create Community */
 	if createCommunity {
 		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
 			display: block;
 		}
 	}
 
-	/* 	 Remove Right Sidebar  */
+	/* Remove Right Sidebar */
 	if rrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none i;
 		}
 	}
-	/* 	 Minimize Left Sidebar */
+
+	/* Minimize Left Sidebar */
 	if leftSidebar {
 		._20fGT0XJD3MvX9yBsVeKMn {
 			left: -15em i;
@@ -110,7 +112,7 @@
 		}
 	}
 
-	/* 	 Minimize Right Sidebar  */
+	/* Minimize Right Sidebar */
 	if hrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			flex-basis: 50px;
@@ -130,21 +132,69 @@
 		}
 	}
 
-	/* 	 Chat Button  */
+	/* Chat Button */
 	if chat {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
 			display: none;
 		}
 	}
 
-	/* 	 Create Post Button  */
+	/* Create Post Button */
 	if createPost {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
 			display: none;
 		}
 	}
 
-	/* 	/Bloat  */
+	if acrylic {
+		/* Dropdrown Account */
+		._2uYY-KeuYHKiwl-9aF0UiL {
+			backdrop-filter: blur(3px) i;
+			background-color: rgba(10, 10, 10, 0.4) i;
+		}
+
+		/* Left Sidebar */
+		._20fGT0XJD3MvX9yBsVeKMn {
+			backdrop-filter: blur(3px) i;
+			background-color: rgba(10, 10, 10, 0.4) i;
+		}
+
+		/* Left Sidebar Search */
+		#header-subreddit-filter {
+			backdrop-filter: blur(3px) i;
+			background-color: rgba(10, 10, 10, 0.6) i;
+		}
+
+		/* Navbar */
+		._2vkeRJojnV7cb9pMlPHy7d {
+			backdrop-filter: blur(3px) i;
+			background-color: rgba(10, 10, 10, 0.4) i;
+		}
+
+		._1DeR7_QiQnu2UK0e2dDfYD {
+			background-color: transparent i;
+		}
+
+		#header-search-bar {
+			background-color: transparent i;
+		}
+
+		.h-jI8r2f9ozTNqu_2TBeY {
+			background-color: rgba(10, 10, 10, 0.6) i;
+		}
+
+		/* Notifications */
+		#INBOX--TOOLTIP * {
+			background-color: transparent i;
+		}
+
+		#INBOX--TOOLTIP {
+			backdrop-filter: blur(3px);
+			background-color: rgba(10, 10, 10, 0.4) i;
+		}
+	}
+
+	/* Bloat  */
 	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
 		display: none;
 	}
@@ -189,7 +239,7 @@
 		display: none i;
 	}
 
-	/* 	Search Results */
+	/* earch Results */
 	._2NH7qxA8P_UowZKF4-LUNe,
 	._2NH7qxA8P_UowZKF4-LUNe ~ * {
 		display: none;
