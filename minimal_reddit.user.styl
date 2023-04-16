@@ -1,15 +1,18 @@
 /* ==UserStyle==
 @name           Minimal Reddit
-@namespace      dsds
+@namespace      reddit.com
 @version        0.1
 @description    Wide posts and remove bloat from homepage
+@homepageURL  	https://github.com/zenstorage/minimal-reddit
+@supportURL		https://github.com/zenstorage/minimal-reddit/issues
+@updateURL    	https://github.com/zenstorage/minimal-reddit/raw/main/minimal_reddit.user.styl
 @author         hdy
 @preprocessor   stylus
 @license        MIT
 
 
 @var select theme 'Theme' {
-	"Default**": "#030303",
+	"Default**": "none",
 	"OnColor": "#1a1a1b" 
 }
 @var checkbox widePosts 'Wide Posts' 1
@@ -32,8 +35,7 @@
 	// Themes 
 	._31N0dvxfpsO6Ur5AKx4O5d {
 		background-color: theme;
-	} 
-	// Wide Posts 
+	} // Wide Posts 
 	if widePosts {
 
 
@@ -68,25 +70,21 @@
 		._2_tDEnGMLxpM6uOa2kaDB3 {
 			max-width: 100% i;
 		}
-	} 
-	// Width Post 
+	} // Width Post 
 	._1OVBBWLtHoSPfGCRaPzpTf {
 		margin: 0 widthPosts 0 widthPosts;
 		transition: .5s ease;
-	} 
-	// Create Community 
+	} // Create Community 
 	if createCommunity {
 		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
 			display: block;
 		}
-	} 
-	// Remove Right Sidebar 
+	} // Remove Right Sidebar 
 	if rrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none i;
 		}
-	} 
-	// Minimize Sidebar 
+	} // Minimize Sidebar 
 	if hrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			flex-basis: 50px;
@@ -104,20 +102,17 @@
 		._31N0dvxfpsO6Ur5AKx4O5d {
 			padding-right: 0;
 		}
-	} 
-	// Chat Button 
+	} // Chat Button 
 	if chat {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
 			display: none;
 		}
-	} 
-	// Create Post Button 
+	} // Create Post Button 
 	if createPost {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
 			display: none;
 		}
-	} 
-	// Bloat 
+	} // Bloat 
 	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
 		display: none;
 	}
@@ -160,18 +155,30 @@
 
 	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
 		display: none i;
-	} 
-	// Search Results
+	} // Search Results
 	._2NH7qxA8P_UowZKF4-LUNe,
 	._2NH7qxA8P_UowZKF4-LUNe ~ * {
 		display: none;
-	} 
-	// Border Search Results
+	} // Border Search Results
 	._2uYY-KeuYHKiwl-9aF0UiL {
 		box-shadow: none;
-	} 
-	// Empty Search Results
+	} // Empty Search Results
 	._3wwag2ZgVLfNKLCuEuXF7h {
+		display: none;
+	}
+
+	/* Register Warning */
+	.BtYn3oMRXzNwmNMkolecQ {
+		display: none;
+	}
+
+	/* Trending  */
+	._3ozFtOe6WpJEMUtxDOIvtU > div:nth-child(2) {
+		display: none;
+	}
+
+	/* Language Change */
+	._YS-SvhE12dC8aytZB1uB {
 		display: none;
 	}
 }
