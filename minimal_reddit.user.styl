@@ -16,8 +16,9 @@
 	"OnColor": "#1a1a1b" 
 }
 @var checkbox widePosts 'Wide Posts' 1
-@var range widthPosts 'Width Posts' [0, 0, 700, 10, 'px']
+@var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
 @var checkbox createCommunity 'Create Community' 0
+@var checkbox leftSidebar 'Mnimize Left Sidebar' 0
 @var checkbox hrightSidebar 'Minimize Right Sidebar' 0 
 @var checkbox rrightSidebar 'Remove Right Sidebar' 0
 @var checkbox chat 'Remove Chat' 1
@@ -32,10 +33,12 @@
 
 
 
-	// Themes 
+	/* 	 Themes  */
 	._31N0dvxfpsO6Ur5AKx4O5d {
 		background-color: theme;
-	} // Wide Posts 
+	}
+
+	/* 	 Wide Posts  */
 	if widePosts {
 
 
@@ -70,21 +73,44 @@
 		._2_tDEnGMLxpM6uOa2kaDB3 {
 			max-width: 100% i;
 		}
-	} // Width Post 
+	}
+
+	/* 	 Width Post  */
 	._1OVBBWLtHoSPfGCRaPzpTf {
 		margin: 0 widthPosts 0 widthPosts;
 		transition: .5s ease;
-	} // Create Community 
+	}
+
+	/* 	 Create Community  */
 	if createCommunity {
 		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
 			display: block;
 		}
-	} // Remove Right Sidebar 
+	}
+
+	/* 	 Remove Right Sidebar  */
 	if rrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none i;
 		}
-	} // Minimize Sidebar 
+	}
+	/* 	 Minimize Left Sidebar */
+	if leftSidebar {
+		._20fGT0XJD3MvX9yBsVeKMn {
+			left: -15em i;
+			transition: .2s ease;
+		}
+
+		._20fGT0XJD3MvX9yBsVeKMn:hover {
+			left: 0em i;
+		}
+
+		#AppRouter-main-content {
+			padding-left: 40px;
+		}
+	}
+
+	/* 	 Minimize Right Sidebar  */
 	if hrightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			flex-basis: 50px;
@@ -102,17 +128,23 @@
 		._31N0dvxfpsO6Ur5AKx4O5d {
 			padding-right: 0;
 		}
-	} // Chat Button 
+	}
+
+	/* 	 Chat Button  */
 	if chat {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
 			display: none;
 		}
-	} // Create Post Button 
+	}
+
+	/* 	 Create Post Button  */
 	if createPost {
 		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
 			display: none;
 		}
-	} // Bloat 
+	}
+
+	/* 	/Bloat  */
 	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
 		display: none;
 	}
@@ -155,14 +187,20 @@
 
 	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
 		display: none i;
-	} // Search Results
+	}
+
+	/* 	Search Results */
 	._2NH7qxA8P_UowZKF4-LUNe,
 	._2NH7qxA8P_UowZKF4-LUNe ~ * {
 		display: none;
-	} // Border Search Results
+	}
+
+	/* Border Search Results */
 	._2uYY-KeuYHKiwl-9aF0UiL {
 		box-shadow: none;
-	} // Empty Search Results
+	}
+
+	/* Empty Search Results */
 	._3wwag2ZgVLfNKLCuEuXF7h {
 		display: none;
 	}
@@ -173,7 +211,7 @@
 	}
 
 	/* Trending  */
-	._3ozFtOe6WpJEMUtxDOIvtU > div:nth-child(2) {
+	._3ozFtOe6WpJEMUtxDOIvtU > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
 		display: none;
 	}
 
