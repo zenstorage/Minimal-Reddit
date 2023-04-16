@@ -1,0 +1,177 @@
+/* ==UserStyle==
+@name           Minimal Reddit
+@namespace      dsds
+@version        0.1
+@description    Wide posts and remove bloat from homepage
+@author         hdy
+@preprocessor   stylus
+@license        MIT
+
+
+@var select theme 'Theme' {
+	"Default**": "#030303",
+	"OnColor": "#1a1a1b" 
+}
+@var checkbox widePosts 'Wide Posts' 1
+@var range widthPosts 'Width Posts' [0, 0, 700, 10, 'px']
+@var checkbox createCommunity 'Create Community' 0
+@var checkbox hrightSidebar 'Minimize Right Sidebar' 0 
+@var checkbox rrightSidebar 'Remove Right Sidebar' 0
+@var checkbox chat 'Remove Chat' 1
+@var checkbox createPost 'Remove Create Post' 1
+
+
+==/UserStyle== */
+@-moz-document domain("reddit.com") {
+
+
+	i=!important
+
+
+
+	// Themes 
+	._31N0dvxfpsO6Ur5AKx4O5d {
+		background-color: theme;
+	} 
+	// Wide Posts 
+	if widePosts {
+
+
+		._1OVBBWLtHoSPfGCRaPzpTf._3nSp9cdBpqL13CqjdMr2L_ {
+			flex-grow: 1 i;
+		}
+
+		._31N0dvxfpsO6Ur5AKx4O5d * {
+			max-width: none i;
+		}
+
+		._31N0dvxfpsO6Ur5AKx4O5d {
+			min-width: 100% i;
+		}
+
+		._1npCwF50X2J7Wt82SZi6J0 * {
+			max-width: none i;
+		}
+
+		._1npCwF50X2J7Wt82SZi6J0 {
+			min-width: 100% i;
+		}
+
+		._2DJXORCrmcNpPTSq0LqL6i {
+			--comments-overlay-offset: none i;
+		}
+
+		._3obgdFz00GvpqpuX8QCsNK {
+			min-width: 100% i;
+		}
+
+		._2_tDEnGMLxpM6uOa2kaDB3 {
+			max-width: 100% i;
+		}
+	} 
+	// Width Post 
+	._1OVBBWLtHoSPfGCRaPzpTf {
+		margin: 0 widthPosts 0 widthPosts;
+		transition: .5s ease;
+	} 
+	// Create Community 
+	if createCommunity {
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
+			display: block;
+		}
+	} 
+	// Remove Right Sidebar 
+	if rrightSidebar {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			display: none i;
+		}
+	} 
+	// Minimize Sidebar 
+	if hrightSidebar {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			flex-basis: 50px;
+			width: 0;
+			height: 100%;
+			z-index: 9;
+			transition: .2s ease-out;
+
+
+			&:hover {
+				transform: translate(-265px);
+			}
+		}
+
+		._31N0dvxfpsO6Ur5AKx4O5d {
+			padding-right: 0;
+		}
+	} 
+	// Chat Button 
+	if chat {
+		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
+			display: none;
+		}
+	} 
+	// Create Post Button 
+	if createPost {
+		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
+			display: none;
+		}
+	} 
+	// Bloat 
+	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
+		display: none;
+	}
+
+	.x0hiXHicn7r3BG9m1FJH4 {
+		display: none;
+	}
+
+	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
+		display: none;
+	}
+
+	._2vEf-C2keJaBMY9qk_BxVn {
+		margin-top: 0;
+	}
+
+	._1oRQu-aolgpPPJDblUGTw5 {
+		display: none;
+	}
+
+	._1vXXD2qKLnHetdKvisFzBD {
+		display: none;
+	}
+
+	._24UNt1hkbrZxLzs5vkvuDh {
+		display: none;
+	}
+
+	.GCltVwsXPu5lE-gs4Nucu {
+		display: none;
+	}
+
+	._3SDj_IT6ZaqCbKfC4eTjb2.sJncFX1AQ0-0SzCGc9V5L._27B2PE8qRdRlQHbzPBidG6 {
+		display: none;
+	}
+
+	._3zu1R6cDitNjrJaFA1VPXj {
+		display: none;
+	}
+
+	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
+		display: none i;
+	} 
+	// Search Results
+	._2NH7qxA8P_UowZKF4-LUNe,
+	._2NH7qxA8P_UowZKF4-LUNe ~ * {
+		display: none;
+	} 
+	// Border Search Results
+	._2uYY-KeuYHKiwl-9aF0UiL {
+		box-shadow: none;
+	} 
+	// Empty Search Results
+	._3wwag2ZgVLfNKLCuEuXF7h {
+		display: none;
+	}
+}
