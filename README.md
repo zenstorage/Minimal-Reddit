@@ -8,12 +8,15 @@ Userstyle para o reddit, deixa a interface mais limpa.
 
 
  ● Postagens Largas.
+ 
+ ● Defina a largura dos posts.
+ 
+ ● Estilo acrylic/tranparency na interface.  
 
- ● Remoção de elementos desnecessários.
+ ● Remoção de alguns elementos.
 
  ● Remova/Minimize a barra lateral.
-
-
-
-
-
+ 
+ <hr>
+ 
+  ⚠️Acrylic pode causar lag⚠️
