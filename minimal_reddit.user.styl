@@ -15,7 +15,12 @@
 	"Default**": "none",
 	"OnColor": "#1a1a1b" 
 }
-@var checkbox acrylic '⚠️Acrylic Background⚠️' 0
+@var select style 'Style' {
+	"Default*": "null",
+	"Acrylic": "acrylic()",
+	"Transparent": "transparent()"
+	
+}
 @var checkbox widePosts 'Wide Posts' 1
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
 @var checkbox createCommunity 'Create Community' 0
@@ -30,9 +35,20 @@
 @-moz-document domain("reddit.com") {
 
 
-
+	
+	/* Variables */
 	i=!important
 
+
+	/* Mixins */
+	acrylic() {
+		backdrop-filter: blur(3px) i;
+		background-color: rgba(10, 10, 10, 0.4) i;
+	}
+
+	transparent() {
+		background-color: rgba(10, 10, 10, 0.4) i
+	}
 
 	/* Themes */
 	._31N0dvxfpsO6Ur5AKx4O5d {
@@ -146,53 +162,39 @@
 		}
 	}
 
-	if acrylic {
-		/* Dropdrown Account */
-		._2uYY-KeuYHKiwl-9aF0UiL {
-			backdrop-filter: blur(3px) i;
-			background-color: rgba(10, 10, 10, 0.4) i;
-		}
 
-		/* Left Sidebar */
-		._20fGT0XJD3MvX9yBsVeKMn {
-			backdrop-filter: blur(3px) i;
-			background-color: rgba(10, 10, 10, 0.4) i;
-		}
 
-		/* Left Sidebar Search */
-		#header-subreddit-filter {
-			backdrop-filter: blur(3px) i;
-			background-color: rgba(10, 10, 10, 0.6) i;
-		}
-
-		/* Navbar */
-		._2vkeRJojnV7cb9pMlPHy7d {
-			backdrop-filter: blur(3px) i;
-			background-color: rgba(10, 10, 10, 0.4) i;
-		}
-
-		._1DeR7_QiQnu2UK0e2dDfYD {
-			background-color: transparent i;
-		}
-
-		#header-search-bar {
-			background-color: transparent i;
-		}
-
-		.h-jI8r2f9ozTNqu_2TBeY {
-			background-color: rgba(10, 10, 10, 0.6) i;
-		}
-
-		/* Notifications */
-		#INBOX--TOOLTIP * {
-			background-color: transparent i;
-		}
-
-		#INBOX--TOOLTIP {
-			backdrop-filter: blur(3px);
-			background-color: rgba(10, 10, 10, 0.4) i;
-		}
+	/* Dropdrown Account */
+	._2uYY-KeuYHKiwl-9aF0UiL,
+	._20fGT0XJD3MvX9yBsVeKMn,
+	._2vkeRJojnV7cb9pMlPHy7d,
+	#INBOX--TOOLTIP {
+		style
 	}
+
+	/* Left Sidebar Search */
+	#header-subreddit-filter {
+		background: none i;
+	}
+
+	._1DeR7_QiQnu2UK0e2dDfYD {
+		background: none i;
+	}
+
+	/* Navbar Seach Bar  */
+	#header-search-bar {
+		background: none i;
+	}
+
+	.h-jI8r2f9ozTNqu_2TBeY {
+		background: none i;
+	}
+
+	/* Notifications */
+	#INBOX--TOOLTIP * {
+		background-color: none i;
+	}
+
 
 	/* Bloat  */
 	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
