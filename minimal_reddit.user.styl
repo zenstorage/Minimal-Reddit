@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        0.5
+@version        0.7
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL		https://github.com/zenstorage/minimal-reddit/issues
@@ -11,40 +11,54 @@
 @license        MIT
 
 
-@var select theme 'Theme' {
-	"Default**": "none",
-	"OnColor": "#1a1a1b" 
-}
 @var select style 'Style' {
 	"Default*": "null",
 	"Acrylic": "acrylic()",
 	"Transparent": "transparent()"
 	
 }
+@var select imgPosts "Images in Posts" ['Default', "Scroll", "Resize"]
 @var checkbox widePosts 'Wide Posts' 1
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
-@var checkbox createCommunity 'Create Community' 0
+@var checkbox mNavbar 'Minimize Navbar' 0
+@var range 	  navbarShowing 'Navbar Showing' [30, 0, 40, 1, 'px']
 @var checkbox leftSidebar 'Mnimize Left Sidebar' 0
-@var checkbox hrightSidebar 'Minimize Right Sidebar' 0 
-@var checkbox rrightSidebar 'Remove Right Sidebar' 0
+@var checkbox hRightSidebar 'Minimize Right Sidebar' 0 
+@var checkbox stickySort 'Sticky Sort Posts' 0
+@var checkbox rRightSidebar 'Remove Right Sidebar' 0
+@var checkbox rRightSidebarS 'Remove Right Sidebar in Subreddits' 0
+@var checkbox popular 'Remove Popular' 1
+@var checkbox coins 'Remove Coins' 1
 @var checkbox chat 'Remove Chat' 1
-@var checkbox createPost 'Remove Create Post' 1
+@var checkbox notifications 'Remove Notifications' 0
+@var checkbox createPostNav 'Remove Create Post in Navbar' 1
+@var checkbox advertise 'Remove Advertise' 1
+
+@var checkbox cCommunity 'Remove Create Community Dropdown' 0
+@var checkbox dAdvertise 'Remove Advertise Dropdown' 1
+@var checkbox dCoins 'Remove Coins Dropdown' 1
+@var checkbox dPremium 'Remove Premium Dropdown' 1
+@var checkbox dExplore 'Remove Explore Dropdown' 1
+@var checkbox helpCenter 'Remove Help Center Dropdown' 1
+@var checkbox dMore 'Remove More Dropdown' 1
+@var checkbox dPolicies 'Remove Policies Dropdown' 1
+@var checkbox dExit 'Remove Exit Dropdown' 0
+
+@var checkbox createPost 'Remove Create Post' 0
+@var checkbox voteArrows 'Remove Vote Arrows' 0
+@var checkbox bottomBar 'Remove Bottom Actions' 0
+
 
 
 ==/UserStyle== */
 @-moz-document domain("reddit.com") {
 
 
-		
-	
-	
 	/* Variables */
 	i=!important
-	
 
-	
-	
-	
+
+
 
 
 	/* Mixins */
@@ -55,11 +69,6 @@
 
 	transparent() {
 		background-color: rgba(10, 10, 10, 0.4) i
-	}
-
-	/* Themes */
-	._31N0dvxfpsO6Ur5AKx4O5d {
-		background-color: theme;
 	}
 
 	/* Wide Posts */
@@ -105,17 +114,47 @@
 		transition: .5s ease;
 	}
 
-	/* Create Community */
-	if createCommunity {
-		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
-			display: block;
+	/* Images in Posts */
+	if (imgPosts=='Scroll') {
+		._3Oa0THmZ3f5iZXAQ0hBJ0k > div {
+			overflow: auto i;
+		}
+
+		._3hUbl08LBz2mbXjy0iYhOS {
+			display: none i;
 		}
 	}
 
-	/* Remove Right Sidebar */
-	if rrightSidebar {
-		._3Kd8DQpBIbsr5E1JcrMFTY {
+	else if (imgPosts=='Resize') {
+		._2_tDEnGMLxpM6uOa2kaDB3 {
+			height: 100% i;
+		}
+
+		._3hUbl08LBz2mbXjy0iYhOS {
 			display: none i;
+		}
+	}
+
+
+	/* Minmize Navbar */
+	if mNavbar {
+		.cx1ohrUAq6ARaXTX2u8YN {
+			top: -30px i;
+			transition: .2s ease;
+		}
+
+		.cx1ohrUAq6ARaXTX2u8YN:hover,
+		.cx1ohrUAq6ARaXTX2u8YN:focus-within {
+			top: 0px i;
+		}
+
+		#AppRouter-main-content {
+			top: -navbarShowing i;
+			position: relative i;
+			padding-top: 10px i;
+		}
+		#overlayScrollContainer {
+			top: -navbarShowing i;
 		}
 	}
 
@@ -136,7 +175,7 @@
 	}
 
 	/* Minimize Right Sidebar */
-	if hrightSidebar {
+	if hRightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			flex-basis: 50px;
 			width: 0;
@@ -153,19 +192,61 @@
 		._31N0dvxfpsO6Ur5AKx4O5d {
 			padding-right: 0;
 		}
-	}
 
-	/* Chat Button */
+		body {
+			overflow-x: hidden i;
+		}
+	}
+	/* Sticky Sort Posts */
+	if stickySort {
+		.wBtTDilkW_rtT2k5x3eie {
+			--nav: navbarShowing;
+			position: sticky;
+			top: calc(49px - var(--nav)) i;
+			z-index: 9;
+		}
+	}
+	/* Remove Right Sidebar */
+	if rRightSidebar {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			display: none i;
+		}
+	}
+	/* Popular */
+	if popular {
+		a._3dZnYgFFpifT-M_Vs2FAq6 {
+			display: none i;
+		}
+	}
+	/* Coins */
+	if coins {
+		span._3dZnYgFFpifT-M_Vs2FAq6 {
+			display: none i;
+		}
+	}
+	/* Chat  */
 	if chat {
-		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
-			display: none;
+		a._1x6pySZ2CoUnAfsFhGe7J1 {
+			display: none i;
+		}
+	}
+	/* Notifications */
+	if notifications {
+		div.FOioVk_DUTmZIKKa82Mm1 {
+			display: none i;
 		}
 	}
 
-	/* Create Post Button */
-	if createPost {
-		._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
-			display: none;
+	/* Create Post in Navbar */
+	if createPostNav {
+		button._1x6pySZ2CoUnAfsFhGe7J1 {
+			display: none i;
+		}
+	}
+	/* Advertise */
+	if advertise {
+		span._2zZ-KGHbWWqrwGlHWXR90y._2I12Htze2UzJmmfnrgYJOn._1dBtowHdRHcGyLbVEaOL8t {
+			display: none i;
 		}
 	}
 
@@ -177,7 +258,9 @@
 	#INBOX--TOOLTIP,
 	._1G4yU68P50vRZ4USXfaceV._2QeqBqfT5UbHBoViZUt-wX,
 	._ZhON3a3vplThB8NFwuJn,
-	.TMMvbwyeh9yuHKmQWHrE3 {
+	.TMMvbwyeh9yuHKmQWHrE3,
+	._2QeqBqfT5UbHBoViZUt-wX,
+	._3Im6OD67aKo33nql4FpSp_ {
 		style
 	}
 
@@ -204,7 +287,7 @@
 		background: none i;
 	}
 
-	/* Notifications */
+	/* Notifications Back */
 	#INBOX--TOOLTIP * {
 		background: none i;
 	}
@@ -220,79 +303,149 @@
 	}
 
 
-	/* Bloat  */
-	._1FUNcfOeszr8eruqLxCMcR > div:first-child {
-		display: none;
-	}
-
-	.x0hiXHicn7r3BG9m1FJH4 {
-		display: none;
-	}
-
-	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
-		display: none;
+	/* Reddit Premium */
+	div._2vEf-C2keJaBMY9qk_BxVn:nth-child(1) {
+		display: none i;
 	}
 
 	._2vEf-C2keJaBMY9qk_BxVn {
 		margin-top: 0;
 	}
 
-	._1oRQu-aolgpPPJDblUGTw5 {
-		display: none;
+	/* Create Community */
+	if cComunity {
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
+			display: none i;
+		}
 	}
 
-	._1vXXD2qKLnHetdKvisFzBD {
-		display: none;
+	/* Advertise */
+	if dAdvertise {
+		a._3fbofimxVp_hpVM6I1TGMS:nth-child(6) {
+			display: none i;
+		}
 	}
 
-	._24UNt1hkbrZxLzs5vkvuDh {
-		display: none;
+
+	/* Coins Dropdown */
+	if dCoins {
+		a._3fbofimxVp_hpVM6I1TGMS._3zu1R6cDitNjrJaFA1VPXj {
+			display: none i;
+		}
+	}
+	if dPremium {
+		a._3fbofimxVp_hpVM6I1TGMS:nth-child(8) {
+			display: none i;
+		}
+	}
+	/* Explore */
+	if dExplore {
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(9) {
+			display: none i;
+		}
+	}
+	/* Help Center */
+	if helpCenter {
+		a._3fbofimxVp_hpVM6I1TGMS:nth-child(11) {
+			display: none i;
+		}
 	}
 
-	.GCltVwsXPu5lE-gs4Nucu {
-		display: none;
+	/* More */
+	if dMore {
+		button._3fbofimxVp_hpVM6I1TGMS:nth-child(12) {
+			display: none i;
+		}
 	}
 
-	._3SDj_IT6ZaqCbKfC4eTjb2.sJncFX1AQ0-0SzCGc9V5L._27B2PE8qRdRlQHbzPBidG6 {
-		display: none;
+	/* Policies */
+	if dPolicies {
+		button._3fbofimxVp_hpVM6I1TGMS:nth-child(14) {
+			display: none i;
+		}
+		div._3SDj_IT6ZaqCbKfC4eTjb2:nth-child(15) {
+			display: none i;
+		}
+		._2XCnMY85ivEZUL6cAgK0nV {
+			display: none i;
+		}
+		._1oRQu-aolgpPPJDblUGTw5 {
+			display: none i;
+		}
 	}
 
-	._3zu1R6cDitNjrJaFA1VPXj {
-		display: none;
+	/* Exit */
+	if dExit {
+		button._3fbofimxVp_hpVM6I1TGMS:nth-child(16) {
+			display: none i;
+		}
 	}
 
-	span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
+	if createPost {
+		._2jJNpBqXMbbyOiGCElTYxZ {
+			display: none i;
+		}
+	}
+	/* Vote Arrows */
+	if voteArrows {
+		._1E9mcoVn4MYnuBQSVDt1gC {
+			display: none i;
+		}
+	}
+	/* Remove Comments, Share, ... */
+	if bottomBar {
+		._1ixsU4oQRnNfZ91jhBU74y,
+		._3-miAEojrCvx_4FQ8x3P-s,
+		.P8SGAKMtRxNwlmLz1zdJu.HZ-cv9q391bm8s7qT54B3 ._2_lhaFUJdP8q0o2L9MN2TN {
+			display: none i;
+		}
+	}
+
+	/* Search Results */
+	._2NH7qxA8P_UowZKF4-LUNe,
+	._2NH7qxA8P_UowZKF4-LUNe ~ * {
 		display: none i;
 	}
 
-	/* earch Results */
-	._2NH7qxA8P_UowZKF4-LUNe,
-	._2NH7qxA8P_UowZKF4-LUNe ~ * {
-		display: none;
-	}
-
-	/* Border Search Results */
+	/* Shadow Search Results */
 	._2uYY-KeuYHKiwl-9aF0UiL {
-		box-shadow: none;
+		box-shadow: none i;
 	}
 
 	/* Empty Search Results */
 	._3wwag2ZgVLfNKLCuEuXF7h {
-		display: none;
+		display: none i;
 	}
 
 	/* Register Warning */
 	.BtYn3oMRXzNwmNMkolecQ {
-		display: none;
+		display: none i;
 	}
 
 	/* Trending  */
 	._3ozFtOe6WpJEMUtxDOIvtU > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
-		display: none;
+		display: none i;
 	}
 
 	/* Language Change */
 	._YS-SvhE12dC8aytZB1uB {
-		display: none;
+		/* 		display: none i; */
+	}
+}
+
+
+
+@-moz-document url-prefix("https://www.reddit.com/r/") {
+
+	/* Variables */
+	i=!important
+
+	
+	
+
+	if rRightSidebarS {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			display: none i;
+		}
 	}
 }
