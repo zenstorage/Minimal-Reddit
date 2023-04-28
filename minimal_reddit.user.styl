@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        0.7
+@version        0.8
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL		https://github.com/zenstorage/minimal-reddit/issues
@@ -17,6 +17,9 @@
 	"Transparent": "transparent()"
 	
 }
+@var checkbox customBackground 'Custom Background' 0
+@var range blurBackground 'Blur Background' [0, 0, 10, 1, 'px']
+@var text backgroundURL 'Background URL' "'https://w.wallhaven.cc/full/rr/wallhaven-rrg9d7.png'"
 @var select imgPosts "Images in Posts" ['Default', "Scroll", "Resize"]
 @var checkbox widePosts 'Wide Posts' 1
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
@@ -25,7 +28,7 @@
 @var checkbox leftSidebar 'Mnimize Left Sidebar' 0
 @var checkbox hRightSidebar 'Minimize Right Sidebar' 0 
 @var checkbox stickySort 'Sticky Sort Posts' 0
-@var checkbox rRightSidebar 'Remove Right Sidebar' 0
+@var checkbox rRightSidebar 'Remove Right Sidebar in Home Page' 0
 @var checkbox rRightSidebarS 'Remove Right Sidebar in Subreddits' 0
 @var checkbox popular 'Remove Popular' 1
 @var checkbox coins 'Remove Coins' 1
@@ -59,7 +62,18 @@
 
 
 
-
+	
+	._3ozFtOe6WpJEMUtxDOIvtU {
+		backdrop-filter: blur(blurBackground) i;
+	}
+	
+	if customBackground {
+		._2wxsLGNmMLx6sEMLJyn2o9 {
+			--pseudo-before-background: url(backgroundURL) i;
+		}
+	}
+	
+	
 
 	/* Mixins */
 	acrylic() {
@@ -106,6 +120,12 @@
 		._2_tDEnGMLxpM6uOa2kaDB3 {
 			max-width: 100% i;
 		}
+		.eZLYleuk3b8ykGiskfpo3 {
+  			max-width: none;
+}
+		._1BJGsKulUQfhJyO19XsBph._3SktesklDBwXt2pEl0sHY8 {
+  			max-width: none;
+}
 	}
 
 	/* Width Post */
@@ -116,12 +136,9 @@
 
 	/* Images in Posts */
 	if (imgPosts=='Scroll') {
-		._3Oa0THmZ3f5iZXAQ0hBJ0k > div {
+		._3Oa0THmZ3f5iZXAQ0hBJ0k > div,
+ 		._26daP6nhhW7BT-CMzL0ijs, .KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
 			overflow: auto i;
-		}
-
-		._3hUbl08LBz2mbXjy0iYhOS {
-			display: none i;
 		}
 	}
 
@@ -206,12 +223,7 @@
 			z-index: 9;
 		}
 	}
-	/* Remove Right Sidebar */
-	if rRightSidebar {
-		._3Kd8DQpBIbsr5E1JcrMFTY {
-			display: none i;
-		}
-	}
+	
 	/* Popular */
 	if popular {
 		a._3dZnYgFFpifT-M_Vs2FAq6 {
@@ -431,9 +443,11 @@
 	._YS-SvhE12dC8aytZB1uB {
 		/* 		display: none i; */
 	}
+	/* New Comments */
+	._2X4xugrTQ5e3TVxPPEHqGh ._3JKnqeBKw2wp7eHzFXNXSe ._1cubpGNEaCAVnpJl1KBPcO._2q-ZKRaT1WjKg092R6La5J {
+		display: none i;
+	}
 }
-
-
 
 @-moz-document url-prefix("https://www.reddit.com/r/") {
 
@@ -444,6 +458,15 @@
 	
 
 	if rRightSidebarS {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			display: none i;
+		}
+	}
+}
+
+@-moz-document url("https://www.reddit.com/") {
+	/* Remove Right Sidebar */
+	if rRightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none i;
 		}
