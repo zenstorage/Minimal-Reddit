@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        1.0
+@version        1.1
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL		https://github.com/zenstorage/minimal-reddit/issues
@@ -21,6 +21,7 @@
 @var range blurBackground 'Blur Background' [0, 0, 10, 1, 'px']
 @var text backgroundURL 'Background URL' "'https://w.wallhaven.cc/full/rr/wallhaven-rrg9d7.png'"
 @var select imgPosts "Images in Posts" ['Default', "Scroll", "Resize"]
+@var range	  imgSize 'Images Resized in Posts' [512, 256, 1024, 8, 'px']
 @var checkbox widePosts 'Wide Posts' 1
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
 @var checkbox mNavbar 'Minimize Navbar' 0
@@ -28,6 +29,7 @@
 @var select   subBar 'SubBar' ["Default", "Minimize", "Compact"]
 @var checkbox hRightSidebar 'Minimize Right Sidebar' 0 
 @var checkbox stickySort 'Sticky Sort Posts' 0
+@var checkbox logo 'Remove Reddit Logo' 0
 @var checkbox rRightSidebar 'Remove Right Sidebar in Home Page' 0
 @var checkbox rRightSidebarS 'Remove Right Sidebar in Subreddits' 0
 @var checkbox popular 'Remove Popular' 1
@@ -62,7 +64,31 @@
 
 
 
+	/* Mixins */
+	acrylic() {
+		backdrop-filter: blur(3px) i;
+		background-color: rgba(10, 10, 10, 0.4) i;
+	}
 
+	transparent() {
+		background-color: rgba(10, 10, 10, 0.4) i
+	}
+
+
+	/* Style */
+	._2uYY-KeuYHKiwl-9aF0UiL,
+	._20fGT0XJD3MvX9yBsVeKMn,
+	._2vkeRJojnV7cb9pMlPHy7d,
+	#INBOX--TOOLTIP,
+	._1G4yU68P50vRZ4USXfaceV._2QeqBqfT5UbHBoViZUt-wX,
+	._ZhON3a3vplThB8NFwuJn,
+	.TMMvbwyeh9yuHKmQWHrE3,
+	._2QeqBqfT5UbHBoViZUt-wX,
+	._3Im6OD67aKo33nql4FpSp_ {
+		style
+	}
+
+	/* Custom Background */
 	._3ozFtOe6WpJEMUtxDOIvtU {
 		backdrop-filter: blur(blurBackground) i;
 	}
@@ -73,14 +99,33 @@
 		}
 	}
 
-	/* Mixins */
-	acrylic() {
-		backdrop-filter: blur(3px) i;
-		background-color: rgba(10, 10, 10, 0.4) i;
+	/* Images in Posts */
+	if (imgPosts=='Scroll') {
+		._3Oa0THmZ3f5iZXAQ0hBJ0k > div,
+		._26daP6nhhW7BT-CMzL0ijs,
+		.KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
+			overflow: auto i;
+		}
 	}
 
-	transparent() {
-		background-color: rgba(10, 10, 10, 0.4) i
+	else if (imgPosts=='Resize') {
+		._2_tDEnGMLxpM6uOa2kaDB3 {
+			height: 100% i;
+		}
+
+		._3hUbl08LBz2mbXjy0iYhOS {
+			display: none i;
+		}
+		/* Images in Posts Size */
+		.media-element {
+			max-height: imgSize i;
+		}
+		.m3aNC6yp8RrNM_-a0rrfa {
+			max-height: imgSize i;
+		}
+		img._1XWObl-3b9tPy64oaG6fax {
+			height: imgSize i;
+		}
 	}
 
 	/* Wide Posts */
@@ -126,31 +171,11 @@
 		}
 	}
 
-	/* Width Post */
+	/* Margin Post */
 	._1OVBBWLtHoSPfGCRaPzpTf {
 		margin: 0 widthPosts 0 widthPosts;
 		transition: .5s ease;
 	}
-
-	/* Images in Posts */
-	if (imgPosts=='Scroll') {
-		._3Oa0THmZ3f5iZXAQ0hBJ0k > div,
-		._26daP6nhhW7BT-CMzL0ijs,
-		.KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
-			overflow: auto i;
-		}
-	}
-
-	else if (imgPosts=='Resize') {
-		._2_tDEnGMLxpM6uOa2kaDB3 {
-			height: 100% i;
-		}
-
-		._3hUbl08LBz2mbXjy0iYhOS {
-			display: none i;
-		}
-	}
-
 
 	/* SubBar View*/
 	if (subBar=='Minimize') {
@@ -207,6 +232,7 @@
 		#focus-NotificationsInbox {
 			display: block i;
 		}
+		/* Posts Padding */
 		._1nxEQl5D2Bx2jxDILRHemb._3x1dyL19KnZ4kI6i9TlRp4 {
 			padding-left: 40px i;
 		}
@@ -217,7 +243,7 @@
 			justify-content: end i;
 		}
 	}
-	
+
 	/* Minmize Navbar */
 	if mNavbar {
 		.cx1ohrUAq6ARaXTX2u8YN {
@@ -286,6 +312,14 @@
 		}
 	}
 
+	/* Reddit Logo */
+	if logo {
+		._30BbATRhFv3V83DHNDjJAO {
+			display: none i;
+		}
+	}
+
+
 	/* Popular */
 	if popular {
 		a._3dZnYgFFpifT-M_Vs2FAq6 {
@@ -324,19 +358,6 @@
 		}
 	}
 
-	/* Dropdrown Account */
-	._2uYY-KeuYHKiwl-9aF0UiL,
-	._20fGT0XJD3MvX9yBsVeKMn,
-	._2vkeRJojnV7cb9pMlPHy7d,
-	#INBOX--TOOLTIP,
-	._1G4yU68P50vRZ4USXfaceV._2QeqBqfT5UbHBoViZUt-wX,
-	._ZhON3a3vplThB8NFwuJn,
-	.TMMvbwyeh9yuHKmQWHrE3,
-	._2QeqBqfT5UbHBoViZUt-wX,
-	._3Im6OD67aKo33nql4FpSp_ {
-		style
-	}
-
 	/* Left Dropwdown */
 	.XEkFoehJNxIH9Wlr5Ilzd._3Av66iQf7_N4Z-XZxsek76 {
 		background-color: rgba(10, 10, 10, 0.4) i;
@@ -344,10 +365,6 @@
 
 	/* Left Sidebar Search */
 	#header-subreddit-filter {
-		background: none i;
-	}
-
-	._1DeR7_QiQnu2UK0e2dDfYD {
 		background: none i;
 	}
 
