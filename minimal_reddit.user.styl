@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        0.8
+@version        0.9
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL		https://github.com/zenstorage/minimal-reddit/issues
@@ -25,7 +25,7 @@
 @var range widthPosts 'Margin Posts' [0, 0, 700, 10, 'px']
 @var checkbox mNavbar 'Minimize Navbar' 0
 @var range 	  navbarShowing 'Navbar Showing' [30, 0, 40, 1, 'px']
-@var checkbox leftSidebar 'Mnimize Left Sidebar' 0
+@var select   subBar 'SubBar' ["Default", "Minimize", "Compact"]
 @var checkbox hRightSidebar 'Minimize Right Sidebar' 0 
 @var checkbox stickySort 'Sticky Sort Posts' 0
 @var checkbox rRightSidebar 'Remove Right Sidebar in Home Page' 0
@@ -62,18 +62,16 @@
 
 
 
-	
+
 	._3ozFtOe6WpJEMUtxDOIvtU {
 		backdrop-filter: blur(blurBackground) i;
 	}
-	
+
 	if customBackground {
 		._2wxsLGNmMLx6sEMLJyn2o9 {
 			--pseudo-before-background: url(backgroundURL) i;
 		}
 	}
-	
-	
 
 	/* Mixins */
 	acrylic() {
@@ -121,11 +119,11 @@
 			max-width: 100% i;
 		}
 		.eZLYleuk3b8ykGiskfpo3 {
-  			max-width: none;
-}
+			max-width: none;
+		}
 		._1BJGsKulUQfhJyO19XsBph._3SktesklDBwXt2pEl0sHY8 {
-  			max-width: none;
-}
+			max-width: none;
+		}
 	}
 
 	/* Width Post */
@@ -137,7 +135,8 @@
 	/* Images in Posts */
 	if (imgPosts=='Scroll') {
 		._3Oa0THmZ3f5iZXAQ0hBJ0k > div,
- 		._26daP6nhhW7BT-CMzL0ijs, .KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
+		._26daP6nhhW7BT-CMzL0ijs,
+		.KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
 			overflow: auto i;
 		}
 	}
@@ -153,10 +152,74 @@
 	}
 
 
+	/* SubBar View*/
+	if (subBar=='Minimize') {
+		._20fGT0XJD3MvX9yBsVeKMn {
+			left: -15em i;
+			transition: .2s ease;
+		}
+
+		._20fGT0XJD3MvX9yBsVeKMn:hover {
+			left: 0em i;
+		}
+
+		#AppRouter-main-content {
+			padding-left: 40px i;
+		}
+		/* Close SubBar */
+		.FRrbwuHy8Zmlubp3nowLZ {
+			justify-content: end i;
+		}
+	}
+
+	else if (subBar=='Compact') {
+		/* SubBar */
+		._20fGT0XJD3MvX9yBsVeKMn {
+			width: 40px i;
+		}
+		/* Close Button SubBar */
+		.FRrbwuHy8Zmlubp3nowLZ {
+			justify-content: center i;
+		}
+		/* Search SubBar */
+		#header-subreddit-filter {
+			margin: 16px 0 16px i;
+			width: 40px i;
+		}
+		/* Subs Icons */
+		._2MgAHlPDdKvXiG-Qbz5cbC {
+			padding-left: 10px i;
+		}
+		/* Bookmarks */
+		.t2A0mgkgGzc8cAahJsR7a {
+			visibility: hidden i;
+		}
+		/* Text Sections */
+		._2XRPX11qL4-HxWPuHAzOW5 {
+			display: none i;
+		}
+		/* Bloat */
+		#focus-prot5_394pwn,
+		#focus-prot5_394pwn ~ * {
+			display: none i;
+		}
+		/* Notifications SubBar */
+		#focus-NotificationsInbox {
+			display: block i;
+		}
+	}
+	else if (subBar=='Default') {
+		/* Close SubBar */
+		.FRrbwuHy8Zmlubp3nowLZ {
+			justify-content: end i;
+		}
+	}
+
 	/* Minmize Navbar */
 	if mNavbar {
 		.cx1ohrUAq6ARaXTX2u8YN {
-			top: -30px i;
+			--mnavbar: navbarShowing;
+			top: calc(-1 * var(--mnavbar)) i;
 			transition: .2s ease;
 		}
 
@@ -172,22 +235,6 @@
 		}
 		#overlayScrollContainer {
 			top: -navbarShowing i;
-		}
-	}
-
-	/* Minimize Left Sidebar */
-	if leftSidebar {
-		._20fGT0XJD3MvX9yBsVeKMn {
-			left: -15em i;
-			transition: .2s ease;
-		}
-
-		._20fGT0XJD3MvX9yBsVeKMn:hover {
-			left: 0em i;
-		}
-
-		#AppRouter-main-content {
-			padding-left: 40px;
 		}
 	}
 
@@ -214,16 +261,26 @@
 			overflow-x: hidden i;
 		}
 	}
+
 	/* Sticky Sort Posts */
 	if stickySort {
-		.wBtTDilkW_rtT2k5x3eie {
-			--nav: navbarShowing;
-			position: sticky;
-			top: calc(49px - var(--nav)) i;
-			z-index: 9;
+		if (mNavbar=='0') {
+			.wBtTDilkW_rtT2k5x3eie {
+				position: sticky;
+				top: 49px i;
+				z-index: 9;
+			}
+		}
+		else if (mNavbar=='1') {
+			.wBtTDilkW_rtT2k5x3eie {
+				--nav: navbarShowing;
+				position: sticky;
+				top: calc(49px - var(--nav)) i;
+				z-index: 9;
+			}
 		}
 	}
-	
+
 	/* Popular */
 	if popular {
 		a._3dZnYgFFpifT-M_Vs2FAq6 {
@@ -261,7 +318,6 @@
 			display: none i;
 		}
 	}
-
 
 	/* Dropdrown Account */
 	._2uYY-KeuYHKiwl-9aF0UiL,
@@ -337,7 +393,6 @@
 			display: none i;
 		}
 	}
-
 
 	/* Coins Dropdown */
 	if dCoins {
@@ -450,16 +505,10 @@
 }
 
 @-moz-document url-prefix("https://www.reddit.com/r/") {
-
-	/* Variables */
-	i=!important
-
-	
-	
-
+	/* Remove Right Sidebar */
 	if rRightSidebarS {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
-			display: none i;
+			display: none !important;
 		}
 	}
 }
@@ -468,7 +517,7 @@
 	/* Remove Right Sidebar */
 	if rRightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
-			display: none i;
+			display: none !important;
 		}
 	}
 }
