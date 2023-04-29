@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        0.9
+@version        1.0
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL		https://github.com/zenstorage/minimal-reddit/issues
@@ -207,6 +207,9 @@
 		#focus-NotificationsInbox {
 			display: block i;
 		}
+		._1nxEQl5D2Bx2jxDILRHemb._3x1dyL19KnZ4kI6i9TlRp4 {
+			padding-left: 40px i;
+		}
 	}
 	else if (subBar=='Default') {
 		/* Close SubBar */
@@ -214,12 +217,11 @@
 			justify-content: end i;
 		}
 	}
-
+	
 	/* Minmize Navbar */
 	if mNavbar {
 		.cx1ohrUAq6ARaXTX2u8YN {
-			--mnavbar: navbarShowing;
-			top: calc(-1 * var(--mnavbar)) i;
+			top: - navbarShowing i;
 			transition: .2s ease;
 		}
 
@@ -229,12 +231,15 @@
 		}
 
 		#AppRouter-main-content {
-			top: -navbarShowing i;
+			top: - navbarShowing i;
 			position: relative i;
-			padding-top: 10px i;
 		}
 		#overlayScrollContainer {
-			top: -navbarShowing i;
+			top: - navbarShowing i;
+		}
+		._20fGT0XJD3MvX9yBsVeKMn {
+			--navbar: navbarShowing;
+			top: calc(49px - var(--navbar)) i;
 		}
 	}
 
