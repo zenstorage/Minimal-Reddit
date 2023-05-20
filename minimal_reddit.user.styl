@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        1.4
+@version        1.6
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	https://github.com/zenstorage/minimal-reddit/issues
@@ -24,12 +24,12 @@
 @var range	commentsOverlayB	    		'Comments Overlay Opacity' [.9, 0, 1, .1]
 @var checkbox	commentsOverlayBlur	    		'Comments Overlay Blur' 0
 @var checkbox 	mNavbar 				'Minimize Navbar' 0
-@var range 	navbarShowing 		    		'Navbar Showing' [30, 0, 40, 1, 'px']
+@var range 	navbarShowing 		    		'Navbar Top' [30, 0, 40, 1, 'px']
 @var checkbox 	hRightSidebar 		    		'Minimize Right Sidebar' 0 
-@var select   	subBar 					'SubBar' ["Default", "Minimize", "Compact"]
+@var select   	subBar 					'SubBar' ["Default", "Minimize", "Compact", "CompactV2", "CompactV2H"]
 @var select 	sortPosts				'Sort Posts' ["Default", "Remove", "Sticky"]
-@var checkbox	postWImages				'Remove posts with images' 0
-@var checkbox 	postWVideo				'Remove posts with videos' 0
+@var checkbox	postWImages				'Remove Posts with Images' 0
+@var checkbox 	postWVideo				'Remove Posts with Videos' 0
 @var checkbox	suggestedPosts		    		'Remove Suggested Posts' 0
 @var checkbox 	logo 					'Remove Reddit Logo' 0
 @var checkbox 	viewFullImage 		    		'Remove View Full Image' 0
@@ -51,10 +51,12 @@
 @var checkbox 	dPolicies 				'Remove Policies Dropdown' 1
 @var checkbox 	dExit 					'Remove Exit Dropdown' 0
 @var checkbox 	createPost 				'Remove Create Post' 0
-@var checkbox	profileHover		    		'Remove Profile Tooltip Hover' 		0
-@var checkbox	subHover				'Remove Subreddit Tooltip Hover'	0
-@var checkbox 	voteArrowsC				'Remove Vote Arrows in Comments' 	0
-@var checkbox	voteArrowsH				'Remove Vote Arrows in Section' 	0
+@var checkbox	profileHover		    		'Remove Profile Tooltip Hover' 	0
+@var checkbox	subHover				'Remove Subreddit Tooltip Hover' 0
+@var checkbox	postRelated				'Remove Posts Related' 0
+@var checkbox	voteArrowsH				'Remove Vote Arrows in Section' 0
+@var checkbox 	voteArrowsC				'Remove Vote Arrows in Comments' 0
+@var checkbox 	voteArrowsP				'Remove Vote Arrows in Post' 0
 @var checkbox 	bottomBar 				'Remove Bottom Actions' 0
 
 ==/UserStyle== */
@@ -75,6 +77,56 @@
 
 	transparent() {
 		background-color: rgba(10, 10, 10, 0.4) i
+	}
+	subCompactV2() {
+		/* Subreddit Bar */
+		.zoWOQnp55WuhEugRSwfw1 {
+			top: 0 i;
+			z-index: 999 i;
+		}
+		
+		/* Container Subreddit */
+		._3k3RwDkEsbX50bb-DBvuWj {
+			display: flex i;
+			flex-direction: row i;
+		}
+		
+		#header-subreddit-filter,
+ 		._2XRPX11qL4-HxWPuHAzOW5,
+		#focus-prot5_394pwn ~ *,
+ 		.FRrbwuHy8Zmlubp3nowLZ,
+		.icon.t2A0mgkgGzc8cAahJsR7a,
+		._3HTtcITrR-crvsRovLrijl,
+ 		#focus-CreateCommunity {
+			display: none i;
+		}
+
+		._20fGT0XJD3MvX9yBsVeKMn {
+			height: 25px i;
+			width: 100% i;
+		}
+
+		._2MgAHlPDdKvXiG-Qbz5cbC {
+			width: max-content i;
+			height: max-content i;
+			padding: 0 5px i;
+		}
+
+		._2MgAHlPDdKvXiG-Qbz5cbC::before {
+			content: '•';
+		}
+
+		#\32 x-container {
+			margin-top: 25px i;
+		}
+
+		.cx1ohrUAq6ARaXTX2u8YN {
+			margin-top: 25px i;
+		}
+
+		#AppRouter-main-content {
+			padding-left: 0 i;
+		}
 	}
 
 
@@ -128,14 +180,14 @@
 			._2jJNpBqXMbbyOiGCElTYxZ,
 			.wBtTDilkW_rtT2k5x3eie,
 			.uI_hDmU5GSiudtABRz_37 {
-				background-color: rgba(10, 10, 10, 0.5) i; 
+				background-color: rgba(10, 10, 10, 0.5) i;
 				backdrop-filter: blur(8px) i;
 			}
 
 			/* Post Background Images|Videos */
 			.m3aNC6yp8RrNM_-a0rrfa,
 			._2CSlKHjH7lsjx0IpjORx14,
- 			._3287nL7j7epK9JmDC3N1VR {
+			._3287nL7j7epK9JmDC3N1VR {
 				background: none i;
 			}
 
@@ -156,14 +208,14 @@
 			/* Post */
 			._2jJNpBqXMbbyOiGCElTYxZ,
 			.wBtTDilkW_rtT2k5x3eie,
- 			.uI_hDmU5GSiudtABRz_37 {
+			.uI_hDmU5GSiudtABRz_37 {
 				background-color: rgba(10, 10, 10, 0.5) i;
 			}
 
 			/* Post Background Images|Videos */
 			.m3aNC6yp8RrNM_-a0rrfa,
 			._2CSlKHjH7lsjx0IpjORx14,
- 			._3287nL7j7epK9JmDC3N1VR {
+			._3287nL7j7epK9JmDC3N1VR {
 				background: none i;
 			}
 
@@ -245,25 +297,35 @@
 	/* Wide Posts */
 	if widePosts {
 		._3nSp9cdBpqL13CqjdMr2L_ {
- 			 width: widthPosts i;
-			 transition: .2s ease;
-		}
-		._1npCwF50X2J7Wt82SZi6J0,
- 		._3obgdFz00GvpqpuX8QCsNK {
-  			margin-inline: 0;
-  			max-width: 100% i;
-  			min-width: 100% i;
-		}
-		.Dx3UxiK86VcfkFQVHNXNi {
-	  		max-width: widthPosts i;
+			width: widthPosts i;
 			transition: .2s ease;
 		}
-		._2DJXORCrmcNpPTSq0LqL6i {
-  			--comments-overlay-background: transparent i;
+
+		._2udhMC-jldHp_EpAuBeSR1 {
+			max-width: widthPosts i;
 		}
+
+		._1npCwF50X2J7Wt82SZi6J0,
+		._3obgdFz00GvpqpuX8QCsNK,
+		._31N0dvxfpsO6Ur5AKx4O5d {
+			margin-inline: 0;
+			max-width: 100% i;
+			min-width: 100% i;
+		}
+
+		.Dx3UxiK86VcfkFQVHNXNi {
+			max-width: widthPosts i;
+			transition: .2s ease;
+		}
+
+		._2DJXORCrmcNpPTSq0LqL6i {
+			--comments-overlay-background: transparent i;
+		}
+
 		._29lagmmeH1Fb03mLJEq0Dt {
 			background: none i;
 		}
+
 		._3xX726aBn29LDbsDtzr_6E {
 			max-width: 100% i;
 		}
@@ -295,16 +357,22 @@
 		._2ED-O3JtIcOqp8iIL1G5cg,
 		._3Im6OD67aKo33nql4FpSp_,
 		._1G4yU68P50vRZ4USXfaceV,
-		._3Qkp11fjcAw9I9wtLo8frE {
+		._3Qkp11fjcAw9I9wtLo8frE,
+		.zgT5MfUrDMC54cpiCpZFu {
 			border: none i;
+			transition: .3s ease;
+		}
+
+		.zgT5MfUrDMC54cpiCpZFu:hover {
+			background: rgb(46, 46, 49) i;
 		}
 
 		._3Qkp11fjcAw9I9wtLo8frE {
 			transition: .3s ease i;
-		}
 
-		._3Qkp11fjcAw9I9wtLo8frE:hover {
-			filter: contrast(95%) i;
+			&:hover {
+				filter: contrast(95%) i;
+			}
 		}
 	}
 
@@ -339,10 +407,10 @@
 		._20fGT0XJD3MvX9yBsVeKMn {
 			left: -15em i;
 			transition: .2s ease;
-		}
 
-		._20fGT0XJD3MvX9yBsVeKMn:hover {
-			left: 0em i;
+			&:hover {
+				left: 0em i;
+			}
 		}
 
 		#AppRouter-main-content {
@@ -429,31 +497,75 @@
 		}
 	}
 
+	else if (subBar=='CompactV2') {
+		subCompactV2()
+	}
+
+	else if (subBar=='CompactV2H') {
+		._3k3RwDkEsbX50bb-DBvuWj:hover {
+			flex-wrap: wrap i;
+		}
+		
+		._20fGT0XJD3MvX9yBsVeKMn:hover {
+			height: max-content i;
+		}
+		subCompactV2()
+	}
+
 	/* Minmize Navbar */
 	if mNavbar {
-		.cx1ohrUAq6ARaXTX2u8YN {
-			top: - navbarShowing i;
-			transition: .2s ease;
-		}
+		if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
+			.cx1ohrUAq6ARaXTX2u8YN {
+				top: - navbarShowing i;
+				transition: .2s ease;
 
-		.cx1ohrUAq6ARaXTX2u8YN:hover,
-		.cx1ohrUAq6ARaXTX2u8YN:focus-within {
-			top: 0px i;
-		}
+					&:hover,
+					&:focus-within {
+					top: 0px i;
+					}
+				
+			}
 
-		#AppRouter-main-content {
-			top: - navbarShowing i;
-			position: relative i;
-		}
+			#AppRouter-main-content {
+				top: - navbarShowing i;
+				position: relative i;
+			}
 
-		#overlayScrollContainer {
-			top: - navbarShowing i;
-		}
+			#overlayScrollContainer {
+				top: - navbarShowing i;
+			}
 
-		._20fGT0XJD3MvX9yBsVeKMn {
-			--navbar: navbarShowing;
-			top: calc(49px - var(--navbar)) i;
+			._20fGT0XJD3MvX9yBsVeKMn {
+				--navbar: navbarShowing;
+				top: calc(49px - var(--navbar)) i;
+			}
 		}
+		else if (subBar=='CompactV2'||subBar=='CompactV2H') {
+			.cx1ohrUAq6ARaXTX2u8YN {
+				top: - navbarShowing i;
+				transition: .2s ease;
+
+					&:hover,
+					&:focus-within {
+					top: 0px i;
+					}
+				
+			}
+
+			#AppRouter-main-content {
+				top: - navbarShowing i;
+				position: relative i;
+			}
+
+			#overlayScrollContainer {
+				top: - navbarShowing i;
+			}
+			
+			._20fGT0XJD3MvX9yBsVeKMn {
+  				top: 0 !important;
+			}
+		}
+		
 	}
 
 	/* Minimize Right Sidebar */
@@ -720,10 +832,9 @@
 		}
 	}
 
-
-	/* Vote Arrows Comments */
-	if voteArrowsC {
-		._1E9mcoVn4MYnuBQSVDt1gC {
+	/* Posts Related */
+	if postRelated {
+		._1RYN-7H8gYctjOQeL8p2Q7:has(._3hWVRt6y8PqOoC2VuZETZI) {
 			display: none i;
 		}
 	}
@@ -732,6 +843,13 @@
 	if voteArrowsH {
 		._1RYN-7H8gYctjOQeL8p2Q7 {
 			padding-left: 0;
+		}
+	}
+
+	/* Vote Arrows Comments */
+	if voteArrowsC {
+		._1ewTEGuogtFmDvDII2T2Yy {
+			display: none i;
 		}
 	}
 
@@ -780,6 +898,13 @@
 	if rRightSidebarS {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none !important;
+		}
+	}
+
+	/* Vote Arrows in Post*/
+	if voteArrowsP {
+		._23h0-EcaBUorIHC-JZyh6J {
+			display: none i;
 		}
 	}
 }
