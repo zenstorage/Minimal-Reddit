@@ -1,22 +1,20 @@
 
 # Minimal Reddit
 
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-
-Userstyle para o reddit, deixa a interface mais limpa.
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](https://choosealicense.com/licenses/mit/) [![Install directly with Stylus](https://img.shields.io/badge/Install%20directly%20with%20Stylus-00adad.svg?style=for-the-badge)](https://raw.githubusercontent.com/zenstorage/Minimal-Reddit/main/minimal_reddit.user.css)
 
 
+Userstyle for reddit, clean interface.
 
- ● Postagens Largas.
- 
- ● Defina a largura dos posts.
- 
- ● Estilo acrylic/tranparency na interface.  
 
- ● Remoção de alguns elementos.
+● Wide posts.
 
- ● Remova/Minimize a barra lateral.
- 
+● Set the width of the posts.
+
+● Acrylic/transparency style in the interface.
+
+● Removal of some elements.
+
+● Remove/minimize the sidebar.
  <hr>
  
-  ⚠️Acrylic pode causar lag⚠️
