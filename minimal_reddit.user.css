@@ -1,50 +1,65 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        2.1
+@version        4.7
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
-@supportURL	https://github.com/zenstorage/minimal-reddit/issues
+@supportURL	    https://github.com/zenstorage/minimal-reddit/issues
 @author         hdy
 @license        MIT
 @preprocessor   stylus
 
-@var select     style 	                		'Style' ["Default", "Acrylic", "Transparent"]
-@var range	blurAcrylic				'Acrylic Blur' [8, 1, 20, 1, 'px']
-@var checkbox 	sectionStyle		    		'Apply Style in Section' 0
-@var checkbox 	customBackground 	   		'Custom Background' 0
-@var text 	backgroundURL 		    		'Background URL' "'https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg'"
-@var range 	blurBackground 		    		'Blur Background' [3, 0, 10, 1, 'px']
+@var select		style 	     			'Style' ["Default", "Acrylic", "Transparent"]
+@var range		blurAcrylic				'Acrylic Blur' [8, 1, 20, 1, "px"]
+@var checkbox 	sectionStyle		    'Apply Style in Section' 0
+@var checkbox 	customBackground 	   	'Custom Background' 0
+@var text 		backgroundURL 		    'Background URL' "'https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg'"
+@var range 		blurBackground 		    'Blur Background' [3, 0, 10, 1, "px"]
 @var select 	imgPosts 				'Images in Posts' ['Default', "Scroll", "Resize"]
-@var range	imgSize 				'Media Resize in Posts' [512, 256, 1024, 8, 'px']
+@var checkbox	arrowScroll				'Show Arrow in Scroll Images' 0
+@var text		characterScroll			'Character Scroll' "'↓'"
+@var checkbox	scrollLongT				'Add Scroll to Long Text in Posts' 0
 @var checkbox 	widePosts 				'Wide Posts' 1
-@var range 	widthPosts 				'Width Posts' [100, 30, 100, 1, '%']
-@var number	borderRadius				'Border Raius' [4, 0, 30, 1, 'px']
+@var range 		widthPosts 				'Width Posts' [100, 30, 100, 1, "%"]
+@var number		borderRadius			'Border Raius' [4, 0, 30, 1, "px"]
 @var checkbox	border					'No Border in Section' 0
-@var checkbox	marginSection		    		'No Margin in Section' 0
-@var checkbox	paddingSectionSide			'No Padding in Siders Section' 0
-@var range	commentsOverlayB	    		'Comments Overlay Opacity' [.9, 0, 1, .1]
-@var checkbox	commentsOverlayBlur	    		'Comments Overlay Blur' 0
+@var checkbox	marginSection		    'No Margin in Section' 0
+@var checkbox	paddingSectionSide		'No Padding in Siders Section' 0
+@var range		commentsOverlayB	    'Comments Overlay Opacity' [.5, 0, 1, .1]
+@var checkbox	commentsOverlayBlur	    'Comments Overlay Blur' 0
 @var checkbox 	mNavbar 				'Minimize Navbar' 0
-@var range 	navbarShowing 		    		'Navbar Top' [30, 0, 40, 1, 'px']
-@var checkbox 	hRightSidebar 		    		'Minimize Right Sidebar' 0 
-@var select   	subBar 					'SubBar' ["Default", "Minimize","MinimizeWidth", "Compact", "CompactV2", "CompactV2H"]
+@var range 		navbarShowing 		    'Navbar Top' [30, 0, 40, 1, 'px']
+@var checkbox 	hRightSidebar 		    'Minimize Right Sidebar' 0 
+@var select   	subBar 					'SubBar' ["Default", "Remove", "Minimize","MinimizeWidth", "Compact", "CompactV2", "CompactV2H"]
 @var select 	sortPosts				'Sort Posts' ["Default", "Remove", "Sticky"]
+@var number		fontTitle				'Font Size Title' [18, 18, 50, 1, "px"]
+@var number		fontParagraph			'Font Size Paragraph, Comments' [14, 12, 50, 1, "px"]
+@var color		upVoteColor				'Upvote Select Color' #ff4500
+@var color		downVoteColor			'Upvote Select Color' #7193ff
+@var select		cAlignment				'Community Header Alighment' ["Default", "Left", "Center", "Right"]
+@var select 	bannerR					'Remove Subreddits Banner' ["Default" , "Compact", "Remove"]
 @var checkbox	postWImages				'Remove Posts with Images' 0
 @var checkbox 	postWVideo				'Remove Posts with Videos' 0
-@var checkbox 	bannerR					'Remove Subreddits Banner' 0
-@var checkbox	suggestedPosts		    		'Remove Suggested Posts' 0
+@var checkbox	title					'Remove Title Bar' 0
+@var checkbox	trending				'Remove Trending today' 1
+@var checkbox	suggestedPosts		    'Remove Suggested Posts' 0
 @var checkbox 	logo 					'Remove Reddit Logo' 0
-@var checkbox 	viewFullImage 		    		'Remove View Full Image' 0
-@var checkbox 	rRightSidebar 		    		'Remove Right Sidebar in Home Page' 0
-@var checkbox 	rRightSidebarS 				'Remove Right Sidebar in Subreddits' 0
+@var checkbox 	viewFullImage 		    'Remove View Full Image' 0
+@var checkbox 	rRightSidebar 		    'Remove Right Sidebar in Home Page' 0
+@var checkbox 	rRightSidebarP 			'Remove Right Sidebar in Posts' 0
+@var checkbox 	rRightSidebarS 			'Remove Right Sidebar in Subreddits' 0
+@var checkbox 	rTopInfos				'Remove Top Information in Posts' 0
+@var checkbox	rFlairs					'Remove Flairs' 0
 @var checkbox 	popular 				'Remove Popular' 1
 @var checkbox 	coins 					'Remove Coins' 1
 @var checkbox 	chat 					'Remove Chat' 1
-@var checkbox 	notifications 		    		'Remove Notifications' 0
-@var checkbox 	createPostNav 		    		'Remove Create Post in Navbar' 1
+@var checkbox 	notifications 		    'Remove Notifications' 0
+@var checkbox 	createPostNav 		    'Remove Create Post in Navbar' 1
 @var checkbox 	advertise 				'Remove Advertise' 1
-@var checkbox 	cCommunity 				'Remove Create Community Dropdown' 0
+@var checkbox	statusOn				'Remove Status Changer' 0
+@var checkbox	profile					'Remove Profile Dropdown' 0
+@var checkbox	avatarP					'Remove Avatar Personalize' 0
+@var checkbox	userConfig				'Remove User Settings Dropdown' 0
 @var checkbox 	dAdvertise 				'Remove Advertise Dropdown' 1
 @var checkbox 	dCoins 					'Remove Coins Dropdown' 1
 @var checkbox 	dPremium 				'Remove Premium Dropdown' 1
@@ -52,11 +67,13 @@
 @var checkbox 	helpCenter 				'Remove Help Center Dropdown' 1
 @var checkbox 	dMore 					'Remove More Dropdown' 1
 @var checkbox 	dPolicies 				'Remove Policies Dropdown' 1
+@var checkbox	dDarkM					'Remove Dark Mode Dropdown' 0
+@var checkbox 	cComunity 				'Remove Create Community Dropdown' 0
 @var checkbox 	dExit 					'Remove Exit Dropdown' 0
 @var checkbox 	createPost 				'Remove Create Post' 0
-@var checkbox	profileHover		    		'Remove Profile Tooltip Hover' 	0
+@var checkbox	profileHover		    'Remove Profile Tooltip Hover' 	0
 @var checkbox	subHover				'Remove Subreddit Tooltip Hover' 0
-@var checkbox	voteArrowsH				'Remove Vote Arrows in Section' 0
+@var select		voteC					'Remove Votes|Arrows in Section' ["Default" ,"Votes", "Arrows", "Both"]
 @var checkbox 	voteArrowsC				'Remove Vote Arrows in Comments' 0
 @var checkbox 	voteArrowsP				'Remove Vote Arrows in Post' 0
 @var checkbox 	bottomBar 				'Remove Bottom Actions' 0
@@ -66,11 +83,12 @@
 
 
 	/* Variables */
-	i=!important //
-	//
-	//
-	//
-	//
+	i=!important;
+
+
+
+
+
 	/* Mixins */
 	acrylic() {
 		backdrop-filter: blur(blurAcrylic) i;
@@ -88,6 +106,9 @@
 		.uI_hDmU5GSiudtABRz_37 {
 			background-color: rgba(10, 10, 10, 0.5) i;
 		}
+		._2uazWzYzM0Qndpz5tFu3EX {
+			background: rgba(10, 10, 10, 0.3) i;
+		}
 
 		/* Post Background Images|Videos */
 		.m3aNC6yp8RrNM_-a0rrfa,
@@ -95,6 +116,7 @@
 		._3287nL7j7epK9JmDC3N1VR {
 			background: none i;
 		}
+
 
 		/* Other elements */
 		.bg-black,
@@ -153,6 +175,30 @@
 		.MSTY2ZpsdupobywLEfx9u {
 			background-color: rgba(0, 0, 0, 0.53);
 		}
+		/* Threads Lines */
+		._36AIN2ppxy_z-XSDxTvYj5 > .threadline {
+			border-right: 2px solid #7e7e7e i;
+		}
+		._36AIN2ppxy_z-XSDxTvYj5.hovered > .threadline {
+			border-right: 2px solid #eee i;
+		}
+		/* Imgur Gifv to MP4 */
+		.videoGifv {
+			background-color: rgba(0, 0, 0, 0) i;
+		}
+		/* Search Results Page, Right Sidebar*/
+		._1poyrkZ7g36PawDueRza-J,
+		.DpriHZnFiOfa0afZpg8vf,
+		._3lfTEmyI7x9ib1wz4e8RWP {
+			background-color: rgba(10, 10, 10, 0.5) i
+		}
+		._2dkUkgRYbhbpU_2O2Wc5am,
+		.DpriHZnFiOfa0afZpg8vf {
+			border: thin solid rgba(10, 10, 10, 0.5) i;
+		}
+		._2dkUkgRYbhbpU_2O2Wc5am:hover {
+			border: thin solid #c8c0be94 i;
+		}
 	}
 
 	subCompactV2() {
@@ -204,6 +250,10 @@
 		#AppRouter-main-content {
 			padding-left: 0 i;
 		}
+		._2aqH0n-kSzFY7HZZ5GL-Jb:hover {
+			color: #fff;
+			text-decoration: underline;
+		}
 	}
 
 
@@ -239,7 +289,8 @@
 		._ZhON3a3vplThB8NFwuJn,
 		.TMMvbwyeh9yuHKmQWHrE3,
 		._2QeqBqfT5UbHBoViZUt-wX,
-		._3Im6OD67aKo33nql4FpSp_ {
+		._3Im6OD67aKo33nql4FpSp_,
+		.FOioVk_DUTmZIKKa82Mm1 {
 			transparent()
 		}
 
@@ -257,13 +308,14 @@
 			.uI_hDmU5GSiudtABRz_37 {
 				backdrop-filter: blur(blurAcrylic) i;
 			}
-			.bg-black,
+
 			.zgT5MfUrDMC54cpiCpZFu,
 			._1s79QnBguPbckxiiPvFXGP,
 			._3Qkp11fjcAw9I9wtLo8frE,
 			._1Qs6zz6oqdrQbR7yE_ntfY,
 			._1gVVmSnHZpkUgVShsn7-ua,
-			._2L5G9B5yaoqW3IegiYN-FL {
+			._2L5G9B5yaoqW3IegiYN-FL,
+			._1EQJpXY7ExS04odI1YBBlj {
 				backdrop-filter: blur(blurAcrylic) i;
 			}
 
@@ -278,11 +330,11 @@
 
 	/* Custom Background */
 	._31N0dvxfpsO6Ur5AKx4O5d {
-		backdrop-filter: blur(blurBackground) i;
+		/* 		backdrop-filter: blur(blurBackground) i; */
 	}
 
 	if customBackground {
-		#AppRouter-main-content {
+		body {
 			background: url(backgroundURL);
 			background-position: center i;
 			background-size: cover i;
@@ -299,7 +351,15 @@
 		._2wxsLGNmMLx6sEMLJyn2o9 {
 			--pseudo-before-background: none i;
 		}
+		/* Custom Background */
+		._31N0dvxfpsO6Ur5AKx4O5d {
+			backdrop-filter: blur(blurBackground) i;
+		}
+		._1VP69d9lk-Wk9zokOaylL {
+			background: none i;
+		}
 	}
+
 
 	/* Images in Posts */
 	if (imgPosts=='Scroll') {
@@ -308,28 +368,39 @@
 		.KVyBaj7FjzElWsqJDmw7v ._3o5Vzct5tn9PE7e-emdDmf {
 			overflow: auto i;
 		}
+		if arrowScroll {
+			div:has(> ._2_tDEnGMLxpM6uOa2kaDB3)::after {
+				content: characterScroll;
+				font-size: 25px;
+				text-align: center;
+				position: absolute;
+				bottom: 0;
+				transform: translateX(-25px);
+				animation-name: pulse;
+				animation-duration: 4s;
+				animation-iteration-count: infinite
+			}
+			@keyframes pulse {
+				0% {
+					color: #ff4500;
+				}
+				50% {
+					color: #eee;
+				}
+				100% {
+					color: #ff4500;
+				}
+			}
+		}
 	}
 
 	else if (imgPosts=='Resize') {
-		._2_tDEnGMLxpM6uOa2kaDB3 {
+		._3o5Vzct5tn9PE7e-emdDmf > div:has(._1dwExqTGJH2jnA-MYGkEL-) {
 			height: 100% i;
 		}
-
-		._3hUbl08LBz2mbXjy0iYhOS {
-			/* 			display: none i; */
-		}
-
-		/* Images in Posts Size */
-		.media-element {
-			max-height: imgSize i;
-		}
-
-		.m3aNC6yp8RrNM_-a0rrfa {
-			max-height: imgSize i;
-		}
-
-		img._1XWObl-3b9tPy64oaG6fax {
-			height: imgSize i;
+		._1dwExqTGJH2jnA-MYGkEL-,
+		._2_tDEnGMLxpM6uOa2kaDB3 {
+			height: 100% i;
 		}
 	}
 
@@ -337,11 +408,19 @@
 		max-width: 50% i;
 	}
 
+	/* Long Text Scroll */
+	if scrollLongT {
+		.Chtkt3BCZQruf0LtmFg2c {
+			overflow-y: scroll i;
+			mask-image: linear-gradient(180deg, #000 60%, #000);
+		}
+	}
+
 	/* Wide Posts */
 	if widePosts {
 		._3nSp9cdBpqL13CqjdMr2L_ {
 			width: widthPosts i;
-			transition: .2s ease;
+			transition: .1s ease;
 		}
 
 		._2udhMC-jldHp_EpAuBeSR1 {
@@ -361,16 +440,21 @@
 			transition: .2s ease;
 		}
 
-		._2DJXORCrmcNpPTSq0LqL6i {
-			--comments-overlay-background: transparent i;
-		}
-
 		._29lagmmeH1Fb03mLJEq0Dt {
 			background: none i;
 		}
 
 		._3xX726aBn29LDbsDtzr_6E {
 			max-width: 100% i;
+		}
+		.eZLYleuk3b8ykGiskfpo3 {
+			max-width: unset i;
+		}
+		._2lzCpzHH0OvyFsvuESLurr {
+			justify-content: center i;
+		}
+		._1BJGsKulUQfhJyO19XsBph._3SktesklDBwXt2pEl0sHY8 {
+			max-width: widthPosts i;
 		}
 	}
 
@@ -379,7 +463,8 @@
 	.wBtTDilkW_rtT2k5x3eie,
 	._2jJNpBqXMbbyOiGCElTYxZ,
 	._1G4yU68P50vRZ4USXfaceV,
-	._3Im6OD67aKo33nql4FpSp_ {
+	._3Im6OD67aKo33nql4FpSp_,
+	.uI_hDmU5GSiudtABRz_37 {
 		border-radius: borderRadius i;
 	}
 
@@ -435,14 +520,29 @@
 
 	/* Padding in Sides */
 	if paddingSectionSide {
-		._31N0dvxfpsO6Ur5AKx4O5d {
-			padding: 0 i;
+		if (subBar=="Minimize") {
+			._31N0dvxfpsO6Ur5AKx4O5d {
+				padding: 0 0 0 30px i;
+			}
+		}
+		else if (subBar=="MinimizeWidth"||subBar=="Default"||subBar=="CompactV2"||subBar=="CompactV2H") {
+			._31N0dvxfpsO6Ur5AKx4O5d {
+				padding: 0 i;
+			}
+		}
+		else if (subBar=='Compact') {
+			._31N0dvxfpsO6Ur5AKx4O5d {
+				padding: 0 0 0 40px i;
+			}
 		}
 	}
 
 	/* Comments Overlay Opacity */
+	._29IbETWb5VVDcfk_-GumWz {
+		background: rgba(03, 03, 03, commentsOverlayB) i;
+	}
 	._2DJXORCrmcNpPTSq0LqL6i {
-		background-color: rgba(28, 28, 28, commentsOverlayB) i;
+		--comments-overlay-background: transparent i;
 	}
 
 	/* Comments Overlay Blur */
@@ -460,6 +560,11 @@
 
 		._3x1dyL19KnZ4kI6i9TlRp4 {
 			padding-left: 270px i;
+		}
+	}
+	else if (subBar=='Remove') {
+		div._3jiriKeNer8y0-1r6oWIFM:nth-child(4) {
+			display: none i;
 		}
 	}
 
@@ -537,7 +642,11 @@
 
 		/* Bloat */
 		#focus-prot5_394pwn,
-		#focus-prot5_394pwn ~ * {
+		#focus-prot5_394pwn ~ *,
+		._1nBP1OfpQDgTmzRFqaVult {
+			display: none i;
+		}
+		.icon.t2A0mgkgGzc8cAahJsR7a {
 			display: none i;
 		}
 
@@ -558,6 +667,20 @@
 
 		._31N0dvxfpsO6Ur5AKx4O5d {
 			padding: 20px 24px 20px 60px;
+		}
+		/* Close Button */
+		.FRrbwuHy8Zmlubp3nowLZ {
+			padding: 0 i;
+		}
+		._2oY_N7NWiAv9m_mFIRdwVX {
+			padding: 4px i;
+			margin: 8px 4px 4px 4px i;
+		}
+		.TMMvbwyeh9yuHKmQWHrE3 {
+			display: none i;
+		}
+		._2FVCfsIPxXtl6S-c69sXO4 {
+			color: #f5491e i;
 		}
 	}
 
@@ -638,22 +761,19 @@
 		if (rRightSidebar=='1'||rRightSidebarS=='1') {}
 		else {
 			._3Kd8DQpBIbsr5E1JcrMFTY {
-				flex-basis: 50px;
-				width: 0;
-				height: 100%;
-				z-index: 9;
-				transition: .2s ease-out;
-
+				position: absolute i;
+				right: -270px i;
+				margin: 0 i;
+				transition: .2s ease i;
+				z-index: 4 i;
 
 				&:hover {
-					transform: translate(-265px);
+					transform: translateX(-275px);
 				}
 			}
-
-			._31N0dvxfpsO6Ur5AKx4O5d {
-				padding-right: 0;
+			._1OVBBWLtHoSPfGCRaPzpTf {
+				margin-right: 42px i;
 			}
-
 			body {
 				overflow-x: hidden i;
 			}
@@ -697,6 +817,48 @@
 		}
 	}
 
+	if (cAlignment=="Left") {
+		._3JDs8KEQIXSMn1bTF2ZqJ_ {
+			max-width: max-content i;
+			margin-left: 10px i;
+		}
+	}
+	else if (cAlignment=="Center") {
+		._3JDs8KEQIXSMn1bTF2ZqJ_ {
+			max-width: max-content i;
+		}
+	}
+	else if (cAlignment=="Right") {
+		._3JDs8KEQIXSMn1bTF2ZqJ_ {
+			max-width: max-content i;
+			margin-right: 10px i;
+		}
+	}
+
+	/* FONT POST TITLE */
+	._2SdHzo12ISmrC8H86TgSCp._29WrubtjAcKqzJSPdQqQ4h,
+	._2SdHzo12ISmrC8H86TgSCp._3wqmjmv3tb_k-PROt7qFZe {
+		font-size: fontTitle i;
+	}
+	/* FONT POST P, COMMENTS */
+	._2rszc84L136gWQrkwH6IaM ._1qeIAgB0cPwnLhDF9XSiJM,
+	._292iotee39Lmt0MkQZ2hPV {
+		font-size: fontParagraph i;
+	}
+	/* UPVOTE, DOWNVOTE */
+	.icon-upvote_fill::before,
+	.icon-upvote:hover {
+		color: upVoteColor i;
+	}
+	/* DOWNVOTE COLOR */
+	.icon-downvote_fill::before,
+	.icon-downvote:hover {
+		color: downVoteColor i;
+	}
+	._25IkBM0rRUqWX5ZojEMAFQ,
+	._3a2ZHWaih05DgAOtvu6cIo {
+		color: #eee i;
+	}
 	if postWImages {
 		._1RYN-7H8gYctjOQeL8p2Q7:has(._2_tDEnGMLxpM6uOa2kaDB3) {
 			display: none i;
@@ -709,14 +871,6 @@
 		}
 	}
 
-	if bannerR {
-		._2L5G9B5yaoqW3IegiYN-FL {
-			display: none i;
-		}
-		.MSTY2ZpsdupobywLEfx9u {
-			padding-top: 30px i;
-		}
-	}
 
 	/* Suggested Posts */
 	if suggestedPosts {
@@ -731,9 +885,21 @@
 			display: none i;
 		}
 	}
+	if title {
+		.y8HYJ-y_lTUHkQIc1mdCq {
+			display: none i;
+		}
+	}
+
+	if trending {
+		#TrendingPostsContainer {
+			display: none i;
+		}
+	}
 
 	if viewFullImage {
-		._3hUbl08LBz2mbXjy0iYhOS {
+		._3hUbl08LBz2mbXjy0iYhOS,
+		._3b8u2OJXaSDdBWoRB7zUoK {
 			display: none i;
 		}
 	}
@@ -752,30 +918,36 @@
 		}
 	}
 
+	if coins=="1" && popular=="1" {
+		.x0hiXHicn7r3BG9m1FJH4 {
+			display: none i;
+		}
+	}
+
 	/* Chat  */
 	if chat {
-		a._1x6pySZ2CoUnAfsFhGe7J1 {
+		span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(1) {
 			display: none i;
 		}
 	}
 
 	/* Notifications */
 	if notifications {
-		div.FOioVk_DUTmZIKKa82Mm1 {
+		span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(2) {
 			display: none i;
 		}
 	}
 
 	/* Create Post in Navbar */
 	if createPostNav {
-		button._1x6pySZ2CoUnAfsFhGe7J1 {
+		span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(3) {
 			display: none i;
 		}
 	}
 
 	/* Advertise */
 	if advertise {
-		span._2zZ-KGHbWWqrwGlHWXR90y._2I12Htze2UzJmmfnrgYJOn._1dBtowHdRHcGyLbVEaOL8t {
+		span._2zZ-KGHbWWqrwGlHWXR90y:nth-child(4) {
 			display: none i;
 		}
 	}
@@ -824,10 +996,42 @@
 		margin-top: 0;
 	}
 
-	/* Create Community */
-	if cComunity {
-		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
+
+	/* Status Online */
+	if statusOn {
+		div._3SDj_IT6ZaqCbKfC4eTjb2:nth-child(3) > button:nth-child(1) {
 			display: none i;
+		}
+	}
+	._3SDj_IT6ZaqCbKfC4eTjb2:has([href="/settings/"]) {
+		/* 			display: none i; */
+	}
+	/* Profile */
+	if profile {
+		._3SDj_IT6ZaqCbKfC4eTjb2 > a:nth-child(2) {
+			display: none i;
+		}
+	}
+	/* Avatar Personalize*/
+	if avatarP {
+		._3SDj_IT6ZaqCbKfC4eTjb2 > button:nth-child(3) {
+			display: none i;
+		}
+	}
+	/* User Config*/
+	if userConfig {
+		._3SDj_IT6ZaqCbKfC4eTjb2 > a:nth-child(4) {
+			display: none i;
+		}
+	}
+	if (userConfig=="1" && avatarP=="1" && profile=="1" && statusOn=="1") {
+		div._1pjbWqnK8P0fDmz8PgLxXY:nth-child(1) > span:nth-child(1),
+		div._1pjbWqnK8P0fDmz8PgLxXY:nth-child(1) {
+			display: none i;
+		}
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > div:nth-child(2),
+		._2uYY-KeuYHKiwl-9aF0UiL {
+			padding: 0 i;
 		}
 	}
 
@@ -844,7 +1048,7 @@
 			display: none i;
 		}
 	}
-
+	/* Premium Dropdown*/
 	if dPremium {
 		a._3fbofimxVp_hpVM6I1TGMS:nth-child(8) {
 			display: none i;
@@ -890,6 +1094,20 @@
 			display: none i;
 		}
 	}
+	/* Dark Mode Dropdown */
+	if dDarkM {
+		div._1pjbWqnK8P0fDmz8PgLxXY:nth-child(3),
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > div:nth-child(4) {
+			display: none i;
+		}
+	}
+
+	/* Create Community */
+	if cComunity {
+		._2uYY-KeuYHKiwl-9aF0UiL > div:nth-child(1) > button:nth-child(5) {
+			display: none i;
+		}
+	}
 
 	/* Exit */
 	if dExit {
@@ -919,10 +1137,27 @@
 		}
 	}
 
-	/* Vote Arrows in Section */
-	if voteArrowsH {
+	if (voteC=="Default") {}
+	else if (voteC=='Votes') {
+		/* Count Votes */
+		._1rZYMD_4xY3gRcSS3p8ODO {
+			display: none i;
+		}
+	}
+	else if (voteC=='Arrows') {
+		/* Arrows in Section */
+		.icon._2Jxk822qXs4DaXwsN7yyHA,
+		.icon.ZyxIIl4FP5gHGrJDzNpUC {
+			display: none i;
+		}
+	}
+	else if (voteC=='Both') {
+		/* Vote|Arrows in Section */
 		._1RYN-7H8gYctjOQeL8p2Q7 {
 			padding-left: 0;
+		}
+		._23h0-EcaBUorIHC-JZyh6J {
+			display: none i;
 		}
 	}
 
@@ -972,6 +1207,21 @@
 	._2X4xugrTQ5e3TVxPPEHqGh ._3JKnqeBKw2wp7eHzFXNXSe ._1cubpGNEaCAVnpJl1KBPcO._2q-ZKRaT1WjKg092R6La5J {
 		display: none i;
 	}
+	if rTopInfos {
+		._14-YvdFiW5iVvfe5wdgmET {
+			display: none i;
+		}
+	}
+	/* Flairs */
+	if rFlairs {
+		._2xu1HuBz1Yx6SP10AGVx_I {
+			display: none i;
+		}
+	}
+	/* Bloat Divs Empty in Section*/
+	.rpBJOHq2PR60pnwJlUyP0 > div[style="height: 10px;"] {
+		display: none i;
+	}
 }
 
 @-moz-document url-prefix("https://www.reddit.com/r/") {
@@ -987,12 +1237,73 @@
 			display: none i;
 		}
 	}
+	if hRightSidebar {
+		if (rRightSidebarS=='1') {}
+		else {
+			._3Kd8DQpBIbsr5E1JcrMFTY {
+				position: absolute i;
+				right: -270px i;
+				margin: 0 i;
+				transition: .2s ease i;
+				z-index: 4 i;
+
+				&:hover {
+					transform: translateX(-275px);
+				}
+			}
+			._1OVBBWLtHoSPfGCRaPzpTf {
+				margin-right: 42px i;
+			}
+			body {
+				overflow-x: hidden i;
+			}
+		}
+	}
 }
 
 @-moz-document url("https://www.reddit.com/") {
 	if rRightSidebar {
 		._3Kd8DQpBIbsr5E1JcrMFTY {
 			display: none !important;
+		}
+	}
+}
+
+
+@-moz-document regexp("https://www.reddit.com/r/(.+)/comments/(.+).*") {
+	if bannerR=="Compact" {
+		._2L5G9B5yaoqW3IegiYN-FL {
+			height: 56px i;
+		}
+	}
+	else if bannerR=="Remove" {
+		._2L5G9B5yaoqW3IegiYN-FL {
+			background: none i;
+			height: 60px i;
+		}
+	}
+	if rRightSidebarP {
+		._3Kd8DQpBIbsr5E1JcrMFTY {
+			display: none !important;
+		}
+		._2Xq-4oyrEvHjL5U_EeMnK8._20b4i5iUhjZQqDZ1BM_Q-9 {
+			display: none !important;
+		}
+	}
+}
+
+@-moz-document regexp("https://www.reddit.com/r/([^/]+)/$") {
+	if bannerR=="Compact" {
+		._2L5G9B5yaoqW3IegiYN-FL {
+			height: 56px i;
+		}
+	}
+	else if bannerR=="Remove" {
+		._2L5G9B5yaoqW3IegiYN-FL {
+			display: none i;
+		}
+		.MSTY2ZpsdupobywLEfx9u {
+			padding-top: 30px i;
 		}
 	}
 }
