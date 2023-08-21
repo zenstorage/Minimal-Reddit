@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        4.7
+@version        4.8
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -27,6 +27,8 @@
 @var checkbox	paddingSectionSide		'No Padding in Siders Section' 0
 @var range		commentsOverlayB	    'Comments Overlay Opacity' [.5, 0, 1, .1]
 @var checkbox	commentsOverlayBlur	    'Comments Overlay Blur' 0
+@var checkbox	separatorPosts			'Add Separator Between Posts' 0
+@var color		separatorColor			'Separator Color' #acacac
 @var checkbox 	mNavbar 				'Minimize Navbar' 0
 @var range 		navbarShowing 		    'Navbar Top' [30, 0, 40, 1, 'px']
 @var checkbox 	hRightSidebar 		    'Minimize Right Sidebar' 0 
@@ -458,6 +460,20 @@
 		}
 	}
 
+	/* Separator Between Posts */
+	if separatorPosts {
+		div:has(> ._1RYN-7H8gYctjOQeL8p2Q7) {
+			border-bottom: 1px solid separatorColor i;
+		}
+		._1RYN-7H8gYctjOQeL8p2Q7:not(._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s) {
+			margin-top: 10px i;
+		}
+		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s {
+			border-bottom: 1px solid var(--post-line-color) i;
+			margin-bottom: 10px i;
+		}
+	}
+
 	/* Border Radius in UI */
 	._1RYN-7H8gYctjOQeL8p2Q7,
 	.wBtTDilkW_rtT2k5x3eie,
@@ -486,7 +502,8 @@
 		._3Im6OD67aKo33nql4FpSp_,
 		._1G4yU68P50vRZ4USXfaceV,
 		._3Qkp11fjcAw9I9wtLo8frE,
-		.zgT5MfUrDMC54cpiCpZFu {
+		.zgT5MfUrDMC54cpiCpZFu,
+ 		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s {
 			border: none i;
 			transition: .3s ease;
 		}
@@ -509,7 +526,9 @@
 		._2jJNpBqXMbbyOiGCElTYxZ,
 		._3Kd8DQpBIbsr5E1JcrMFTY,
 		.wBtTDilkW_rtT2k5x3eie,
-		._3Qkp11fjcAw9I9wtLo8frE {
+		._3Qkp11fjcAw9I9wtLo8frE, 
+ 		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s,
+		._1RYN-7H8gYctjOQeL8p2Q7:not(._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s) {
 			margin: 0 i;
 		}
 
