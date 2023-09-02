@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        4.8
+@version        5.2
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -16,8 +16,8 @@
 @var text 		backgroundURL 		    'Background URL' "'https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg'"
 @var range 		blurBackground 		    'Blur Background' [3, 0, 10, 1, "px"]
 @var select 	imgPosts 				'Images in Posts' ['Default', "Scroll", "Resize"]
-@var checkbox	arrowScroll				'Show Arrow in Scroll Images' 0
-@var text		characterScroll			'Character Scroll' "'↓'"
+@var checkbox	arrowScroll				'Show Indicator on Scrollable Images' 0
+@var text		characterScroll			'Character Indicator' "'↓'"
 @var checkbox	scrollLongT				'Add Scroll to Long Text in Posts' 0
 @var checkbox 	widePosts 				'Wide Posts' 1
 @var range 		widthPosts 				'Width Posts' [100, 30, 100, 1, "%"]
@@ -32,6 +32,7 @@
 @var checkbox 	mNavbar 				'Minimize Navbar' 0
 @var range 		navbarShowing 		    'Navbar Top' [30, 0, 40, 1, 'px']
 @var checkbox 	hRightSidebar 		    'Minimize Right Sidebar' 0 
+@var checkbox	pRightSidebar			'Add Space Between Sidebar' 1
 @var select   	subBar 					'SubBar' ["Default", "Remove", "Minimize","MinimizeWidth", "Compact", "CompactV2", "CompactV2H"]
 @var select 	sortPosts				'Sort Posts' ["Default", "Remove", "Sticky"]
 @var number		fontTitle				'Font Size Title' [18, 18, 50, 1, "px"]
@@ -371,16 +372,17 @@
 			overflow: auto i;
 		}
 		if arrowScroll {
-			div:has(> ._2_tDEnGMLxpM6uOa2kaDB3)::after {
-				content: characterScroll;
+			._1RYN-7H8gYctjOQeL8p2Q7:has(._2_tDEnGMLxpM6uOa2kaDB3:not(.media-element))::after,
+ 			._1RYN-7H8gYctjOQeL8p2Q7:has(._3b8u2OJXaSDdBWoRB7zUoK)::after {
+				content: '↓';
 				font-size: 25px;
 				text-align: center;
 				position: absolute;
-				bottom: 0;
-				transform: translateX(-25px);
+				top: 90px;
+				left: 10px;
 				animation-name: pulse;
 				animation-duration: 4s;
-				animation-iteration-count: infinite
+				animation-iteration-count: infinite;
 			}
 			@keyframes pulse {
 				0% {
@@ -480,7 +482,9 @@
 	._2jJNpBqXMbbyOiGCElTYxZ,
 	._1G4yU68P50vRZ4USXfaceV,
 	._3Im6OD67aKo33nql4FpSp_,
-	.uI_hDmU5GSiudtABRz_37 {
+	.uI_hDmU5GSiudtABRz_37,
+ 	._3xuFbFM3vrCqdGuKGhhhn0,
+ 	._2lHXa-mLMsRfm1Q5JxgU4r {
 		border-radius: borderRadius i;
 	}
 
@@ -503,7 +507,7 @@
 		._1G4yU68P50vRZ4USXfaceV,
 		._3Qkp11fjcAw9I9wtLo8frE,
 		.zgT5MfUrDMC54cpiCpZFu,
- 		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s {
+		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s {
 			border: none i;
 			transition: .3s ease;
 		}
@@ -526,8 +530,8 @@
 		._2jJNpBqXMbbyOiGCElTYxZ,
 		._3Kd8DQpBIbsr5E1JcrMFTY,
 		.wBtTDilkW_rtT2k5x3eie,
-		._3Qkp11fjcAw9I9wtLo8frE, 
- 		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s,
+		._3Qkp11fjcAw9I9wtLo8frE,
+		._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s,
 		._1RYN-7H8gYctjOQeL8p2Q7:not(._1RYN-7H8gYctjOQeL8p2Q7._34QdMmLlbOcjhKm_jp-r3s) {
 			margin: 0 i;
 		}
@@ -724,7 +728,7 @@
 	/* Minmize Navbar */
 	if mNavbar {
 		if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
-			.cx1ohrUAq6ARaXTX2u8YN {
+			._2GyPfdsi-MbQFyHRECo9GO {
 				top: - navbarShowing i;
 				transition: .2s ease;
 
@@ -750,7 +754,7 @@
 		}
 
 		else if (subBar=='CompactV2'||subBar=='CompactV2H') {
-			.cx1ohrUAq6ARaXTX2u8YN {
+			._2GyPfdsi-MbQFyHRECo9GO {
 				top: - navbarShowing i;
 				transition: .2s ease;
 
@@ -798,6 +802,14 @@
 			}
 		}
 	}
+
+	/* Space Between Right Sidebar */
+	if pRightSidebar {
+		._1G4yU68P50vRZ4USXfaceV {
+			margin-bottom: 10px i;
+		}
+	}
+
 
 	/* Sort Posts */
 	if (sortPosts=='Default') {}
