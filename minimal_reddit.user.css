@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.4.7
+@version        5.4.8
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -28,8 +28,7 @@
 @var checkbox	commentsOverlayBlur	    'Comments Overlay Blur' 0
 @var checkbox	separatorPosts			'Add Separator Between Posts' 0
 @var color		separatorColor			'Separator Color' #acacac
-@var checkbox 	mNavbar 				'Minimize Navbar' 0
-@var range 		navbarShowing 		    'Navbar Top' [30, 0, 40, 1, 'px']
+@var range 		navbarShowing 		    'Navbar Top' [0, 0, 40, 1, 'px']
 @var checkbox 	hRightSidebar 		    'Minimize Right Sidebar' 0 
 @var range		pRightSidebar			'Space Between Sidebar' [16, 0, 50, 1, 'px']
 @var select   	subBar 					'SubBar' ["Default", "Remove", "Minimize","MinimizeWidth", "Compact", "CompactV2", "CompactV2H"]
@@ -671,7 +670,7 @@
 	}
 
 	/* Minmize Navbar */
-	if mNavbar {
+	if navbarShowing > 0 {
 		if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
 			._2GyPfdsi-MbQFyHRECo9GO {
 				top: - navbarShowing i;
@@ -757,15 +756,15 @@
 
 
 	/* Sort Posts */
-	if (sortPosts=='Default') {}
-	else if (sortPosts=='Remove') {
+	if sortPosts=='Default' {}
+	else if sortPosts=='Remove' {
 		.wBtTDilkW_rtT2k5x3eie {
 			display: none i;
 		}
 	}
-	else if (sortPosts=='Sticky') {
-		if (mNavbar=='0') {
-			if (subBar=='CompactV2'||subBar=='CompactV2H') {
+	else if sortPosts=='Sticky' {
+		if navbarShowing==0 {
+			if subBar=='CompactV2'||subBar=='CompactV2H' {
 				.wBtTDilkW_rtT2k5x3eie {
 					position: sticky;
 					top: 74px i;
@@ -773,7 +772,7 @@
 				}
 			}
 
-			else if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
+			else if subBar=='Default'||subBar=='Minimize'||subBar=='Compact' {
 				.wBtTDilkW_rtT2k5x3eie {
 					position: sticky;
 					top: 49px i;
@@ -782,7 +781,7 @@
 			}
 		}
 
-		else if (mNavbar=='1') {
+		else if navbarShowing > 0 {
 			.wBtTDilkW_rtT2k5x3eie {
 				--nav: navbarShowing;
 				position: sticky;
@@ -792,18 +791,18 @@
 		}
 	}
 
-	if (cAlignment=="Left") {
+	if cAlignment=="Left" {
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 			margin-left: 10px i;
 		}
 	}
-	else if (cAlignment=="Center") {
+	else if cAlignment=="Center" {
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 		}
 	}
-	else if (cAlignment=="Right") {
+	else if cAlignment=="Right" {
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 			margin-right: 10px i;
