@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.5.0
+@version        5.5.1
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -345,14 +345,14 @@
 	/* No Border in Sectiom */
 	if border {
 		/* Search Bar, Create, Posts, SubBar Navbar, Comment, SortPosts, Create Post, Sidebar */
-		:is(._1DeR7_QiQnu2UK0e2dDfYD, .zgT5MfUrDMC54cpiCpZFu, ._1RYN-7H8gYctjOQeL8p2Q7, ._3jiriKeNer8y0-1r6oWIFM), ._2LoNYeXgOQfq1adQ3jWSbi:not(._1N53zdZlGyvjHMUoXkJa42)._2sPOgUISlhUYTMcHhUPCTP, ._3MknXZVbkWU8JL9XGlzASi._3F2J0fSnCI3ZvF_tBSaV0s, .wBtTDilkW_rtT2k5x3eie, ._2jJNpBqXMbbyOiGCElTYxZ, ._1G4yU68P50vRZ4USXfaceV, ._3Im6OD67aKo33nql4FpSp_ {
+		._1DeR7_QiQnu2UK0e2dDfYD, .zgT5MfUrDMC54cpiCpZFu, ._1RYN-7H8gYctjOQeL8p2Q7, ._3jiriKeNer8y0-1r6oWIFM, ._2LoNYeXgOQfq1adQ3jWSbi:not(._1N53zdZlGyvjHMUoXkJa42)._2sPOgUISlhUYTMcHhUPCTP, ._3MknXZVbkWU8JL9XGlzASi._3F2J0fSnCI3ZvF_tBSaV0s, .wBtTDilkW_rtT2k5x3eie, ._2jJNpBqXMbbyOiGCElTYxZ, ._1G4yU68P50vRZ4USXfaceV, ._3Im6OD67aKo33nql4FpSp_, ._3xuFbFM3vrCqdGuKGhhhn0, ._2lHXa-mLMsRfm1Q5JxgU4r {
 			border: unset i;
 			z-index: unset i;
 			transition: .1s ease;
 		}
 		/* Search Bar, Create, Posts, SubBar Navbar, Comment, SortPosts, Create Post, Sidebar Hover */
-		:is(._1DeR7_QiQnu2UK0e2dDfYD, .zgT5MfUrDMC54cpiCpZFu, ._1RYN-7H8gYctjOQeL8p2Q7, ._3jiriKeNer8y0-1r6oWIFM):hover, ._2LoNYeXgOQfq1adQ3jWSbi:not(._1N53zdZlGyvjHMUoXkJa42)._2sPOgUISlhUYTMcHhUPCTP, ._3MknXZVbkWU8JL9XGlzASi._3F2J0fSnCI3ZvF_tBSaV0s {
-			filter: contrast(90%) brightness(120%) i;
+		:is(._1DeR7_QiQnu2UK0e2dDfYD, ._1RYN-7H8gYctjOQeL8p2Q7, ._3xuFbFM3vrCqdGuKGhhhn0, #SearchDropdown):hover, ._2LoNYeXgOQfq1adQ3jWSbi:not(._1N53zdZlGyvjHMUoXkJa42)._2sPOgUISlhUYTMcHhUPCTP, ._3MknXZVbkWU8JL9XGlzASi._3F2J0fSnCI3ZvF_tBSaV0s {
+			filter: contrast(90%) brightness(105%) i;
 		}
 	}
 
@@ -643,7 +643,7 @@
 				.wBtTDilkW_rtT2k5x3eie {
 					position: sticky;
 					top: 74px i;
-					z-index: 9;
+					z-index: 999 i;
 				}
 			}
 
@@ -651,7 +651,7 @@
 				.wBtTDilkW_rtT2k5x3eie {
 					position: sticky;
 					top: 49px i;
-					z-index: 9;
+					z-index: 999 i;
 				}
 			}
 		}
@@ -661,7 +661,7 @@
 				--nav: navbarShowing;
 				position: sticky;
 				top: calc(49px - var(--nav)) i;
-				z-index: 9;
+				z-index: 999 i;
 			}
 		}
 	}
@@ -848,7 +848,7 @@
 
 	/* Left Sidebar Search */
 	#header-subreddit-filter {
-		background: none i;
+/* 		background: none i; */
 	}
 
 	/* Navbar Seach Bar  */
