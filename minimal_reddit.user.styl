@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.5.3
+@version        5.5.4
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -423,7 +423,8 @@
 	.uI_hDmU5GSiudtABRz_37,
 	._3xuFbFM3vrCqdGuKGhhhn0,
 	._2lHXa-mLMsRfm1Q5JxgU4r,
-	._3uJguwDAW5Ra1r4aegBvBq {
+	._3uJguwDAW5Ra1r4aegBvBq,
+	._2h6EM3mo5Qn9Eqm18v5Hiz {
 		border-radius: borderRadius i;
 	}
 
@@ -764,10 +765,14 @@
 		}
 	}
 
+	/* Community Header Align */
 	if cAlignment=='Left' {
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 			margin-left: 10px i;
+		}
+		._2RkQc9Gtsq3cPQNZLYv4zc {
+			justify-content: left i;
 		}
 	}
 
@@ -775,12 +780,26 @@
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 		}
+		._2RkQc9Gtsq3cPQNZLYv4zc {
+			justify-content: center i;
+		}
 	}
 
 	else if cAlignment=='Right' {
 		._3JDs8KEQIXSMn1bTF2ZqJ_ {
 			max-width: max-content i;
 			margin-right: 10px i;
+		}
+		._2RkQc9Gtsq3cPQNZLYv4zc {
+			justify-content: right i;
+		}
+	}
+
+	if cAlignment=='Left'||cAlignment=='Center'||cAlignment=='Right' {
+		._2RkQc9Gtsq3cPQNZLYv4zc {
+			width: 100% i;
+			max-width: unset i;
+			display: flex i;
 		}
 	}
 
@@ -1240,6 +1259,7 @@
 		}
 	}
 
+	/* Photos/Videos Hide in Post */
 	if mediaHide=='Photos' || mediaHide=='Both' {
 		/* Image Container */
 		._3Oa0THmZ3f5iZXAQ0hBJ0k > div:has(._2_tDEnGMLxpM6uOa2kaDB3) {
@@ -1255,6 +1275,11 @@
 
 	._2_tDEnGMLxpM6uOa2kaDB3._1XWObl-3b9tPy64oaG6fax, ._1dwExqTGJH2jnA-MYGkEL- {
 		border-radius: imageBorderRadius i;
+	}
+
+	/* Container Elements */
+	#SHORTCUT_FOCUSABLE_DIV {
+		/* 	overflow-x: hidden i; */
 	}
 }
 
