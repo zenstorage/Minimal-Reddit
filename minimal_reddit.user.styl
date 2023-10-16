@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.5.5
+@version        5.5.6
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -14,6 +14,7 @@
 @var checkbox 	customBackground 	   	'Custom Background' 0
 @var text 		backgroundURL 		    'Background URL' ''https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg''
 @var range 		blurBackground 		    'Blur Background' [0, 0, 10, 1, 'px']
+@var select		dropdownEffect			'Dropdown Effect' ['None', 'Opacity', 'Top', 'Left', 'Bottom', 'Right']
 @var color		iconsColor				'Icons Color' #d7dadc
 @var select 	imgPosts 				'Images in Posts' ['Default', 'Scroll', 'Resize']
 @var checkbox	scrollLongT				'Add Scroll to Long Text in Posts' 0
@@ -41,12 +42,19 @@
 @var number		fontTitle				'Font Size Title' [18, 12, 50, 1, 'px']
 @var number		fontParagraph			'Font Size Paragraph, Comments' [14, 10, 50, 1, 'px']
 @var select		textTransform			'Title and Comments Transform' ['Default', 'Capitalize', 'Full-Width:Full-Width', 'Lowercase', 'Uppercase']
+@var select		voteStyle				'Buttons Vote Style' ['Default', 'Filled', 'Outline', 'Circle', 'Arrow', 'Double-Arrow', 'Arrow2-OF', 'Arrow2-Outline', 'Arrow2-Filled', 'Arrow3-OF', 'Arrow3-Outline', 'Arrow3-Filled', 'Correct-Incorrect']
 @var color		upVoteColor				'Upvote Select Color' #ff4500
 @var color		downVoteColor			'Upvote Select Color' #7193ff
 @var select		cAlignment				'Community Header Alighment' ['Default', 'Left', 'Center', 'Right']
 @var select 	bannerR					'Subreddits Banner' ['Default' , 'Compact', 'Remove', 'Unified']
 @var select		mediaHide				'Hide Media and Show on Hover' ['Default*', 'Videos', 'Photos', 'Both']
 @var range		imageBorderRadius		'Border Radius to Images' [0, 0, 50, 1, 'px']
+@var select		switchStyle				'Switch Style' ['Default', 'Checkbox', 'SliderG', '3D']
+@var color		switchColor				'Switch Bkg Color' #0079D3
+@var range		switchBRadius			'Switch Border Radius' [15, 0, 100, 1, 'px']
+@var range 		switchRotate			'Switch Rotate' [0, -360, 360, 1, 'deg']
+@var color		sliderColor				'Slider Color' rgb(255, 255, 255)
+@var range		sliderBRadius			'Slider Border Radius' [57, 0, 100, 1, '%']
 @var checkbox 	oCommentsPost			'Remove Overlay Posts' 0
 @var checkbox 	skeleton				'Remove Skeleton Loading' 0
 @var checkbox	postWImages				'Remove Posts with Images' 0
@@ -86,7 +94,9 @@
 @var checkbox	subHover				'Remove Subreddit Tooltip Hover' 0
 @var checkbox 	voteArrowsC				'Remove Vote Arrows in Comments' 0
 @var checkbox 	voteArrowsP				'Remove Vote Arrows in Posts' 0
-@var checkbox	title					'Remove Title Bar' 0
+@var checkbox	iconsSubsP				'Remove Subs Icons in Posts' 0
+@var checkbox	dateSentP				'Remove Sent by in Post' 0
+@var checkbox	title					'Remove Title Bar in Posts' 0
 @var checkbox 	rTopInfos				'Remove Top Information in Posts' 0
 @var checkbox	rFlairs					'Remove Flairs' 0
 @var checkbox 	bottomBar 				'Remove Bottom Actions in Section' 0
@@ -99,6 +109,7 @@
 @var range		iOpacity				'Image Opacity' [100, 0, 100, 1, '%']
 @var range		iContrast				'Image Contrast' [100, 0, 1000, 1, '%']
 @var range		iInvert					'Image Invert' [0, 0, 100, 1, '%']
+@var range		iRotate					'Image Rotate' [0, -360, 360, 1, 'deg']
 ==/UserStyle== */
 @-moz-document domain('reddit.com') {
 
@@ -109,12 +120,24 @@
 	dis(typ=none) {
 		display: typ i;
 	}
-	
-/* 	commentsOverlayColor = rgba(
-		r(commentsOverlayC),
-		g(commentsOverlayC),
-		b(commentsOverlayC),
-	) */
+	/* Keyframe */
+	dEffect(init0, init1, en0, en1) {
+		#SearchDropdownContent, .TMMvbwyeh9yuHKmQWHrE3, ._2uYY-KeuYHKiwl-9aF0UiL {
+			animation: 0.15s ease sinkDropdown infinite i;
+			animation-iteration-count: 1 i;
+			z-index: 4 i;
+		}
+		@keyframes sinkDropdown {
+			0% {
+				opacity: 0;
+				transform: translate(init0, init1);
+			}
+			100% {
+				opacity: 1;
+				transform: translate(en0, en1);
+			}
+		}
+	}
 
 	sidebarCV2() {
 		/* Hide All Excertp Name Subs */
@@ -160,11 +183,6 @@
 		/* Sidebar and Section Container */
 		._1nxEQl5D2Bx2jxDILRHemb._3x1dyL19KnZ4kI6i9TlRp4 {
 			padding-left: 0 i;
-		}
-
-		/* Navbar Top */
-		._1tvdSTbdxaK-BnUbzUIqIY {
-			top: 18px i;
 		}
 	}
 
@@ -233,7 +251,7 @@
 
 		/* Elements Over */
 		._2uYY-KeuYHKiwl-9aF0UiL {
-			background-color: rgba(26, 26, 27, .8) i;
+			background-color: rgba(30, 30, 31, .5) i;
 		}
 
 		/* VideoGIF UserJS */
@@ -251,6 +269,25 @@
 			background-repeat: no-repeat i;
 			filter: blur(blurBackground);
 		}
+	}
+
+	/* Dropdown Sink */
+	if dropdownEffect=='Opacity' {
+		dEffect(0, 0, 0, 0)
+	}
+	if dropdownEffect=='Top' {
+		
+		dEffect(0, -100%, 0, 0)
+	}
+	if dropdownEffect=='Left' {
+
+		dEffect(-100%, 0, 0, 0)
+	}
+	if dropdownEffect=='Bottom' {
+		dEffect(0, 100%, 0, 0)
+	}
+	if dropdownEffect=='Right' {
+		dEffect(100%, 0, 0, 0)
 	}
 
 	/* Icons Color */
@@ -306,7 +343,6 @@
 		._1npCwF50X2J7Wt82SZi6J0,
 		._3obgdFz00GvpqpuX8QCsNK,
 		._31N0dvxfpsO6Ur5AKx4O5d {
-			/* 			margin-inline: 0; */
 			max-width: 100% i;
 			min-width: 100% i;
 		}
@@ -491,22 +527,22 @@
 			}
 		}
 	}
-	
+
 	/* Comments Overlay Color/Opacity */
 	._2DJXORCrmcNpPTSq0LqL6i._26pbaCw90eAC80WRqUfICJ::after {
-/* 		display: none i; */
+		/* 		display: none i; */
 		max-width: unset i;
 		width: cOverlayOffWidth i;
 		background: cOverlayOffColor i;
 	}
-	
+
 	/* Comments Overlay Blur */
 	if cOverlayOffBlur {
-		._2DJXORCrmcNpPTSq0LqL6i._26pbaCw90eAC80WRqUfICJ::after  {
+		._2DJXORCrmcNpPTSq0LqL6i._26pbaCw90eAC80WRqUfICJ::after {
 			backdrop-filter: blur(10px) i;
 		}
 	}
-	
+
 	._2DJXORCrmcNpPTSq0LqL6i {
 		background-color: alpha(commentsOverlayC, commentsOverlayB) i;
 	}
@@ -650,56 +686,55 @@
 	}
 
 	/* Minmize Navbar */
-	if navbarShowing > 0 {
-		if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
-			._2GyPfdsi-MbQFyHRECo9GO {
-				top: - navbarShowing i;
-				transition: .2s ease;
+	if navbarShowing > 0 {}
+	if (subBar=='Default'||subBar=='Minimize'||subBar=='Compact') {
+		._2GyPfdsi-MbQFyHRECo9GO {
+			top: - navbarShowing i;
+			transition: .2s ease;
 
-				&:hover,
-				&:focus-within {
-					top: 0px i;
-				}
-			}
-
-			#AppRouter-main-content {
-				top: - navbarShowing i;
-				position: relative i;
-			}
-
-			#overlayScrollContainer {
-				top: - navbarShowing i;
-			}
-
-			._20fGT0XJD3MvX9yBsVeKMn {
-				--navbar: navbarShowing;
-				top: calc(49px - var(--navbar)) i;
+			&:hover,
+			&:focus-within {
+				top: 0px i;
 			}
 		}
 
-		else if (subBar=='CompactV2'||subBar=='CompactV2H') {
-			._2GyPfdsi-MbQFyHRECo9GO {
-				top: - navbarShowing i;
-				transition: .2s ease;
+		#AppRouter-main-content {
+			top: - navbarShowing i;
+			position: relative i;
+		}
 
-				&:hover,
-				&:focus-within {
-					top: 0px i;
-				}
-			}
+		#overlayScrollContainer {
+			top: - navbarShowing i;
+		}
 
-			#AppRouter-main-content {
-				top: - navbarShowing i;
-				position: relative i;
-			}
+		._20fGT0XJD3MvX9yBsVeKMn {
+			--navbar: navbarShowing;
+			top: calc(49px - var(--navbar)) i;
+		}
+	}
 
-			#overlayScrollContainer {
-				top: - navbarShowing i;
-			}
+	else if (subBar=='CompactV2'||subBar=='CompactV2H') {
+		._2GyPfdsi-MbQFyHRECo9GO {
+			top: 18px - navbarShowing i;
+			transition: .2s ease;
 
-			._20fGT0XJD3MvX9yBsVeKMn {
-				top: 0 !important;
+			&:hover,
+			&:focus-within {
+				top: 18px i;
 			}
+		}
+
+		#AppRouter-main-content {
+			top: - navbarShowing i;
+			position: relative i;
+		}
+
+		#overlayScrollContainer {
+			top: - navbarShowing i;
+		}
+
+		._20fGT0XJD3MvX9yBsVeKMn {
+			top: 0 !important;
 		}
 	}
 
@@ -750,29 +785,17 @@
 	}
 
 	else if sortPosts=='Sticky' {
-		if navbarShowing==0 {
-			if subBar=='CompactV2'||subBar=='CompactV2H' {
-				.wBtTDilkW_rtT2k5x3eie {
-					position: sticky;
-					top: 67px i;
-					z-index: 999 i;
-				}
-			}
-
-			else if subBar=='Default'||subBar=='Minimize'||subBar=='Compact'||subBar=='Remove' {
-				.wBtTDilkW_rtT2k5x3eie {
-					position: sticky;
-					top: 49px i;
-					z-index: 999 i;
-				}
+		if subBar=='CompactV2'||subBar=='CompactV2H' {
+			.wBtTDilkW_rtT2k5x3eie {
+				position: sticky;
+				top: 18px + 48 - navbarShowing i;
+				z-index: 999 i;
 			}
 		}
-
-		else if navbarShowing > 0 {
+		else {
 			.wBtTDilkW_rtT2k5x3eie {
-				--nav: navbarShowing;
 				position: sticky;
-				top: calc(49px - var(--nav)) i;
+				top: 48px - navbarShowing i;
 				z-index: 999 i;
 			}
 		}
@@ -834,6 +857,159 @@
 		text-transform: textTransform i;
 	}
 
+	/* Buttons Vote Style */
+	if voteStyle=='Filled' {
+		.icon-upvote::before {
+			content: "\f34f" i;
+		}
+		.icon-downvote::before {
+			content: "\f198" i;
+		}
+	}
+	if voteStyle=='Outline' {
+		.icon-upvote_fill::before {
+			content: "\f34e" i;
+		}
+		.icon-downvote_fill::before {
+			content: "\f197" i;
+		}
+	}
+	if voteStyle=='Circle' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "⬤" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "⬤" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-downvote, .icon-upvote_fill, .icon-downvote_fill)) {
+			line-height: 1.26 i;
+		}
+		.icon-upvote, .icon-downvote, .icon-upvote_fill, .icon-downvote_fill {
+			line-height: 0 i;
+		}
+	}
+	if voteStyle=='Arrow' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F34A" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F193" i;
+		}
+	}
+	if voteStyle=='Double-Arrow' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F1DA" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F1D8" i;
+		}
+	}
+	if voteStyle=='Arrow2-OF' {
+		.icon-upvote::before {
+			content: "\F27E" i;
+		}
+		.icon-downvote::before {
+			content: "\F27E" i;
+		}
+		.icon-upvote_fill::before {
+			content: "\F27F" i;
+		}
+		.icon-downvote_fill::before {
+			content: "\F27F" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Arrow2-Outline' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F27E" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F27E" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Arrow2-Filled' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F27F" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F27F" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Arrow3-OF' {
+		.icon-upvote::before {
+			content: "\F235" i;
+		}
+		.icon-downvote::before {
+			content: "\F235" i;
+		}
+		.icon-upvote_fill::before {
+			content: "\F236" i;
+		}
+		.icon-downvote_fill::before {
+			content: "\F236" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Arrow3-Outline' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F235" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F235" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Arrow3-Filled' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F236" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F236" i;
+		}
+		span:has(> :is(.icon-upvote, .icon-upvote_fill)) {
+			transform: rotate(-90deg) i;
+		}
+		span:has(> :is(.icon-downvote, .icon-downvote_fill)) {
+			transform: rotate(90deg) i;
+		}
+	}
+	if voteStyle=='Correct-Incorrect' {
+		:is(.icon-upvote, .icon-upvote_fill)::before {
+			content: "\F150" i;
+		}
+		:is(.icon-downvote, .icon-downvote_fill)::before {
+			content: "\F156" i;
+		}
+	}
+
+
 	/* UPVOTE, DOWNVOTE */
 	.icon-upvote_fill::before,
 	.icon-upvote:hover {
@@ -843,8 +1019,16 @@
 	._2oM1YqCxIwkvwyeZamWwhW:has(.icon.icon-upvote_fill) ._25IkBM0rRUqWX5ZojEMAFQ {
 		color: upVoteColor i;
 	}
-	
+
+	._1E9mcoVn4MYnuBQSVDt1gC:has(.icon.icon-upvote_fill) ._3a2ZHWaih05DgAOtvu6cIo {
+		color: upVoteColor i;
+	}
+
 	._2oM1YqCxIwkvwyeZamWwhW:has(.icon.icon-downvote_fill) ._25IkBM0rRUqWX5ZojEMAFQ {
+		color: downVoteColor i;
+	}
+
+	._1E9mcoVn4MYnuBQSVDt1gC:has(.icon.icon-downvote_fill) ._3a2ZHWaih05DgAOtvu6cIo {
 		color: downVoteColor i;
 	}
 
@@ -864,7 +1048,7 @@
 	._3nSp9cdBpqL13CqjdMr2L_ {
 		transition: 0.15s ease;
 	}
-	
+
 	/* Overlay Comments Posts */
 	if oCommentsPost {
 		body {
@@ -927,7 +1111,7 @@
 	}
 
 	if trendingS {
-		._3LzqitwwvqMy0VShIuQwvX, ._3LzqitwwvqMy0VShIuQwvX ~ [href*="source=trending"]{
+		._3LzqitwwvqMy0VShIuQwvX, ._3LzqitwwvqMy0VShIuQwvX ~ [href*="source=trending"] {
 			dis();
 		}
 	}
@@ -990,11 +1174,6 @@
 	/* Left Dropwdown */
 	.XEkFoehJNxIH9Wlr5Ilzd._3Av66iQf7_N4Z-XZxsek76 {
 		background-color: rgba(10, 10, 10, 0.4) i;
-	}
-
-	/* Left Sidebar Search */
-	#header-subreddit-filter {
-		/* 		background: none i; */
 	}
 
 	/* Navbar Seach Bar  */
@@ -1212,6 +1391,23 @@
 		}
 	}
 
+	/* Subreddit Icons in Post */
+	if iconsSubsP {
+		._1WX5Y5qFVBTdr6hCPpARDB, .icon._1WX5Y5qFVBTdr6hCPpARDB {
+			dis();
+		}
+	}
+
+	/* Date Sent */
+	if dateSentP {
+		.nU4Je7n-eSXStTBAPMYt8 ._2mHuuvyV9doV3zwbZPtIPG:has([href^='/r/']) ~ * {
+			/* 			dis(); */
+		}
+		._3V4xlrklKBP2Hg51ejjjvz, ._2fCzxBE1dlMh4OFc7B3Dun, ._2mHuuvyV9doV3zwbZPtIPG:has([href^='/user/']), ._2VF2J19pUIMSLJFky-7PEI {
+			dis();
+		}
+	}
+
 	/* Remove Comments, Share, ... */
 	if bottomBar {
 		._1ixsU4oQRnNfZ91jhBU74y,
@@ -1224,32 +1420,7 @@
 	/* Filter in Images, Images in List, Gifs */
 	._2_tDEnGMLxpM6uOa2kaDB3._1XWObl-3b9tPy64oaG6fax, ._1dwExqTGJH2jnA-MYGkEL-, .tErWI93xEKrI2OkozPs7J {
 		filter: grayscale(iGrayscale) sepia(iSepia) blur(iBlur) brightness(iBrightness) hue-rotate(iHue) saturate(iSaturate) opacity(iOpacity) contrast(iContrast) invert(iInvert) i;
-	}
-
-	/* Search Results */
-	._2NH7qxA8P_UowZKF4-LUNe,
-	._2NH7qxA8P_UowZKF4-LUNe ~ * {
-/* 		dis(); */
-	}
-
-	/* Shadow Search Results */
-	._2uYY-KeuYHKiwl-9aF0UiL {
-/* 		box-shadow: none i; */
-	}
-
-	/* Register Warning */
-	.BtYn3oMRXzNwmNMkolecQ {
-/* 		dis(); */
-	}
-
-	/* Trending  */
-	._3ozFtOe6WpJEMUtxDOIvtU > div:nth-child(2) > div:nth-child(1) > div:nth-child(1) > div:nth-child(1) {
-/* 		dis(); */
-	}
-
-	/* New Comments */
-	._2X4xugrTQ5e3TVxPPEHqGh ._3JKnqeBKw2wp7eHzFXNXSe ._1cubpGNEaCAVnpJl1KBPcO._2q-ZKRaT1WjKg092R6La5J {
-/* 		dis(); */
+		transform: rotate(iRotate) i;
 	}
 
 	if rTopInfos {
@@ -1303,10 +1474,54 @@
 		border-radius: imageBorderRadius i;
 	}
 
-	/* Container Elements */
-	#SHORTCUT_FOCUSABLE_DIV {
-		/* 	overflow-x: hidden i; */
+	/* Switch style */
+	if switchStyle=='Checkbox' {
+		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq {
+			height: 18px i;
+			width: 18px i;
+			border-radius: 40% i;
+			transition: 0.1s ease i;
+		}
+
+		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq > * {
+			display: none i;
+		}
 	}
+	if switchStyle=='SliderG' {
+		._2FKpII1jz0h6xCAw1kQAvS {
+			transform: scale(1.25) i;
+		}
+		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq {
+			height: 20px i;
+			width: 40px i;
+		}
+	}
+	if switchStyle=='3D' {
+		._2FKpII1jz0h6xCAw1kQAvS {
+			transform: translateY(-20%) i;
+			box-shadow: 0px 5px 0px 1px rgba(0, 0, 0, 1) i;
+			outline: 1.5px solid rgba(0, 0, 0, 1) i;
+		}
+		._2e2g485kpErHhJQUiyvvC2 {
+			border: 1px solid rgba(0, 0, 0, 1) i;
+		}
+	}
+
+	/* Switch Bkg Color|Radius|Rotate */
+	._2e2g485kpErHhJQUiyvvC2._1L5kUnhRYhUJ4TkMbOTKkI {
+		background-color: switchColor i;
+	}
+	._2e2g485kpErHhJQUiyvvC2 {
+		border-radius: switchBRadius i;
+		transform: rotate(switchRotate) i;
+	}
+
+	/* Slider Color|Radius */
+	._2FKpII1jz0h6xCAw1kQAvS {
+		background-color: sliderColor i;
+		border-radius: sliderBRadius i;
+	}
+
 }
 
 @-moz-document regexp('^https:\\/\\/www\\.reddit\\.com\\/r\\/\\w+\\/.*$') {
