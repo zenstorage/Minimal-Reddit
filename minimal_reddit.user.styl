@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.5.7
+@version        5.5.8
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -15,7 +15,7 @@
 @var text 		bgkURL 		    		'Background URL' ''https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg''
 @var color		bkgColor				'Background Color, this replace the URL' #000
 @var range 		blurBackground 		    'Blur Background' [0, 0, 10, 1, 'px']
-@var select		dropdownEffect			'Dropdown Effect' ['None', 'Opacity', 'Top', 'Left', 'Bottom', 'Right']
+@var select		dropdownEffect			'Dropdown Effect' ['None', 'Opacity', 'F-Top', 'F-Left', 'F-Bottom', 'F-Right']
 @var color		iconsColor				'Icons Color' #d7dadc
 @var select 	imgPosts 				'Images in Posts' ['Default', 'Scroll', 'Resize']
 @var checkbox	scrollLongT				'Add Scroll to Long Text in Posts' 0
@@ -40,19 +40,23 @@
 @var range 		navbarShowing 		    'Navbar Top' [0, 0, 40, 1, 'px']
 @var checkbox	navbarBoxShadow			'Add Shadow to Navbar' 0
 @var checkbox 	hRightSidebar 		    'Minimize Right Sidebar' 0 
-@var select   	subBar 					'SubBar' ['Default', 'Remove', 'Minimize','MinimizeWidth', 'Compact', 'CompactV2', 'CompactV2H']
+@var select   	subBar 					'SubBar' ['Default', 'Remove', 'Minimize','MinimizeWidth', 'Compact', 'Blossom', 'Width', 'CompactV2', 'CompactV2H']
 @var select 	sortPosts				'Sort Posts' ['Default', 'Remove', 'Sticky']
 @var number		fontTitle				'Font Size Title' [18, 12, 50, 1, 'px']
 @var number		fontParagraph			'Font Size Paragraph, Comments' [14, 10, 50, 1, 'px']
 @var select		textTransform			'Title and Comments Transform' ['Default', 'Capitalize', 'Full-Width', 'Lowercase', 'Uppercase']
+@var checkbox	iconNoLabel				'Hide Icons Label' 0
 @var select		voteStyle				'Buttons Vote Style' ['Default', 'Material', 'Material-Alt', 'Material-AltD', 'Material-C','Filled', 'Outline', 'Arrow-Alt', 'Double-Arrow', 'Arrow-S-OF', 'Arrow-S-Outline', 'Arrow-S-Filled', 'Arrow-R-OF', 'Arrow-R-Outline', 'Arrow-R-Filled', 'Correct-Incorrect']
 @var color		upVoteColor				'Upvote Select Color' #ff4500
 @var color		downVoteColor			'Upvote Select Color' #7193ff
 @var select		cAlignment				'Community Header Alighment' ['Default', 'Left', 'Center', 'Right']
 @var select 	bannerR					'Subreddits Banner' ['Default' , 'Compact', 'Remove', 'Unified']
 @var select		mediaHide				'Hide Media and Show on Hover' ['Default*', 'Videos', 'Photos', 'Both']
+@var color		pSliderColor			'Player Slider Color' #fff
+@var color		pSliderColorR			'Player Slider Color Remain' #434343
+@var color		pSliderColorV			'Player Slider Color Remain' rgba(255, 255, 255, 0.2)
 @var range		imageBorderRadius		'Border Radius to Images' [0, 0, 50, 1, 'px']
-@var select		switchStyle				'Switch Style' ['Default', 'Default-E', 'Checkbox', 'SliderG', '3D', '2D', 'Cartoon', 'Fill', 'Text']
+@var select		switchStyle				'Switch Style' ['Default', 'Default-E', 'Checkbox', 'Checkbox-Alt', 'SliderG', '3D', '2D', 'Cartoon', 'Fill', 'Text']
 @var color		switchColorOn			'Switch Bkg On Color' rgba(0, 121, 211, 1)
 @var color		switchColorOff			'Switch Bkg Off Color' rgba(215,218,220,0.1)
 @var range		switchBRadius			'Switch Border Radius' [15, 0, 100, 1, 'px']
@@ -318,16 +322,16 @@
 	if dropdownEffect=='Opacity' {
 		dEffect(0, 0, 0, 0)
 	}
-	if dropdownEffect=='Top' {
+	if dropdownEffect=='F-Top' {
 		dEffect(0, -20%, 0, 0)
 	}
-	if dropdownEffect=='Left' {
+	if dropdownEffect=='F-Left' {
 		dEffect(-20%, 0, 0, 0)
 	}
-	if dropdownEffect=='Bottom' {
+	if dropdownEffect=='F-Bottom' {
 		dEffect(0, 20%, 0, 0)
 	}
-	if dropdownEffect=='Right' {
+	if dropdownEffect=='F-Right' {
 		dEffect(20%, 0, 0, 0)
 	}
 	/* Icons Color */
@@ -508,20 +512,23 @@
 	}
 	/* Padding in Sides */
 	if paddingSectionSide {
-		if (subBar=='Minimize') {
+		if subBar=='Minimize' {
 			._31N0dvxfpsO6Ur5AKx4O5d {
 				padding: 0 0 0 30px i;
 			}
 		}
-		else if (subBar=='MinimizeWidth'||subBar=='Default'||subBar=='CompactV2'||subBar=='CompactV2H') {
+		else if subBar=='MinimizeWidth'||subBar=='Default'||subBar=='CompactV2'||subBar=='CompactV2H' {
 			._31N0dvxfpsO6Ur5AKx4O5d {
 				padding: 0 i;
 			}
 		}
-		else if (subBar=='Compact') {
+		else if subBar=='Compact' {
 			._31N0dvxfpsO6Ur5AKx4O5d {
 				padding: 0 0 0 40px i;
 			}
+		}
+		._31N0dvxfpsO6Ur5AKx4O5d {
+			padding: 0 i;
 		}
 	}
 	/* Comments Overlay Color/Opacity */
@@ -539,7 +546,7 @@
 	}
 	/* SubBar View*/
 	if subBar=='Default' {}
-	else if subBar=='Remove' {
+	if subBar=='Remove' {
 		div._3jiriKeNer8y0-1r6oWIFM:nth-child(4) {
 			dis();
 		}
@@ -552,7 +559,7 @@
 			dis();
 		}
 	}
-	else if subBar=='Minimize' {
+	if subBar=='Minimize' {
 		._20fGT0XJD3MvX9yBsVeKMn {
 			left: -240px i;
 			transition: .2s ease;
@@ -569,7 +576,7 @@
 			justify-content: end i;
 		}
 	}
-	else if subBar=='MinimizeWidth' {
+	if subBar=='MinimizeWidth' {
 		._20fGT0XJD3MvX9yBsVeKMn {
 			width: 20px i;
 			transition: .3s ease;
@@ -581,7 +588,7 @@
 			padding-left: 20px i;
 		}
 	}
-	else if subBar=='Compact' {
+	if subBar=='Compact' {
 		/* Heading */
 		[role="heading"] {
 			dis();
@@ -636,10 +643,35 @@
 			padding-left: 45px i;
 		}
 	}
-	else if subBar=='CompactV2' {
+	if subBar=='Blossom' {
+		._20fGT0XJD3MvX9yBsVeKMn {
+			clip-path: polygon(0% 0%, 0 40%, 5% 50%, 0 60%, 0% 100%) i;
+			transition: .15s ease i;
+			&:hover {
+				clip-path: polygon(0% 0%, 100% 0, 100% 50%, 100% 100%, 0% 100%) i;
+				left: 0 i;
+			}
+		}
+		#AppRouter-main-content {
+			padding-left: 13.5px i;
+		}
+	}
+	if subBar=='Width' {
+		._20fGT0XJD3MvX9yBsVeKMn {
+			clip-path: polygon(0 0, 10% 0, 10% 100%, 0% 100%);
+			transition: .15s ease;
+			&:hover {
+				clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+			}
+		}
+		#AppRouter-main-content {
+			padding-left: 27px i;
+		}
+	}
+	if subBar=='CompactV2' {
 		sidebarCV2()
 	}
-	else if subBar=='CompactV2H' {
+	if subBar=='CompactV2H' {
 		/* Sidebar */
 		._20fGT0XJD3MvX9yBsVeKMn {
 			flex-wrap: wrap i;
@@ -676,7 +708,7 @@
 		}
 	}
 	else if (subBar=='CompactV2'||subBar=='CompactV2H') {
-		._2GyPfdsi-MbQFyHRECo9GO {
+		body:has(._20fGT0XJD3MvX9yBsVeKMn) ._2GyPfdsi-MbQFyHRECo9GO {
 			top: 18px - navbarShowing i;
 			transition: .2s ease;
 
@@ -795,11 +827,80 @@
 	._292iotee39Lmt0MkQZ2hPV {
 		font-size: fontParagraph i;
 	}
+	shreddit-player {
+		--slider-fg: pSliderColor i;
+		--time-slider-bg: pSliderColorR i;
+		--volume-slider-bg: pSliderColorV i;
+	}
 	/* Title Transform */
 	._2SdHzo12ISmrC8H86TgSCp,
 	._3cjCphgls6DH-irkVaA0GM {
 		text-transform: textTransform i;
 	}
+	/* Hide Icons Label */
+	if iconNoLabel {
+		/* Labels Icons */
+		a.M2Hk_S2yvXpsNPfZMBMur > span {
+			display: none i;
+		}
+		.icon + span {
+			display: none i;
+		}
+		._2-cXnP74241WI7fpcpfPmg {
+			display: none i;
+		}
+		.U2iuzTD5-OeYSFP8fg9ky > ._1F02c6Yw0dfhdWwl99UrYn > i {
+			display: none i;
+		}
+		/* Icons */
+		.icon:not(.icon-home_fill, .icon-side_menu, ._3CG2U_hX3HI-ibl5v2RCq1) {
+			padding: 0 i;
+			margin: 0 i;
+		}
+		.pthKOcceozMuXLYrLlbL1 {
+			margin: 0 i;
+		}
+		/* Icons Container */
+		._3RzIwmCawx9KWuyuEKa-3s {
+			min-width: auto i;
+		}
+		._1muOrgIRB6t41qDocDiXul {
+			padding: 8px i;
+		}
+		._1F02c6Yw0dfhdWwl99UrYn._1F02c6Yw0dfhdWwl99UrYn {
+			width: auto i;
+		}
+		._2uYY-KeuYHKiwl-9aF0UiL {
+			min-width: auto i;
+		}
+		/* Share Comments */
+		._374Hkkigy4E4srsI2WktEd {
+			font-size: 0 i;
+		}
+		[id*='comment-share-menu'] {
+			z-index: 9 i;
+		}
+		[id*='comment-share-menu']::before {
+			content: "\f282" i;
+			z-index: -1 i;
+			font-size: 20px i;
+			line-height: 18px i;
+			width: 20px i;
+			height: 20px i;
+			font-family: redesignFont2020 i;
+			position: absolute i;
+			padding: 6px 4px i;
+		}
+		._374Hkkigy4E4srsI2WktEd {
+			min-width: 28px i;
+			min-height: 32px i;
+		}
+		/* More Align */
+		._1oAH8WzvQU6SeYEsM1msMu .icon-overflow_horizontal::before {
+			vertical-align: middle i;
+		}
+	}
+
 	/* Buttons Vote Style */
 	if voteStyle=='Material'||voteStyle=='Material-Alt'||voteStyle=='Material-AltD'||voteStyle=='Material-C' {
 		:is(.icon-upvote, .icon-upvote_fill, .icon-downvote, .icon-downvote_fill)::before {
@@ -1285,6 +1386,28 @@
 
 		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq > * {
 			dis();
+		}
+	}
+	if switchStyle=='Checkbox-Alt' {
+		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq {
+			height: 18px i;
+			width: 18px i;
+			border-radius: 40% i;
+			transition: 0.1s ease i;
+		}
+
+		._2e2g485kpErHhJQUiyvvC2._1asGWL2_XadHoBuUlNArOq > * {
+			dis();
+		}
+		._2e2g485kpErHhJQUiyvvC2[aria-checked="true"]::before {
+			content: '✓' i;
+			color: lighten(switchColorOn, 80%);
+			position: absolute i;
+			top: 0 i;
+			left: 0 i;
+			right: 0 i;
+			bottom: 0 i;
+			line-height: 16px i;
 		}
 	}
 	if switchStyle=='SliderG' {
