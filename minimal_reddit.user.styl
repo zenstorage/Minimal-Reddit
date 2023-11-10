@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.6.2
+@version        5.6.3
 @description    Wide posts and remove bloat from homepage
 @homepageURL  	https://github.com/zenstorage/minimal-reddit
 @supportURL	    https://github.com/zenstorage/minimal-reddit/issues
@@ -9,10 +9,10 @@
 @license        MIT
 @preprocessor   stylus
 
-@var checkbox	customColors			'Custom bgk color' 1
-@var color 		bgkColor				'Bgk color' rgb(26, 26, 27)
-@var range		bgkTransparency			'Bgk transparency' [1, 0, 1, .01]
-@var range		bgkBlur					'Bgk blur' [0, 0, 20, 1, 'px']
+@var checkbox	customColors			'Custom bgk color' 0
+@var color 		bgkColor				'Base background color' rgb(26, 26, 27)
+@var range		bgkTransparency			'Background transparency' [1, 0, 1, .01]
+@var range		bgkBlur					'Background blur' [0, 0, 20, 1, 'px']
 @var checkbox 	customBackground 	   	'Custom main background ' 0
 @var text 		bgkURL 		    		'Background main URL' ''https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg''
 @var color		bkgColor				'Background main color, this replace the URL' #030303
@@ -27,7 +27,8 @@
 @var checkbox	boxShadowPosts			'Add shadow to posts' 0
 @var select		countInPosts			'Add count in posts' ['None', 'Outside-T', 'Outside-B', 'Inside-LB', 'Inside-RB', 'Inside-RT', 'Inside-Below-Votes']
 @var color 		countColor				'Count color' #a8aaab
-@var checkbox	scalePost				'Post hover scale' 0
+@var select		scalePost				'Post hover scale' ['None', 'Scale', 'noScale: Scale without extra shadow']
+@var checkbox	scalePostFixed			'Scale post fixed' 0
 @var number	 	scaleNum				'Post hover scale num' [1.03, 0, 10, .01]
 @var number		postPadd				'Posts padding around' [0, 0, 40, 1, 'px']
 @var checkbox	invertPostSidebar		'Invert posts to sidebar' 0
@@ -46,6 +47,7 @@
 @var checkbox	navbarBoxShadow			'Add shadow to navbar' 0
 @var checkbox 	hRightSidebar 		    'Minimize right sidebar' 0 
 @var select   	subBar 					'SubBar' ['Default', 'Remove', 'Minimize','MinimizeWidth', 'Compact', 'Blossom', 'Width', 'CompactV2', 'CompactV2H']
+@var color	 	subBarAltBgk			'Alternate bgk in items subbar' #00000000
 @var select 	sortPosts				'Sort posts' ['Default', 'Remove', 'Sticky']
 @var number		fontTitle				'Font size title' [18, 12, 50, 1, 'px']
 @var number		fontParagraph			'Font size paragraph, comments' [14, 10, 50, 1, 'px']
@@ -57,6 +59,9 @@
 @var select		cAlignment				'Community header alighment' ['Default', 'Left', 'Center', 'Right']
 @var select 	bannerR					'Subreddits banner' ['Default' , 'Compact', 'Remove', 'Unified']
 @var select		mediaHide				'Hide media and show on hover' ['Default*', 'Videos', 'Photos', 'Both']
+@var checkbox	mediaBorder				'Add border to img/gif to make it easier to identify' 0
+@var color		imgBorder				'Post image border color' #6d85ff
+@var color		gifBorder				'Post gif border color' #e66fff
 @var color		pSliderColor			'Player slider color' #fff
 @var color		pSliderColorR			'Player slider color remain' #434343
 @var color		pSliderColorV			'Player slider volume color' #fff3
@@ -72,7 +77,8 @@
 @var range 		switchRotate			'Switch rotate' [0, -360, 360, 1, 'deg']
 @var color		sliderColor				'Slider color' #ffffff
 @var range		sliderBRadius			'Slider border radius' [57, 0, 100, 1, '%']
-@var text		postHide				'Hide posts that title contains word' Word1, Word2
+@var select		postHideL				'Post hide mode' ['None', 'Blacklist', 'Whitelist']
+@var text		postHide				'Hide/Show posts that title contains word' Word1, Word2
 @var checkbox	googleSans				'Use Google Sans' 0
 @var checkbox	firaCode				'Use Fira Code font in code elements' 0
 @var checkbox 	oCommentsPost			'Remove overlay posts' 0
@@ -80,6 +86,7 @@
 @var checkbox 	skeleton				'Remove skeleton loading' 0
 @var checkbox	postWImages				'Remove posts with images' 0
 @var checkbox 	postWVideo				'Remove posts with videos' 0
+@var checkbox	rCrossPost				'Remove cross post' 0
 @var checkbox	trending				'Remove trending today' 1
 @var checkbox	trendingS				'Remove trending search' 1
 @var checkbox	suggestedPosts		    'Remove suggested posts' 0
@@ -156,7 +163,7 @@
 			animation-name: slide i;
 			animation-duration: 0.15s i;
 			animation-iteration-count: 1 i;
-			z-index: 4 i;
+			z-index: 99 i;
 		}
 		@keyframes slide {
 			0% {
@@ -383,6 +390,7 @@
 		--ml-border-color-h: lighten(bgkT, 80%);
 		--ml-border-color-h1: lighten(bgkT, 60%);
 		--ml-border-color-h2: lighten(bgkT, 40%);
+		--ml-border-color-h3: lighten(bgkT, 30%);
 	}
 	if customColors {
 		[class*="subredditvars"], .theme-beta, :root {
@@ -396,7 +404,7 @@
 			--newRedditTheme-button: var(--ml-border-color-h) i;
 			--newRedditTheme-actionIcon: var(--ml-border-color-h1) i;
 			--newCommunityTheme-navIcon: var(--ml-border-color-h) i;
-			--newCommunityTheme-actionIcon: var(--ml-border-color-h1) i;
+			--newCommunityTheme-actionIcon: var(--ml-border-color-h2) i;
 			--newCommunityTheme-field: var(--ml-border-color-p) i;
 			--newCommunityTheme-body: var(--ml-primary-bgk) i;
 			--newCommunityTheme-buttonAlpha05: rgba(208, 208, 208, 0.015) i;
@@ -405,6 +413,24 @@
 			--newCommunityTheme-metaText: var(--ml-border-color-h1) i;
 			--newCommunityTheme-titleText: var(--ml-border-color-h) i;
 			--background: var(--ml-primary-bgk) i;
+			--newRedditTheme-navIconFaded10: var(--ml-primary-hover) i;
+			--newRedditTheme-body: var(--ml-primary-bgk) i;
+			--newCommunityTheme-navBar-submenuBackgroundColor: var(--ml-primary-bgk) i;
+			--newCommunityTheme-navBar-inactiveLink: var(--ml-border-color-h1) i;
+			--newRedditTheme-bodyText: var(--ml-border-color-h) i;
+			--postBodyLink-VisitedLinkColor: var(--ml-border-color-h1) i;
+			--newRedditTheme-metaText: var(--ml-border-color-h1) i;
+			--newRedditTheme-post: var(--ml-primary-bgk) i;
+			--newCommunityTheme-buttonAlpha50: var(--ml-border-color-h3) i;
+			--newRedditTheme-field: var(--ml-primary-bgk) i;
+			--newCommunityTheme-inactive: var(--ml-border-color-h3) i;
+			--newCommunityTheme-postTransparent20: var(--ml-primary-bgk) i;
+			--newCommunityTheme-postLine: var(--ml-border-color-p) i;
+		}
+		.SQnoC3ObvgnGjWt90zD9Z {
+			--postTitle-VisitedLinkColor: var(--ml-border-color-h1) i;
+			--postTitleLink-VisitedLinkColor: var(--ml-border-color-h2) i;
+			--postBodyLink-VisitedLinkColor: var(--ml-border-color-h3) i;
 		}
 		/* Header */
 		._2vkeRJojnV7cb9pMlPHy7d.a35Fm2MurU14xdNybLiZp {
@@ -568,6 +594,10 @@
 		._2M2wOqmeoPVvcSsJ6Po9-V {
 			background-color: transparent i;
 		}
+		/* Post page input searcj comment */
+		._2WVAyd_SvtylHMe7sKaua9 {
+			background-color: var(--ml-secondary-bgk) i;
+		}
 		/* Search page item type hover/activated */
 		._2jNQT-6WbFOjX2hdDWV56w:hover {
 			background-color: var(--ml-primary-hover) i;
@@ -711,6 +741,9 @@
 			border-color: var(--ml-border-color-h1) i;
 			color: var(--ml-border-color-h1) i;
 		}
+		._2tU8R9NTqhvBrhoNAXWWcP:disabled, ._2tU8R9NTqhvBrhoNAXWWcP[data-disabled], ._2tU8R9NTqhvBrhoNAXWWcP[disabled] {
+			filter: unset i;
+		}
 		/* Text */
 		.wdFbe8PT7DInxaiHo2Me1, ._27rjoZBkLhiqLLjBu-xU_p, .icon._3pDOQfbIbQuT4PBwPGp85E, ._3D7vaSdKwBK4pdvYmH0ib ._180jOSBDwwE60X5UR8zt3-._2a8MIP8QlMF7KPqTup62Vt, ._3a2ZHWaih05DgAOtvu6cIo {
 			color: var(--ml-border-color-h) i;
@@ -718,14 +751,13 @@
 		._2VDnxV3G5ZvEDq10Z-_fM9, ._3z4bYCMDgBrJ-Be0By6hNr, .Rz5N3cHNgTGZsIQJqBfgk, ._3-miAEojrCvx_4FQ8x3P-s, ._2fCzxBE1dlMh4OFc7B3Dun, ._23wugcdiaj44hdfugIAlnX, ._2VF2J19pUIMSLJFky-7PEI, ._1GQzFyg5xYq94euL74ZaeJ {
 			color: var(--ml-border-color-h1) i;
 		}
+		._6Ej82J4aTDK36LLOcpFbC:disabled, ._6Ej82J4aTDK36LLOcpFbC:placeholder-shown {
+  			color: var(--ml-border-color-h1) i;
+		}
 		/* Icons */
 		.cq0sTeCPC4GI78UNPdClD.cq0sTeCPC4GI78UNPdClD, ._2VtQ8EjxlJXdicVJhc73gQ, ._3PYsg_uRJ6AGptv-hi7kqu {
 			color: var(--ml-border-color-h) i;
 			fill: var(--ml-border-color-h) i;
-		}
-		.icon-upvote, .icon-downvote {
-			color: var(--ml-border-color-h2) i;
-			fill: var(--ml-border-color-h2) i;
 		}
 	}
 	/* Custom Bkg */
@@ -886,7 +918,7 @@
 		cPost(88px, , , 0, )
 	}
 	/* Post Hover Scale */
-	if scalePost {
+	if scalePost=='Scale'||scalePost=='noScale' {
 		.rpBJOHq2PR60pnwJlUyP0 > div:has(._3Qkp11fjcAw9I9wtLo8frE),
 		._2mO8vClBdPxiJ30y_C6od2 > div > div:has(._2dkUkgRYbhbpU_2O2Wc5am) {
 			position: relative i;
@@ -897,6 +929,19 @@
 				box-shadow: 0px 0px 55px 26px rgba(0, 0, 0, 0.4) i;
 				z-index: 9 i;
 			}
+		}
+	}
+	if scalePost=='noScale' {
+		:is(.rpBJOHq2PR60pnwJlUyP0 > div:has(._3Qkp11fjcAw9I9wtLo8frE),
+		._2mO8vClBdPxiJ30y_C6od2 > div > div:has(._2dkUkgRYbhbpU_2O2Wc5am)):hover {
+				box-shadow: unset i;
+		}
+	}
+	/* Scale fixed post */
+	if scalePostFixed {
+		:is(.rpBJOHq2PR60pnwJlUyP0 > div:has(._3Qkp11fjcAw9I9wtLo8frE),
+		._2mO8vClBdPxiJ30y_C6od2 > div > div:has(._2dkUkgRYbhbpU_2O2Wc5am)):has(._203iZ8LUuIrz_IJbiOAJDH) {
+				transform: scale(scaleNum) i;
 		}
 	}
 	/* Post padding around */
@@ -1139,6 +1184,10 @@
 		._1nxEQl5D2Bx2jxDILRHemb._3x1dyL19KnZ4kI6i9TlRp4 {
 			padding-left: 45px i;
 		}
+		/* SubBar show only subs */
+		._3k3RwDkEsbX50bb-DBvuWj > a:not([id^="focus-subt"], [id="focus-NotificationsInbox"]), ._2XRPX11qL4-HxWPuHAzOW5 {
+  			display: none i;
+		}
 	}
 	if subBar=='Blossom' {
 		._20fGT0XJD3MvX9yBsVeKMn {
@@ -1222,6 +1271,11 @@
 		}
 		._20fGT0XJD3MvX9yBsVeKMn {
 			top: 0 !important;
+		}
+	}
+	if subBarAltBgk!='#00000000' {
+		._3k3RwDkEsbX50bb-DBvuWj > a:nth-of-type(odd) {
+ 	 		background-color: subBarAltBgk i;
 		}
 	}
 	/* Box Shadow to Navbar */
@@ -1576,19 +1630,27 @@
 			dis();
 		}
 	}
+	/* Post with image */
 	if postWImages {
-		._1RYN-7H8gYctjOQeL8p2Q7:has(._2_tDEnGMLxpM6uOa2kaDB3) {
+		._3Qkp11fjcAw9I9wtLo8frE:has(._2_tDEnGMLxpM6uOa2kaDB3) {
 			dis();
 		}
 	}
+	/* Post with video */
 	if postWVideo {
-		._1RYN-7H8gYctjOQeL8p2Q7:has(shreddit-player) {
+		._3Qkp11fjcAw9I9wtLo8frE:has(shreddit-player) {
+			dis();
+		}
+	}
+	/* Coss post */
+	if rCrossPost {
+		.rpBJOHq2PR60pnwJlUyP0 > div:has(._2ED-O3JtIcOqp8iIL1G5cg) {
 			dis();
 		}
 	}
 	/* Suggested Posts */
 	if suggestedPosts {
-		._1RYN-7H8gYctjOQeL8p2Q7:has(.nAL34ZVf4KfyEoZIzUgmN) {
+		._3Qkp11fjcAw9I9wtLo8frE:has(.nAL34ZVf4KfyEoZIzUgmN) {
 			dis();
 		}
 	}
@@ -1679,16 +1741,16 @@
 		background: none i;
 	}
 	/* Notifications Back */
-	#INBOX--TOOLTIP * {
+	#INBOX--TOOLTIP *:not([role="button"], ._3smo-GSstogGTGh6ArpwI0) {
 		background: none i;
 	}
 	/* Dropdown Notifications */
 	._27rjoZBkLhiqLLjBu-xU_p,
 	.icon._3pDOQfbIbQuT4PBwPGp85E {
-		color: #d7dadc;
+/* 		color: #d7dadc; */
 	}
 	._2VDnxV3G5ZvEDq10Z-_fM9 {
-		color: rgb(198, 202, 204);
+/* 		color: rgb(198, 202, 204); */
 	}
 	/* Reddit, Inc. */
 	._1vYrJH5uc57mZQJPN4l34E,
@@ -1912,6 +1974,17 @@
 			filter: unset;
 		}
 	}
+	/* Border img/gif in posts */
+	if mediaBorder {
+		/* Gifs */
+		.tErWI93xEKrI2OkozPs7J {
+			border: 1px solid gifBorder i;
+		}
+		/* Images */
+		._2_tDEnGMLxpM6uOa2kaDB3, ._1dwExqTGJH2jnA-MYGkEL- {
+			border: 1px solid imgBorder i;
+		}
+	}
 	/* Border Radius in Images */
 	._2_tDEnGMLxpM6uOa2kaDB3._1XWObl-3b9tPy64oaG6fax,
 	._1dwExqTGJH2jnA-MYGkEL-, .tErWI93xEKrI2OkozPs7J {
@@ -1966,13 +2039,22 @@
 		transform: rotate(switchRotate) i;
 	}
 	/* Hide posts with words. Modified from Twitch Compact Left Panel */
-	if postHide!='Word1, Word2' {
-		title='';
-		for w in postHide {
-			title = title + '[href*=' + w + '],'
+	title='';
+	for w in postHide {
+		title = title + '.SQnoC3ObvgnGjWt90zD9Z[href*=' + w + ' i],'
+	}
+	if postHideL=='Blacklist' {
+			if  postHide!='Word1, Word2' {
+			.rpBJOHq2PR60pnwJlUyP0 > div:has(:is({title})) {
+				dis();
+			}
 		}
-		:is(.Post,._2dkUkgRYbhbpU_2O2Wc5am):has(:is({title})) {
-			dis();
+	}
+	if postHideL=='Whitelist' {
+			if  postHide!='Word1, Word2' {
+			.rpBJOHq2PR60pnwJlUyP0 > div:not(:has(:is({title}))) {
+				dis();
+			}
 		}
 	}
 	/* Fira Code */
