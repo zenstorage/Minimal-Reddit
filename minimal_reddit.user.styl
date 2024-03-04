@@ -161,10 +161,7 @@
 		display: typ i;
 	}
 	/* Keyframe | Dropdown Animation */
-	dEffect(itX,
-	itY,
-	etX,
-	etY) {
+	dEffect(itX, itY, etX, etY) {
 		#SearchDropdownContent,
 		.TMMvbwyeh9yuHKmQWHrE3,
 		._2uYY-KeuYHKiwl-9aF0UiL,
@@ -189,11 +186,7 @@
 		}
 	}
 	/* Count Posts */
-	cPost(t=unset,
-	r=unset,
-	b=unset,
-	l=unset,
-	tX=0) {
+	cPost(t=unset, r=unset, b=unset, l=unset, tX=0) {
 		.rpBJOHq2PR60pnwJlUyP0 {
 			counter-reset: counter i;
 
@@ -218,13 +211,7 @@
 		}
 	}
 	/* Votes Content */
-	votesStyle(up,
-	down,
-	upF=up,
-	downF=down,
-	tS=1,
-	rUp=0,
-	rDown=0) {
+	votesStyle(up, down, upF=up, downF=down, tS=1, rUp=0, rDown=0) {
 		.icon-upvote::before {
 			content: up i;
 		}
@@ -392,90 +379,8 @@
 		src: url(https://fonts.gstatic.com/s/googlesans/v29/4UaGrENHsxJlGDuGo1OIlL3Owp4.woff2) format('woff2');
 		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
 	}
-	if googleSans {
-		html,
-		body,
-		div,
-		span,
-		applet,
-		object,
-		iframe,
-		h1,
-		h2,
-		h3,
-		h4,
-		h5,
-		h6,
-		p,
-		blockquote,
-		pre,
-		a,
-		abbr,
-		acronym,
-		address,
-		big,
-		button,
-		cite,
-		code,
-		del,
-		dfn,
-		em,
-		img,
-		input,
-		ins,
-		kbd,
-		q,
-		s,
-		samp,
-		small,
-		strike,
-		strong,
-		sub,
-		sup,
-		tt,
-		var,
-		b,
-		u,
-		i,
-		center,
-		dl,
-		dt,
-		dd,
-		ol,
-		ul,
-		li,
-		fieldset,
-		form,
-		label,
-		legend,
-		table,
-		caption,
-		tbody,
-		tfoot,
-		thead,
-		tr,
-		th,
-		td,
-		article,
-		aside,
-		canvas,
-		details,
-		embed,
-		figure,
-		figcaption,
-		footer,
-		header,
-		hgroup,
-		menu,
-		nav,
-		output,
-		ruby,
-		section,
-		summary,
-		time,
-		mark,
-		audio,
-		video {
+	if googleSans { 
+		html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, button, cite, code, del, dfn, em, img, input, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
 			font-family: 'Google Sans', sans-serif i;
 		}
 	}
@@ -932,34 +837,19 @@
 	}
 	/* Dropdown Sink */
 	if dropdownEffect=='Opacity' {
-		dEffect(0,
-		0,
-		0,
-		0)
+		dEffect(0, 0, 0, 0)
 	}
 	if dropdownEffect=='F-Top' {
-		dEffect(0,
-		-20%,
-		0,
-		0)
+		dEffect(0, -20%, 0, 0)
 	}
 	if dropdownEffect=='F-Left' {
-		dEffect(-20%,
-		0,
-		0,
-		0)
+		dEffect(-20%, 0, 0, 0)
 	}
 	if dropdownEffect=='F-Bottom' {
-		dEffect(0,
-		20%,
-		0,
-		0)
+		dEffect(0, 20%, 0, 0)
 	}
 	if dropdownEffect=='F-Right' {
-		dEffect(20%,
-		0,
-		0,
-		0)
+		dEffect(20%, 0, 0, 0)
 	}
 	if dropdownEffect=='Pulse' {
 		#SearchDropdownContent,
@@ -1143,46 +1033,22 @@
 	}
 	/* Count in Posts */
 	if countInPosts=='Outside-T' {
-		cPost(10px,
-		,
-		,
-		0,
-		-100%)
+		cPost(10px, , , 0, -100%)
 	}
 	if countInPosts=='Outside-B' {
-		cPost(,
-		,
-		10px,
-		0,
-		-100%)
+		cPost(, , 10px, 0, -100%)
 	}
 	if countInPosts=='Inside-LB' {
-		cPost(,
-		,
-		10px,
-		,
-		)
+		cPost(, , 10px, , )
 	}
 	if countInPosts=='Inside-RB' {
-		cPost(,
-		0,
-		10px,
-		,
-		)
+		cPost(, 0, 10px, , )
 	}
 	if countInPosts=='Inside-RT' {
-		cPost(10px,
-		0,
-		,
-		,
-		)
+		cPost(10px, 0, , , )
 	}
 	if countInPosts=='Inside-Below-Votes' {
-		cPost(92px,
-		,
-		,
-		0,
-		)
+		cPost(92px, , , 0, )
 	}
 	/* Post Hover Scale */
 	if scalePost=='Scale'||scalePost=='noScale' {
@@ -1846,103 +1712,49 @@
 		}
 	}
 	if voteStyle=='Filled' {
-		votesStyle("\f34f",
-		"\f198")
+		votesStyle("\f34f", "\f198")
 	}
 	if voteStyle=='Outline' {
-		votesStyle("\f34e",
-		"\f197")
+		votesStyle("\f34e", "\f197")
 	}
 	if voteStyle=='Arrow-Alt' {
-		votesStyle("\F34A",
-		"\F193")
+		votesStyle("\F34A", "\F193")
 	}
 	if voteStyle=='Double-Arrow' {
-		votesStyle("\F1DA",
-		"\F1D8")
+		votesStyle("\F1DA", "\F1D8")
 	}
 	if voteStyle=='Arrow-S-OF' {
-		votesStyle("\F27E",
-		"\F27E",
-		"\F27F",
-		"\F27F",
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F27E", "\F27E", "\F27F", "\F27F", , -90deg, 90deg)
 	}
 	if voteStyle=='Arrow-S-Outline' {
-		votesStyle("\F27E",
-		"\F27E",
-		,
-		,
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F27E", "\F27E", , , , -90deg, 90deg)
 	}
 	if voteStyle=='Arrow-S-Filled' {
-		votesStyle("\F27F",
-		"\F27F",
-		,
-		,
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F27F", "\F27F", , , , -90deg, 90deg)
 	}
 	if voteStyle=='Arrow-R-OF' {
-		votesStyle("\F235",
-		"\F235",
-		"\F236",
-		"\F236",
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F235", "\F235", "\F236", "\F236", , -90deg, 90deg)
 	}
 	if voteStyle=='Arrow-R-Outline' {
-		votesStyle("\F235",
-		"\F235",
-		,
-		,
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F235", "\F235", , , , -90deg, 90deg)
 	}
 	if voteStyle=='Arrow-R-Filled' {
-		votesStyle("\F236",
-		"\F236",
-		,
-		,
-		,
-		-90deg,
-		90deg)
+		votesStyle("\F236", "\F236", , , , -90deg, 90deg)
 	}
 	if voteStyle=='Correct-Incorrect' {
-		votesStyle("\F150",
-		"\F156")
+		votesStyle("\F150", "\F156")
 	}
 	if voteStyle=='Material' {
-		votesStyle("\e5d8",
-		"\e5db")
+		votesStyle("\e5d8", "\e5db")
 	}
 	if voteStyle=='Material-Alt' {
-		votesStyle("\e316",
-		"\e313",
-		,
-		,
-		1.4)
+		votesStyle("\e316", "\e313", , , 1.4)
 	}
 	if voteStyle=='Material-AltD' {
-		votesStyle("\eacf",
-		"\ead0",
-		,
-		,
-		1.4)
+		votesStyle("\eacf", "\ead0", , , 1.4)
 	}
 	if voteStyle=='Material-C' {
-		votesStyle("\f182",
-		"\f181",
-		,
-		,
-		1.4)
+		votesStyle("\f182", "\f181", , , 1.4)
 	}
 	/* UPVOTE, DOWNVOTE */
 	if upVoteColor!='#ff4500' {
