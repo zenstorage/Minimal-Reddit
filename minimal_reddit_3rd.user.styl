@@ -1,0 +1,302 @@
+/* ==UserStyle==
+@name           Minimal Reddit 3rd
+@namespace      reddit.com
+@version        6.0
+@description    Wide posts and remove bloat from homepage
+@homepageURL    https://github.com/zenstorage/minimal-reddit
+@supportURL     https://github.com/zenstorage/minimal-reddit/issues
+@author         hdy
+@license        MIT
+@preprocessor   stylus
+
+------------
+Navbar
+------------
+@var checkbox    enableNavbar            '● Customize navbar'              1
+@var number      borderRadiusNavbar      '⠀⠀⚬ Border radius'               [20, 0, 200, 1, 'px']
+@var checkbox    userNavbar              '⠀⠀⚬ Remove user'                 0
+@var checkbox    chatNavbar              '⠀⠀⚬ Remove chat'                 1
+@var checkbox    notificationsNavbar     '⠀⠀⚬ Remove notifications'        0
+@var checkbox    createPostNavNavbar     '⠀⠀⚬ Remove create post'          1
+@var checkbox    advertiseNavbar         '⠀⠀⚬ Remove advertise'            1
+@var checkbox    logoNavbar              '⠀⠀⚬ Remove reddit logo'          0
+
+
+------------
+Search bar
+------------
+@var checkbox    enableSearchbar         '● Customize search bar'          1
+@var checkbox    trendingSearchbar       '⠀⠀⚬ Remove trending'             1
+@var checkbox    nsfwSearchbar           '⠀⠀⚬ Remove nsfw'                 0
+
+
+------------
+Left sidebar
+------------
+@var checkbox    enableLeftSidebar       '● Customize left sidebar'        0
+@var select      leftSidebarStyle        '⠀⠀⚬ Style'                       ['Default*', 'Hide', 'Remove', 'Minimize','MinimizeWidth']
+@var number      widthLeftSidebar        '⠀⠀⚬ Width'                       [272, 0, 544, 1, 'px']
+
+
+------------
+Section
+------------
+@var checkbox   enableSection            '● Customize section'             0
+@var number     paddingInlineSection    '⠀⠀⚬ Padding inline'              [16, 0, 32, 1, 'px']
+@var number     paddingBlockSection     '⠀⠀⚬ Padding block'               [0, 0, 32, 1, 'px']
+
+
+------------
+Posts
+------------
+@var checkbox    enablePosts             '● Customize posts'               1 
+@var checkbox    widePosts               '⠀⠀⚬ Wide'                        1
+@var range       widthPosts              '⠀⠀⠀⠀⚬ Width'                     [100, 30, 100, 1, '%']
+@var number      marginInlinePost        '⠀⠀⚬ Margin inline'               [0, 0, 32, 1, 'px']
+@var number      marginBlockPost         '⠀⠀⚬ Margin block'                [4, 0, 32, 1, 'px']
+@var number      paddingInlinePost       '⠀⠀⚬ Padding inline'              [16, 0, 32, 1, 'px']
+@var number      paddingBlockPost        '⠀⠀⚬ Padding block'               [4, 0, 32, 1, 'px']
+@var checkbox    expandLongText          '⠀⠀⚬ Expand long text'            0
+@var checkbox    scalePost               '⠀⠀⚬ Scale on over'               0
+@var checkbox    scalePostShadow         '⠀⠀⠀⠀⚬ Shadow'                    1
+@var number      scalePostFactor         '⠀⠀⠀⠀⚬ Factor'                    [1.03, 0, 10, .01]
+@var checkbox    postsWithImage          '⠀⠀⚬ Remove post with image'      0
+@var checkbox    postsWithVideo          '⠀⠀⚬ Remove post with video'      0
+@var checkbox    crossPost               '⠀⠀⚬ Remove all crosspost'        0
+@var checkbox    crossPostWithImage      '⠀⠀⚬ Remove crosspost with image' 0
+@var checkbox    crossPostWithVideo      '⠀⠀⚬ Remove crosspost with image' 0
+@var checkbox    separatorPosts          '⠀⠀⚬ Remove separator'            0
+
+
+// END
+
+==/UserStyle== */
+@-moz-document domain("www.reddit.com") {
+	i=!important;
+
+	/* Mixins */
+
+	/**
+	 * Property display none
+	 */
+	none() {
+		display: none i;
+	}
+
+	/* Navbar */
+	if enableNavbar {
+		if borderRadiusNavbar!=20 {
+			:host .reddit-search-bar {
+				border-radius: borderRadiusNavbar i;
+			}
+			:host .label-container:has(> .leadingIcon) {
+				border-radius: borderRadiusNavbar i;
+			}
+		}
+		if userNavbar {
+			div:has(> [bundlename="faceplate_dropdown_menu"]) {
+				none();
+			}
+		}
+		if chatNavbar {
+			nav [data-part="chat"] {
+				none();
+			}
+		}
+		if notificationsNavbar {
+			nav [data-part="inbox"] {
+				none();
+			}
+		}
+		if createPostNavNavbar {
+			nav [data-part="create"] {
+				none();
+			}
+		}
+		if advertiseNavbar {
+			nav [data-part="advertise"] {
+				none();
+			}
+		}
+		if logoNavbar {
+			reddit-header-large [noun="reddit_logo"] {
+				none();
+			}
+		}
+	}
+
+	/* Search bar */
+	if enableSearchbar {
+		if trendingSearchbar {
+			:host .reddit-search-bar #reddit-trending-searches-partial-container, :host .reddit-search-bar div:has(> [icon-name="rising-outline"]) {
+				none();
+			}
+		}
+		if nsfwSearchbar {
+			:host #typeahead-results-nsfw-section {
+				none();
+			}
+		}
+	}
+
+	/* Left sidebar */
+	if enableLeftSidebar {
+		if leftSidebarStyle=='Hide' {
+			#left-sidebar-container {
+				display: none i;
+			}
+		}
+		else if leftSidebarStyle=='Remove' {
+			#left-sidebar-container {
+				display: none i;
+			}
+			.grid-container {
+				grid-template-columns: 0 1fr i;
+			}
+		}
+		else if leftSidebarStyle=='Minimize' {
+			.grid-container {
+				grid-template-columns: calc(372px * 0.1) 1fr i;
+			}
+
+			#left-sidebar-container {
+				translate: -90% i;
+				transition: .2s ease i;
+				position: fixed i;
+				z-index: 9 i;
+
+				&:hover {
+					translate: 0 i;
+				}
+			}
+		}
+		else if leftSidebarStyle=='MinimizeWidth' {
+			.grid-container {
+			    grid-template-columns: 40px 1fr i;
+			}
+			
+			#left-sidebar-container {
+			    max-width: 40px i;
+			    transition: .2s ease i;
+			    position: fixed i;
+			    z-index: 9 i;
+			
+			    &:hover {
+			        max-width: 100% i;
+			    }
+			}
+		}
+
+		if widthLeftSidebar!=272 {
+			.grid-container {
+				grid-template-columns: widthLeftSidebar 1fr i;
+			}
+			#left-sidebar-container {
+				overflow: hidden i;
+			}
+		}
+	}
+	
+	/* Section */
+	if enableSection {
+		if paddingInlineSection!=16 {
+			.subgrid-container {
+				padding-inline: paddingInlineSection i;
+			}
+		}
+		if paddingBlockSection!=0 {
+			.subgrid-container {
+				padding-block: paddingBlockSection i;
+			}
+		}
+	}
+	
+	/* Posts */
+	if enablePosts {
+		if expandLongText {
+			shreddit-post [class*="line-clamp"] {
+				line-clamp: unset i;
+				-webkit-line-clamp: unset i;
+			}
+		}
+		if widePosts {
+			.subgrid-container {
+				max-width: 100% i;
+				min-width: 100% i;
+			}
+			.main-container {
+				justify-content: center i;
+			}
+			main#main-content {
+				max-width: calc(100% - 316px - 16px) i;
+				/* 100% - right sidebar - padding */
+				width: widthPosts i;
+			}
+		}
+		if marginInlinePost!=0 {
+			shreddit-post {
+				margin-inline: marginInlinePost i;
+			}
+		}
+		if marginBlockPost!=4 {
+			shreddit-post {
+				margin-block: marginBlockPost i;
+			}
+		}
+		if paddingInlinePost!=16 {
+			shreddit-post {
+				padding-inline: paddingInlinePost i;
+			}
+		}
+		if paddingBlockPost!=4 {
+			shreddit-post {
+				padding-block: paddingBlockPost i;
+			}
+		}
+		if scalePost {
+			shreddit-post {
+				scale: 1 i;
+				transition: .2s ease i;
+				
+				&:hover  {
+					scale: scalePostFactor i;
+					z-index: 4 i;	
+					
+					if scalePostShadow {
+						box-shadow: 0 0 20px 0px #000 i;
+					}
+				}
+			}
+		}
+		if postsWithImage {
+			:where(article:has(> shreddit-post[post-type="image"], > shreddit-post[post-type="gallery"]), rticle:has(> shreddit-post[post-type="image"], > shreddit-post[post-type="gallery"]) + hr) {
+				none();
+			}
+		}
+		if postsWithVideo {
+			article:has(> shreddit-post[post-type="video"]), article:has(> shreddit-post[post-type="video"]) + hr {
+				none();
+			}
+		}
+		if crossPost {
+			article:has(> shreddit-post[post-type="crosspost"]) {
+				none();
+			}
+		}
+		if crossPostWithImage {
+			article:has(> shreddit-post[post-type="crosspost"] .media-lightbox-img), article:has(> shreddit-post[post-type="crosspost"] .media-lightbox-img) + hr {
+				none();
+			}
+		}
+		if crossPostWithVideo {
+			article:has(> shreddit-post[post-type="crosspost"] [bundlename*="shreddit_player"]), article:has(> shreddit-post[post-type="crosspost"] .media-lightbox-img) + hr {
+				none();
+			}
+		}
+		if separatorPosts {
+			:where(main#main-content, shreddit-feed) > hr {
+				none();
+			}
+		}
+	}
+}
