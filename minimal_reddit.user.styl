@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit
 @namespace      reddit.com
-@version        5.6.6.6
+@version        5.6.6.7
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
 @supportURL     https://github.com/zenstorage/minimal-reddit/issues
@@ -9,146 +9,258 @@
 @license        MIT
 @preprocessor   stylus
 
-@var checkbox    customColors            'Custom bgk color' 0
-@var color       bgkColor                'Base background color' rgb(26, 26, 27)
-@var range       bgkTransparency         'Background transparency' [1, 0, 1, .01]
-@var range       bgkBlur                 'Background blur' [0, 0, 20, 1, 'px']
-@var checkbox    customBackground        'Custom main background ' 0
-@var text        bgkURL                  'Background main URL' ''https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg''
-@var color       bkgColor                'Background main color, this replace the URL' #030303
-@var range       blurBackground          'Blur main background' [0, 0, 10, 1, 'px']
-@var range       navbarShowing           'Navbar top' [0, 0, 40, 1, 'px']
-@var checkbox    useOlLogo               'Use old logo' 0
-@var checkbox    noBreakLineSub          'No break line Sub name in search bar' 1
-@var select      dropdownEffect          'Dropdown effect' ['None', 'Opacity', 'F-Top', 'F-Left', 'F-Bottom', 'F-Right', 'Pulse']
-@var color       iconsColor              'Icons color' #d7dadc
-@var select      imgPosts                'Images in posts' ['Default', 'Scroll', 'Resize', 'resizeOnHover: Resize on hover', 'scrollOnHover:Scroll on hover','imgFullHeight: Full height']
-@var checkbox    scrollLongT             'Add scroll to long text in posts' 0
-@var checkbox    widePosts               'Wide posts' 1
-@var range       widthPosts              'Width posts' [100, 30, 100, 1, '%']
-@var checkbox    boxShadowPosts          'Add shadow to posts' 0
-@var select      countInPosts            'Add count in posts' ['None', 'Outside-T', 'Outside-B', 'Inside-LB', 'Inside-RB', 'Inside-RT', 'Inside-Below-Votes']
-@var color       countColor              'Count color' #a8aaab
-@var select      scalePost               'Post hover scale' ['None', 'Scale', 'noScale: Scale without extra shadow']
-@var checkbox    scalePostFixed          'Scale post fixed' 0
-@var number      scaleNum                'Post hover scale num' [1.03, 0, 10, .01]
-@var number      postPadd                'Posts padding around' [0, 0, 40, 1, 'px']
-@var checkbox    invertPostSidebar       'Invert posts to sidebar' 0
-@var number      borderRadius            'Border raius' [4, 0, 30, 1, 'px']
-@var checkbox    border                  'No border in section' 0
-@var select      marginSection           'No margin in section' ['Default' ,'Create-Post', 'Sort-Post', 'Posts', 'Sidebar', 'Create-Sort', 'Create-Sort-Posts', 'All']
-@var checkbox    paddingSectionSide      'No padding in siders section' 0
-@var select      settingsSeg             'Settings page style' ['Default', 'Segmented', 'Segmented-Alt', 'Segmented-S']
-@var color       cOverlayOffColor        'Comments overlay offset color' #131313cc
-@var range       cOverlayOffWidth        'Comments overlay offset width' [100, 0, 100, 1, '%']
-@var range       cOverlayOffBlur         'Comments overlay offset blur' [0, 0, 50, 1, 'px']
-@var color       commentsOverlayC        'Comments overlay color' #1c1c1ce6
-@var range       commentsOverlayB        'Comments overlay opacity' [0, 0, 1, 0.1]
-@var checkbox    segmentComments         'Segment comments in post page' 0
-@var checkbox    separatorPosts          'Add separator between posts' 0
-@var color       separatorColor          'Separator color' #acacac
-@var checkbox    navbarBoxShadow         'Add shadow to navbar' 0
-@var checkbox    hRightSidebar           'Minimize right sidebar' 0 
-@var number      widthSubNav             'Width dropdown subbar' [270, 72, 270, 1, 'px']
-@var select      subBar                  'SubBar' ['Default', 'Remove', 'Minimize','MinimizeWidth', 'Compact', 'Blossom', 'Width', 'CompactV2', 'CompactV2H']
-@var color       subBarAltBgk            'Alternate bgk in items subbar' #00000000
-@var select      sortPosts               'Sort posts' ['Default', 'Remove', 'Sticky']
-@var number      fontTitle               'Font size title' [18, 12, 50, 1, 'px']
-@var number      fontParagraph           'Font size paragraph, comments' [14, 10, 50, 1, 'px']
-@var select      textTransform           'Title and comments transform' ['Default', 'Capitalize', 'Full-Width', 'Lowercase', 'Uppercase']
-@var select      iconNoLabel             'Hide icons label' ['Default', 'Hide', 'Hide-C']
-@var select      voteStyle               'Buttons vote style' ['Default', 'Remove', 'Material', 'Material-Alt', 'Material-AltD', 'Material-C','Filled', 'Outline', 'Arrow-Alt', 'Double-Arrow', 'Arrow-S-OF', 'Arrow-S-Outline', 'Arrow-S-Filled', 'Arrow-R-OF', 'Arrow-R-Outline', 'Arrow-R-Filled', 'Correct-Incorrect']
-@var color       upVoteColor             'Upvote select color' #ff4500
-@var color       downVoteColor           'Upvote select color' #7193ff
-@var select      cAlignment              'Community header alighment' ['Default', 'Left', 'Center', 'Right']
-@var select      bannerR                 'Subreddits banner' ['Default' , 'Compact', 'Remove', 'Unified']
-@var select      mediaHide               'Hide media and show on hover' ['Default*', 'Videos', 'Photos', 'Both']
-@var checkbox    mediaBorder             'Add border to img/gif' 0
-@var color       imgBorder               'Post image border color' #6d85ff
-@var color       gifBorder               'Post gif border color' #e66fff
-@var color       pSliderColor            'Player slider color' #fff
-@var color       pSliderColorR           'Player slider color remain' #434343
-@var color       pSliderColorV           'Player slider volume color' #fff3
-@var color       pIconsColor             'Player icons color, NEED userjs' #fff
-@var range       imageBorderRadius       'Border radius images' [0, 0, 50, 1, 'px']
-@var select      albumStyle              'Image album style' ['Default', 'Scroll-Y', 'Scroll-X']
-@var select      albumType               'Image album type' ['Default' ,'Mandatory', 'Proximity']
-@var select      albumAlign              'Image album align'['None', 'Start', 'Center*', 'End']
-@var select      switchStyle             'Switch style' ['Default', 'Default-E*', 'Checkbox', 'Checkbox-Alt', 'SliderG', '3D', '2D', 'Cartoon', 'Fill', 'Text']
-@var color       switchColorOn           'Switch bkg on Color' #0079d3
-@var color       switchColorOff          'Switch bkg off Color' #d7dadc1a
-@var range       switchBRadius           'Switch border radius' [15, 0, 100, 1, 'px']
-@var range       switchRotate            'Switch rotate' [0, -360, 360, 1, 'deg']
-@var color       sliderColor             'Slider color' #ffffff
-@var range       sliderBRadius           'Slider border radius' [57, 0, 100, 1, '%']
-@var select      postHideL               'Post hide mode' ['None', 'Blacklist', 'Whitelist']
-@var text        postHide                'Hide/Show posts that title contains word' Word1, Word2
-@var checkbox    googleSans              'Use Google Sans' 0
-@var checkbox    firaCode                'Use Fira Code font in code elements' 0
-@var number      hideAfter               'Hide posts after:' [999999, 0, 999999, 1]
-@var checkbox    fixGifsWidth            'Fix the width of gifs expanding more than the content in comments' 1
-@var checkbox    fixHeightPostFixed      'Fix the height of pinned posts on the profile page' 1
-@var checkbox    fixIframeBgkWhite       'Fix iframe with background white' 1
-@var checkbox    commentsFullWidth       'Set comments to use full width' 0
-@var checkbox    oCommentsPost           'Remove overlay posts' 0
-@var checkbox    nsfwResults             'Remove nsfw search in search bar' 0
-@var checkbox    skeleton                'Remove skeleton loading' 0
-@var checkbox    postWImages             'Remove posts with images' 0
-@var checkbox    postWVideo              'Remove posts with videos' 0
-@var checkbox    rCrossPost              'Remove cross post' 0
-@var checkbox    trending                'Remove trending today' 1
-@var checkbox    trendingS               'Remove trending search' 1
-@var checkbox    suggestedPosts          'Remove suggested posts' 0
-@var checkbox    logo                    'Remove reddit logo' 0
-@var checkbox    toTop                   'Remove back to top' 0
-@var checkbox    viewFullImage           'Remove view full image' 0
-@var checkbox    rRightSidebar           'Remove right sidebar in home page' 0
-@var checkbox    rRightSidebarP          'Remove right sidebar in posts' 0
-@var checkbox    rRightSidebarO          'Remove right sidebar in overlay posts' 0
-@var checkbox    rRightSidebarS          'Remove right sidebar in subreddits' 0
-@var checkbox    rRecentPosts            'Remove recent posts' 0
-@var checkbox    popular                 'Remove popular in navbar' 1
-@var checkbox    moderator               'Remove moderator in navbar' 0
-@var checkbox    coins                   'Remove coins in navbar' 1
-@var checkbox    chat                    'Remove chat in navbar' 1
-@var checkbox    notifications           'Remove notifications in navbar' 0
-@var checkbox    createPostNav           'Remove create post in navbar' 1
-@var checkbox    advertise               'Remove advertise in navbar' 1
-@var checkbox    dropdown                'Remove header user dropdown' 0
-@var checkbox    statusOn                'Remove status changer dropdown' 0
-@var checkbox    profile                 'Remove profile dropdown' 0
-@var checkbox    avatarP                 'Remove avatar personalize dropdown' 0
-@var checkbox    userConfig              'Remove user settings dropdown' 0
-@var checkbox    dDarkM                  'Remove dark mode dropdown' 0
-@var checkbox    cComunity               'Remove create community dropdown' 0
-@var checkbox    dAdvertise              'Remove advertise dropdown' 1
-@var checkbox    dPremium                'Remove premium dropdown' 1
-@var checkbox    dExplore                'Remove explore dropdown' 1
-@var checkbox    helpCenter              'Remove help center dropdown' 1
-@var checkbox    dMore                   'Remove more dropdown' 1
-@var checkbox    dPolicies               'Remove policies dropdown' 1
-@var checkbox    dExit                   'Remove exit dropdown' 0
-@var checkbox    createPost              'Remove create post' 0
-@var checkbox    profileHover            'Remove profile tooltip hover'   0
-@var checkbox    subHover                'Remove subreddit tooltip hover' 0
-@var checkbox    voteArrowsC             'Remove vote arrows in comments' 0
-@var checkbox    voteArrowsP             'Remove vote arrows in posts' 0
-@var checkbox    iconsSubsP              'Remove subs icons in posts' 0
-@var checkbox    dateSentP               'Remove sent by in post' 0
-@var checkbox    title                   'Remove title bar in posts' 0
-@var checkbox    rTopInfos               'Remove top information in posts' 0
-@var checkbox    rFlairs                 'Remove flairs' 0
-@var checkbox    bottomBar               'Remove bottom actions in section' 0
-@var range       iGrayscale              'Image grayscale' [0, 0, 100, 1, '%']
-@var range       iSepia                  'Image sepia' [0, 0, 100, 1, '%']
-@var range       iBlur                   'Image blur' [0, 0, 20, 1, 'px']
-@var range       iBrightness             'Image brightness' [100, 0, 360, 1, '%']
-@var range       iHue                    'Image hue rotate' [0, 0, 100, 1, 'deg']
-@var range       iSaturate               'Image saturate' [100, 0, 1000, 1, '%']
-@var range       iOpacity                'Image opacity' [100, 0, 100, 1, '%']
-@var range       iContrast               'Image contrast' [100, 0, 1000, 1, '%']
-@var range       iInvert                 'Image invert' [0, 0, 100, 1, '%']
-@var range       iRotate                 'Image rotate' [0, -360, 360, 1, 'deg']
+------------
+Background elements
+------------
+
+@var checkbox    enableBgkElements       '● Customize background elements' 0
+@var color       bgkColor                '⠀⠀⚬ Base color' rgb(26, 26, 27)
+@var range       bgkTransparency         '⠀⠀⚬ Transparency' [1, 0, 1, .01]
+@var range       bgkBlur                 '⠀⠀⚬ Blur' [0, 0, 20, 1, 'px']
+
+------------
+Background root
+------------
+
+@var checkbox    enableBgk               '● Customize background' 0
+@var text        bgkURL                  '⠀⠀⚬ Image URL' ''https://w.wallhaven.cc/full/r7/wallhaven-r73mk1.jpg''
+@var color       bkgColor                '⠀⠀⚬ Color' #030303
+@var range       blurBackground          '⠀⠀⚬ Blur' [0, 0, 10, 1, 'px']
+
+------------
+Navbar
+------------
+
+@var checkbox    enableNavbar            '● Customize navbar' 1
+@var range       navbarShowing           '⠀⠀⚬ Top' [0, 0, 40, 1, 'px']
+@var checkbox    navbarBoxShadow         '⠀⠀⚬ Shadow' 0
+@var checkbox    popular                 '⠀⠀⚬ Remove popular' 1
+@var checkbox    moderator               '⠀⠀⚬ Remove moderator' 0
+@var checkbox    coins                   '⠀⠀⚬ Remove coins' 1
+@var checkbox    chat                    '⠀⠀⚬ Remove chat' 1
+@var checkbox    notifications           '⠀⠀⚬ Remove notifications' 0
+@var checkbox    createPostNav           '⠀⠀⚬ Remove create post' 1
+@var checkbox    advertise               '⠀⠀⚬ Remove advertise' 1
+@var checkbox    useOlLogo               '⠀⠀⚬ Use old logo' 0
+@var checkbox    logo                    '⠀⠀⚬ Remove reddit logo' 0
+@var select      dropdownEffect          '⠀⠀⚬ Dropdown effect' ['None', 'Opacity', 'F-Top', 'F-Left', 'F-Bottom', 'F-Right', 'Pulse']
+
+------------
+Search bar
+------------
+@var checkbox    enableSearchBar         '● Customize search bar' 1
+@var checkbox    noBreakLineSub          '⠀⠀⚬ No break line sub name' 1
+@var checkbox    nsfwResults             '⠀⠀⚬ Remove nsfw' 0
+
+------------
+Posts
+------------
+
+@var checkbox    enablePosts             '● Customize posts' 1
+@var checkbox    scrollLongT             '⠀⠀⚬ Scroll to long text' 0
+@var checkbox    widePosts               '⠀⠀⚬ Wide' 1
+@var range       widthPosts              '⠀⠀⠀⠀⚬ Width' [100, 30, 100, 1, '%']
+@var checkbox    boxShadowPosts          '⠀⠀⚬ Shadow' 0
+@var select      countInPosts            '⠀⠀⚬ Count' ['None', 'Outside-T', 'Outside-B', 'Inside-LB', 'Inside-RB', 'Inside-RT', 'Inside-Below-Votes']
+@var color       countColor              '⠀⠀⠀⠀⚬ Color' #a8aaab
+@var select      scalePost               '⠀⠀⚬ Hover scale' ['None', 'Scale', 'noScale: Scale without extra shadow']
+@var checkbox    scalePostFixed          '⠀⠀⠀⠀⚬ Fixed' 0
+@var number      scaleNum                '⠀⠀⠀⠀⚬ Factor' [1.03, 0, 10, .01]
+@var number      postPadd                '⠀⠀⚬ Padding around' [0, 0, 40, 1, 'px']
+@var checkbox    invertPostSidebar       '⠀⠀⚬ Invert to sidebar' 0
+@var checkbox    separatorPosts          '⠀⠀⚬ Separator between' 0
+@var color       separatorColor          '⠀⠀⠀⠀⚬ Color' #acacac
+@var select      postHideL               '⠀⠀⚬ Hide mode' ['None', 'Blacklist', 'Whitelist']
+@var text        postHide                '⠀⠀⠀⠀⚬ Hide/Show that title contains word' Word1, Word2
+@var number      hideAfter               '⠀⠀⚬ Hide after:' [999999, 0, 999999, 1]
+@var checkbox    postWImages             '⠀⠀⚬ Remove posts with images' 0
+@var checkbox    postWVideo              '⠀⠀⚬ Remove posts with videos' 0
+@var checkbox    rRecentPosts            '⠀⠀⚬ Remove recent posts' 0
+@var checkbox    suggestedPosts          '⠀⠀⚬ Remove suggested posts' 0
+
+------------
+Media in posts
+------------
+
+@var checkbox    enableMediaPosts        '● Customize media in posts' 1
+@var select      imgPosts                '⠀⠀⚬ Images display' ['Default', 'Scroll', 'Resize', 'resizeOnHover: Resize on hover', 'scrollOnHover:Scroll on hover','imgFullHeight: Full height']
+@var select      albumStyle              '⠀⠀⚬ Image album style' ['Default', 'Scroll-Y', 'Scroll-X']
+@var select      albumType               '⠀⠀⠀⠀⚬ Image album type' ['Default' ,'Mandatory', 'Proximity']
+@var select      albumAlign              '⠀⠀⠀⠀⚬ Image album align'['None', 'Start', 'Center*', 'End']
+@var checkbox    mediaBorder             '⠀⠀⚬ Add border to img/gif' 0
+@var color       imgBorder               '⠀⠀⠀⠀⚬ Post image border color' #6d85ff
+@var color       gifBorder               '⠀⠀⠀⠀⚬ Post gif border color' #e66fff
+@var range       imageBorderRadius       '⠀⠀⚬ Border radius images' [0, 0, 50, 1, 'px']
+@var select      mediaHide               '⠀⠀⚬ Hide media and show on hover' ['Default*', 'Videos', 'Photos', 'Both']
+
+------------
+Section
+------------
+
+@var checkbox    enableSection           '●  Customize section' 0
+@var checkbox    border                  '⠀⠀⚬ No border' 0
+@var select      marginSection           '⠀⠀⚬ No margin' ['Default' ,'Create-Post', 'Sort-Post', 'Posts', 'Sidebar', 'Create-Sort', 'Create-Sort-Posts', 'All']
+@var checkbox    paddingSectionSide      '⠀⠀⚬ No padding in siders' 0
+@var checkbox    bottomBar               '⠀⠀⚬ Remove bottom actions' 0
+@var select      sortPosts               '⠀⠀⚬ Sort posts bar' ['Default', 'Remove', 'Sticky']
+
+------------
+Right sidebar
+------------
+
+@var checkbox    enableRSidebar          '● Customize right sidebar' 0
+@var checkbox    hRightSidebar           '⠀⠀⚬ Minimize right sidebar' 0 
+@var checkbox    rRightSidebar           '⠀⠀⚬ Remove right sidebar in home page' 0
+@var checkbox    rRightSidebarP          '⠀⠀⚬ Remove right sidebar in posts' 0
+@var checkbox    rRightSidebarO          '⠀⠀⚬ Remove right sidebar in overlay posts' 0
+@var checkbox    rRightSidebarS          '⠀⠀⚬ Remove right sidebar in subreddits' 0
+
+------------
+Subs sidebar
+------------
+
+@var checkbox    enableSubsSidebar       '● Customize subs sidebar' 0
+@var select      subBar                  '⠀⠀⚬ Style' ['Default', 'Remove', 'Minimize','MinimizeWidth', 'Compact', 'Blossom', 'Width', 'CompactV2', 'CompactV2H']
+@var number      widthSubNav             '⠀⠀⚬ Width' [270, 72, 270, 1, 'px']
+@var color       subBarAltBgk            '⠀⠀⚬ Alternate bgk in items' #00000000
+
+------------
+Comments
+------------
+
+@var checkbox    enableComments          '● Customize comments' 1
+@var checkbox    segmentComments         '⠀⠀⚬ Segment' 0
+@var checkbox    fixGifsWidth            '⠀⠀⚬ Fix gifs expanding' 1
+@var checkbox    commentsFullWidth       '⠀⠀⚬ Use full width' 0
+
+------------
+Post popup
+------------
+
+@var checkbox    enablePostPopup         '●  Customize post popup' 0
+@var checkbox    oCommentsPost           '⠀⠀⚬ Remove' 0
+@var color       cOverlayOffColor        '⠀⠀⚬ Offset color' #131313cc
+@var range       cOverlayOffWidth        '⠀⠀⚬ Offset width' [100, 0, 100, 1, '%']
+@var range       cOverlayOffBlur         '⠀⠀⚬ Offset blur' [0, 0, 50, 1, 'px']
+@var color       commentsOverlayC        '⠀⠀⚬ Color' #1c1c1ce6
+@var range       commentsOverlayB        '⠀⠀⚬ Opacity' [0, 0, 1, 0.1]
+
+------------
+Text
+------------
+
+@var checkbox    enableText              '● Customize text' 0
+@var number      fontTitle               '⠀⠀⚬ Font size title' [18, 12, 50, 1, 'px']
+@var number      fontParagraph           '⠀⠀⚬ Font size paragraph, comments' [14, 10, 50, 1, 'px']
+@var select      textTransform           '⠀⠀⚬ Title and comments transform' ['Default', 'Capitalize', 'Full-Width', 'Lowercase', 'Uppercase']
+
+------------
+Icons
+------------
+
+@var checkbox    enableIcons             '● Customize icons' 0
+@var color       iconsColor              '⠀⠀⚬ Icons color' #d7dadc
+@var select      iconNoLabel             '⠀⠀⚬ Hide icons label' ['Default', 'Hide', 'Hide-C']
+@var select      voteStyle               '⠀⠀⚬ Vote style' ['Default', 'Remove', 'Material', 'Material-Alt', 'Material-AltD', 'Material-C','Filled', 'Outline', 'Arrow-Alt', 'Double-Arrow', 'Arrow-S-OF', 'Arrow-S-Outline', 'Arrow-S-Filled', 'Arrow-R-OF', 'Arrow-R-Outline', 'Arrow-R-Filled', 'Correct-Incorrect']
+@var color       upVoteColor             '⠀⠀⠀⠀⚬ Upvote fill color' #ff4500
+@var color       downVoteColor           '⠀⠀⠀⠀⚬ Downvote fill color' #7193ff
+@var select      switchStyle             '⠀⠀⚬ Switch style' ['Default', 'Default-E*', 'Checkbox', 'Checkbox-Alt', 'SliderG', '3D', '2D', 'Cartoon', 'Fill', 'Text']
+@var color       switchColorOn           '⠀⠀⠀⠀⚬ Bkg "on" color' #0079d3
+@var color       switchColorOff          '⠀⠀⠀⠀⚬ Bkg "off" color' #d7dadc1a
+@var range       switchBRadius           '⠀⠀⠀⠀⚬ Border radius' [15, 0, 100, 1, 'px']
+@var range       switchRotate            '⠀⠀⠀⠀⚬ Rotate' [0, -360, 360, 1, 'deg']
+@var color       sliderColor             '⠀⠀⠀⠀⚬ Slider color' #ffffff
+@var range       sliderBRadius           '⠀⠀⠀⠀⚬ Slider border radius' [57, 0, 100, 1, '%']
+@var color       pSliderColor            '⠀⠀⚬ Player slider color' #fff
+@var color       pSliderColorR           '⠀⠀⚬ Player slider color remain' #434343
+@var color       pSliderColorV           '⠀⠀⚬ Player slider volume color' #fff3
+@var color       pIconsColor             '⠀⠀⚬ Player icons color, NEED userjs' #fff
+
+------------
+Subreddit header
+------------
+
+@var checkbox    enableSubredditHeader   '● Customize subreddit header' 0
+@var select      cAlignment              '⠀⠀⚬ Header alighment' ['Default', 'Left', 'Center', 'Right']
+@var select      bannerR                 '⠀⠀⚬ Banner' ['Default' , 'Compact', 'Remove', 'Unified']
+
+------------
+Settings page
+------------
+
+@var checkbox    enableSettingsPage      '● Customize settings page' 0
+@var select      settingsSeg             '⠀⠀⚬ Style' ['Default', 'Segmented', 'Segmented-Alt', 'Segmented-S']
+
+------------
+Dropdown
+------------
+
+@var checkbox    enableDropdown          '● Customize dropdown' 1
+@var checkbox    dropdown                '⠀⠀⚬ Remove header user dropdown' 0
+@var checkbox    statusOn                '⠀⠀⚬ Remove status changer dropdown' 0
+@var checkbox    profile                 '⠀⠀⚬ Remove profile dropdown' 0
+@var checkbox    avatarP                 '⠀⠀⚬ Remove avatar personalize dropdown' 0
+@var checkbox    userConfig              '⠀⠀⚬ Remove user settings dropdown' 0
+@var checkbox    dDarkM                  '⠀⠀⚬ Remove dark mode dropdown' 0
+@var checkbox    cComunity               '⠀⠀⚬ Remove create community dropdown' 0
+@var checkbox    dAdvertise              '⠀⠀⚬ Remove advertise dropdown' 1
+@var checkbox    dPremium                '⠀⠀⚬ Remove premium dropdown' 1
+@var checkbox    dExplore                '⠀⠀⚬ Remove explore dropdown' 1
+@var checkbox    helpCenter              '⠀⠀⚬ Remove help center dropdown' 1
+@var checkbox    dMore                   '⠀⠀⚬ Remove more dropdown' 1
+@var checkbox    dPolicies               '⠀⠀⚬ Remove policies dropdown' 1
+@var checkbox    dExit                   '⠀⠀⚬ Remove exit dropdown' 0
+
+------------
+General
+------------
+
+@var checkbox    enableGeneral           '● Customize general' 1
+@var number      borderRadius            '⠀⠀⚬ Border raius' [4, 0, 30, 1, 'px']
+@var checkbox    googleSans              '⠀⠀⚬ Use Google Sans' 0
+@var checkbox    firaCode                '⠀⠀⚬ Use Fira Code font in code elements' 0
+@var checkbox    fixIframeBgkWhite       '⠀⠀⚬ Fix iframe with background white' 1
+
+------------
+General remove
+------------
+
+@var checkbox    enableRemoveG           '● General remove' 1
+@var checkbox    skeleton                '⠀⠀⚬ Remove skeleton loading' 0
+@var checkbox    rCrossPost              '⠀⠀⚬ Remove cross post' 0
+@var checkbox    trending                '⠀⠀⚬ Remove trending today' 1
+@var checkbox    trendingS               '⠀⠀⚬ Remove trending search' 1
+@var checkbox    toTop                   '⠀⠀⚬ Remove back to top' 0
+@var checkbox    viewFullImage           '⠀⠀⚬ Remove view full image' 0
+@var checkbox    createPost              '⠀⠀⚬ Remove create post' 0
+@var checkbox    profileHover            '⠀⠀⚬ Remove profile tooltip hover'   0
+@var checkbox    subHover                '⠀⠀⚬ Remove subreddit tooltip hover' 0
+@var checkbox    voteArrowsC             '⠀⠀⚬ Remove vote arrows in comments' 0
+@var checkbox    voteArrowsP             '⠀⠀⚬ Remove vote arrows in posts' 0
+@var checkbox    iconsSubsP              '⠀⠀⚬ Remove subs icons in posts' 0
+@var checkbox    dateSentP               '⠀⠀⚬ Remove sent by in post' 0
+@var checkbox    title                   '⠀⠀⚬ Remove title bar in posts' 0
+@var checkbox    rTopInfos               '⠀⠀⚬ Remove top information in posts' 0
+@var checkbox    rFlairs                 '⠀⠀⚬ Remove flairs' 0
+
+------------
+Image effets
+------------
+
+@var checkbox    enableImageEffects      '● Customize image' 0
+@var range       iGrayscale              '⠀⠀⚬ Grayscale' [0, 0, 100, 1, '%']
+@var range       iSepia                  '⠀⠀⚬ Sepia' [0, 0, 100, 1, '%']
+@var range       iBlur                   '⠀⠀⚬ Blur' [0, 0, 20, 1, 'px']
+@var range       iBrightness             '⠀⠀⚬ Brightness' [100, 0, 360, 1, '%']
+@var range       iHue                    '⠀⠀⚬ Hue rotate' [0, 0, 100, 1, 'deg']
+@var range       iSaturate               '⠀⠀⚬ Saturate' [100, 0, 1000, 1, '%']
+@var range       iOpacity                '⠀⠀⚬ Opacity' [100, 0, 100, 1, '%']
+@var range       iContrast               '⠀⠀⚬ Contrast' [100, 0, 1000, 1, '%']
+@var range       iInvert                 '⠀⠀⚬ Invert' [0, 0, 100, 1, '%']
+@var range       iRotate                 '⠀⠀⚬ Rotate' [0, -360, 360, 1, 'deg']
+
+// END
+
 ==/UserStyle== */
 @-moz-document domain('reddit.com') {
 	/* Fira Code Font */
@@ -405,7 +517,7 @@
 		--ml-border-color-h2: lighten(bgkT, 40%);
 		--ml-border-color-h3: lighten(bgkT, 30%);
 	}
-	if customColors {
+	if enableBgkElements {
 		[class*="subredditvars"],
 		.theme-beta,
 		:root {
@@ -820,7 +932,7 @@
 		}
 	}
 	/* Custom Bkg */
-	if customBackground {
+	if enableBgk {
 		/* Bkg image */
 		._2wxsLGNmMLx6sEMLJyn2o9::before {
 			background-image: url(bgkURL) i;
@@ -837,42 +949,44 @@
 		}
 	}
 	/* Dropdown Sink */
-	if dropdownEffect=='Opacity' {
-		dEffect(0, 0, 0, 0)
-	}
-	if dropdownEffect=='F-Top' {
-		dEffect(0, -20%, 0, 0)
-	}
-	if dropdownEffect=='F-Left' {
-		dEffect(-20%, 0, 0, 0)
-	}
-	if dropdownEffect=='F-Bottom' {
-		dEffect(0, 20%, 0, 0)
-	}
-	if dropdownEffect=='F-Right' {
-		dEffect(20%, 0, 0, 0)
-	}
-	if dropdownEffect=='Pulse' {
-		#SearchDropdownContent,
-		.TMMvbwyeh9yuHKmQWHrE3,
-		._2uYY-KeuYHKiwl-9aF0UiL,
-		._3DQXGvoE1SM3Kmz20of7Iz,
-		._3oNU8Gzy2V3jDPhFfeEFbD,
-		._1T423RClx-mTPxfuiCw4UN,
-		._2Bejocqb-InO8686E2ehf {
-			animation-name: pulse i;
-			animation-duration: 0.3s i;
-			animation-iteration-count: 1 i;
+	if enableNavbar {
+		if dropdownEffect=='Opacity' {
+			dEffect(0, 0, 0, 0)
 		}
-		@keyframes pulse {
-			0% {
-				transform: scale(0.98);
+		if dropdownEffect=='F-Top' {
+			dEffect(0, -20%, 0, 0)
+		}
+		if dropdownEffect=='F-Left' {
+			dEffect(-20%, 0, 0, 0)
+		}
+		if dropdownEffect=='F-Bottom' {
+			dEffect(0, 20%, 0, 0)
+		}
+		if dropdownEffect=='F-Right' {
+			dEffect(20%, 0, 0, 0)
+		}
+		if dropdownEffect=='Pulse' {
+			#SearchDropdownContent,
+			.TMMvbwyeh9yuHKmQWHrE3,
+			._2uYY-KeuYHKiwl-9aF0UiL,
+			._3DQXGvoE1SM3Kmz20of7Iz,
+			._3oNU8Gzy2V3jDPhFfeEFbD,
+			._1T423RClx-mTPxfuiCw4UN,
+			._2Bejocqb-InO8686E2ehf {
+				animation-name: pulse i;
+				animation-duration: 0.3s i;
+				animation-iteration-count: 1 i;
 			}
-			50% {
-				transform: scale(1.01);
-			}
-			100% {
-				transform: scale(1);
+			@keyframes pulse {
+				0% {
+					transform: scale(0.98);
+				}
+				50% {
+					transform: scale(1.01);
+				}
+				100% {
+					transform: scale(1);
+				}
 			}
 		}
 	}
@@ -1410,7 +1524,7 @@
 		sidebarCV2()
 	}
 	/* Minmize Navbar */
-	if subBar=='Minimize'||subBar=='Compact' {
+	if enableNavbar {
 		._2GyPfdsi-MbQFyHRECo9GO {
 			top: - navbarShowing i;
 			transition: .2s ease;
@@ -1420,42 +1534,43 @@
 				top: 0px i;
 			}
 		}
-
 		#AppRouter-main-content {
 			top: - navbarShowing i;
 			position: relative i;
 		}
-		.e8fTXufFydLy7wHBm6rHP:has(> [src^="/message/unread"]) {
-			position: fixed i;
-			left: 30px i;
-		}
-		#overlayScrollContainer {
-			top: - navbarShowing i;
-		}
+		if subBar=='Minimize'||subBar=='Compact' {
+			.e8fTXufFydLy7wHBm6rHP:has(> [src^="/message/unread"]) {
+				position: fixed i;
+				left: 30px i;
+			}
+			#overlayScrollContainer {
+				top: - navbarShowing i;
+			}
 
-		._20fGT0XJD3MvX9yBsVeKMn {
-			top: 49 - navbarShowing i;
-		}
-	}
-	else if subBar=='CompactV2'||subBar=='CompactV2H' {
-		body:has(._20fGT0XJD3MvX9yBsVeKMn) ._2GyPfdsi-MbQFyHRECo9GO {
-			top: 18px - navbarShowing i;
-			transition: .2s ease;
-
-			&:hover,
-			&:focus-within {
-				top: 18px i;
+			._20fGT0XJD3MvX9yBsVeKMn {
+				top: 49 - navbarShowing i;
 			}
 		}
-		#AppRouter-main-content {
-			top: - navbarShowing i;
-			position: relative i;
-		}
-		#overlayScrollContainer {
-			top: - navbarShowing i;
-		}
-		._20fGT0XJD3MvX9yBsVeKMn {
-			top: 0 !important;
+		else if subBar=='CompactV2'||subBar=='CompactV2H' {
+			body:has(._20fGT0XJD3MvX9yBsVeKMn) ._2GyPfdsi-MbQFyHRECo9GO {
+				top: 18px - navbarShowing i;
+				transition: .2s ease;
+
+				&:hover,
+				&:focus-within {
+					top: 18px i;
+				}
+			}
+			#AppRouter-main-content {
+				top: - navbarShowing i;
+				position: relative i;
+			}
+			#overlayScrollContainer {
+				top: - navbarShowing i;
+			}
+			._20fGT0XJD3MvX9yBsVeKMn {
+				top: 0 !important;
+			}
 		}
 	}
 	/* Old Logo */
@@ -1482,7 +1597,7 @@
 		}
 	}
 	/* Box Shadow to Navbar */
-	if navbarBoxShadow {
+	if enableNavbar && navbarBoxShadow {
 		._2vkeRJojnV7cb9pMlPHy7d.a35Fm2MurU14xdNybLiZp {
 			box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12), 0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.12) i;
 		}
@@ -1867,7 +1982,7 @@
 		}
 	}
 	/* Reddit Logo */
-	if logo {
+	if enableNavbar && logo {
 		._30BbATRhFv3V83DHNDjJAO {
 			dis();
 		}
@@ -1901,13 +2016,13 @@
 		}
 	}
 	/* Popular */
-	if popular {
+	if enableNavbar && popular {
 		._3dZnYgFFpifT-M_Vs2FAq6[href="/r/popular/"] {
 			dis();
 		}
 	}
 	/* Coins */
-	if coins {
+	if enableNavbar && coins {
 		span._3dZnYgFFpifT-M_Vs2FAq6 {
 			dis();
 		}
@@ -1927,31 +2042,31 @@
 			}
 		}
 		/* Moderator */
-		if moderator {
+		if enableNavbar && moderator {
 			> ._2zZ-KGHbWWqrwGlHWXR90y:has(.icon-mod) {
 				dis();
 			}
 		}
 		/* Chat  */
-		if chat {
+		if enableNavbar && chat {
 			[data-testid="reddit-chat-button"] {
 				dis();
 			}
 		}
 		/* Notifications */
-		if notifications {
+		if enableNavbar && notifications {
 			> ._2zZ-KGHbWWqrwGlHWXR90y:has(.icon-notification) {
 				dis();
 			}
 		}
 		/* Create Post */
-		if createPostNav {
+		if enableNavbar && createPostNav {
 			> ._2zZ-KGHbWWqrwGlHWXR90y:has(.icon-add) {
 				dis();
 			}
 		}
 		/* Advertise */
-		if advertise {
+		if enableNavbar && advertise {
 			> ._2zZ-KGHbWWqrwGlHWXR90y._2I12Htze2UzJmmfnrgYJOn._1dBtowHdRHcGyLbVEaOL8t {
 				dis();
 			}
@@ -2315,13 +2430,6 @@
 			width: max-content i;
 		}
 	}
-	/* Fixes the height of pinned posts on the profile page */
-	if fixHeightPostFixed {
-		.fuCmx3adjKY3tXA4Zfx2p {
-			min-height: 300px i;
-			height: unset i;
-		}
-	}
 	/* Fixes iframe bgk white */
 	if fixIframeBgkWhite {
 		#credential_picker_container {
@@ -2627,11 +2735,11 @@ url-prefix("https://new.reddit.com/settings/") {
 	/* Settings page style */
 	if settingsSeg=='Segmented'||settingsSeg=='Segmented-Alt'||settingsSeg=='Segmented-S' {
 		#AppRouter-main-content {
-			background-color: bkgColor i;
 			padding-bottom: 30px i;
 			/* Custom Bkg */
-			if customBackground {
+			if enableBgk {
 				/* Bkg image */
+				background-color: bkgColor i;
 				background-image: url(bgkURL) i;
 				background-position: center i;
 				background-size: cover i;
