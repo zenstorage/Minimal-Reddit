@@ -1,6 +1,6 @@
 /* ==UserStyle==
 @name           Minimal Reddit 3rd
-@namespace      reddit.com
+@namespace      https://github.com/zenstorage/minimal-reddit
 @version        6.0
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
@@ -13,7 +13,6 @@
 Navbar
 ------------
 @var checkbox    enableNavbar            '● Customize navbar'              1
-@var number      borderRadiusNavbar      '⠀⠀⚬ Border radius'               [20, 0, 200, 1, 'px']
 @var checkbox    userNavbar              '⠀⠀⚬ Remove user'                 0
 @var checkbox    chatNavbar              '⠀⠀⚬ Remove chat'                 1
 @var checkbox    notificationsNavbar     '⠀⠀⚬ Remove notifications'        0
@@ -26,6 +25,7 @@ Navbar
 Search bar
 ------------
 @var checkbox    enableSearchbar         '● Customize search bar'          1
+@var number      borderRadiusNavbar      '⠀⠀⚬ Border radius'               [20, 0, 200, 1, 'px']
 @var checkbox    trendingSearchbar       '⠀⠀⚬ Remove trending'             1
 @var checkbox    nsfwSearchbar           '⠀⠀⚬ Remove nsfw'                 0
 
@@ -85,14 +85,6 @@ Posts
 
 	/* Navbar */
 	if enableNavbar {
-		if borderRadiusNavbar!=20 {
-			:host .reddit-search-bar {
-				border-radius: borderRadiusNavbar i;
-			}
-			:host .label-container:has(> .leadingIcon) {
-				border-radius: borderRadiusNavbar i;
-			}
-		}
 		if userNavbar {
 			div:has(> [bundlename="faceplate_dropdown_menu"]) {
 				none();
@@ -127,6 +119,14 @@ Posts
 
 	/* Search bar */
 	if enableSearchbar {
+		if borderRadiusNavbar!=20 {
+			:host .reddit-search-bar {
+				border-radius: borderRadiusNavbar i;
+			}
+			:host .label-container:has(> .leadingIcon) {
+				border-radius: borderRadiusNavbar i;
+			}
+		}
 		if trendingSearchbar {
 			:host .reddit-search-bar #reddit-trending-searches-partial-container, :host .reddit-search-bar div:has(> [icon-name="rising-outline"]) {
 				none();
