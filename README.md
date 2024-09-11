@@ -8,10 +8,17 @@
 
 - Wide posts.
 - Set the width of the posts.
-- Acrylic/transparency style in the interface.
+- Change base color of interface.
 - Removal of some elements.
 - Remove/minimize the sidebar/navbar/subbar.
+
+### OBS: In the Shreddit/3rd generation of the interface, there are many isolated elements with shadowRoot, some options will require installing a userscript: [Style shadowDOM](https://greasyfork.org/scripts/459799-style-shadowdom)
  
 ## Preview
 
-![prw](https://userstyles.world/preview/9384/2.webp)
+### Shreddit - [Install](https://github.com/zenstorage/Minimal-Reddit/raw/main/minimal_reddit_3rd.user.styl)
+![prw](./assets/preview_3rd.png)
+
+
+### Newreddit - [Install](https://github.com/zenstorage/Minimal-Reddit/raw/main/minimal_reddit.user.styl)
+![parw](./assets/preview_2nd.webp)
