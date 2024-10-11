@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit 3rd
 @namespace      https://github.com/zenstorage/minimal-reddit
-@version        6.0
+@version        6.1.5
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
 @supportURL     https://github.com/zenstorage/minimal-reddit/issues
@@ -13,12 +13,14 @@
 Navbar
 ------------
 @var checkbox    enableNavbar            '● Customize navbar'              1
-@var checkbox    userNavbar              '⠀⠀⚬ Remove user'                 0
-@var checkbox    chatNavbar              '⠀⠀⚬ Remove chat'                 1
-@var checkbox    notificationsNavbar     '⠀⠀⚬ Remove notifications'        0
-@var checkbox    createPostNavNavbar     '⠀⠀⚬ Remove create post'          1
-@var checkbox    advertiseNavbar         '⠀⠀⚬ Remove advertise'            1
 @var checkbox    logoNavbar              '⠀⠀⚬ Remove reddit logo'          0
+@var checkbox    downloadAppNavbar       '⠀⠀⚬ Remove download app'         1
+@var checkbox    logInNavbar             '⠀⠀⚬ Remove log in'               1
+@var checkbox    advertiseNavbar         '⠀⠀⚬ Remove advertise'            1
+@var checkbox    chatNavbar              '⠀⠀⚬ Remove chat'                 1
+@var checkbox    createPostNavNavbar     '⠀⠀⚬ Remove create post'          1
+@var checkbox    notificationsNavbar     '⠀⠀⚬ Remove notifications'        0
+@var checkbox    userNavbar              '⠀⠀⚬ Remove user'                 0
 
 
 ------------
@@ -31,19 +33,64 @@ Search bar
 
 
 ------------
+Dropdown navbar
+------------
+@var checkbox    enableDropdownNavbar    '● Customize dropdown navbar'     1
+@var checkbox    profileDropdown         '⠀⠀⚬ Remove profile'              0
+@var checkbox    avatarDropdown          '⠀⠀⚬ Remove edit avatar'          1
+@var checkbox    achievementsDropdown    '⠀⠀⚬ Remove achievements'         1
+@var checkbox    contributorDropdown     '⠀⠀⚬ Remove contributor'          1
+@var checkbox    moderatorDropdown       '⠀⠀⚬ Remove moderator'            0
+@var checkbox    darkmodeDropdown        '⠀⠀⚬ Remove dark mode'            0
+@var checkbox    logoutDropdown          '⠀⠀⚬ Remove log out'              0
+@var checkbox    advertiseDropdown       '⠀⠀⚬ Remove advertise'            1
+@var checkbox    settingsDropdown        '⠀⠀⚬ Remove settings'             0
+@var checkbox    premiumDropdown         '⠀⠀⚬ Remove premium'              1
+@var checkbox    loginRegisterDropdown   '⠀⠀⚬ Remove login/register'       0
+@var checkbox    avatarShopDropdown      '⠀⠀⚬ Remove avatar shop'          1
+
+
+------------
 Left sidebar
 ------------
-@var checkbox    enableLeftSidebar       '● Customize left sidebar'        0
-@var select      leftSidebarStyle        '⠀⠀⚬ Style'                       ['Default*', 'Hide', 'Remove', 'Minimize','MinimizeWidth']
+@var checkbox    enableLeftSidebar       '● Customize left sidebar'        1
+@var select      leftSidebarStyle        '⠀⠀⚬ Style'                       ['Default*', 'Collapse', 'Minimize', 'MinimizeWidth', 'Hide', 'Remove']
+@var checkbox    leftSidebarCollapseOpen '⠀⠀⚬ Collapse openened default'   0
 @var number      widthLeftSidebar        '⠀⠀⚬ Width'                       [272, 0, 544, 1, 'px']
+@var checkbox    topSectionLeftSidebar   '⠀⠀⚬ Remove top section'          0
+@var checkbox    modSectionLeftSidebar   '⠀⠀⚬ Remove mod section'          0
+@var checkbox    feedSectionLeftSidebar  '⠀⠀⚬ Remove feed section'         0
+@var checkbox    recentSectionLeftSidebar'⠀⠀⚬ Remove recent section'       0
+@var checkbox    comSectionLeftSidebar   '⠀⠀⚬ Remove communities section'  0
+@var checkbox    othersSectionLeftSidebar'⠀⠀⚬ Remove others section'       1
+
+
+------------
+Right sidebar
+------------
+@var checkbox    enableRightSidebar      '● Customize right sidebar'       0
+@var select      rightSidebaStyle        '⠀⠀⚬ Style'                       ['Default*', 'Hide', 'Remove']
+@var checkbox    rightSidebarRecentPosts '⠀⠀⚬ Remove recent posts'         0
 
 
 ------------
 Section
 ------------
-@var checkbox   enableSection            '● Customize section'             0
-@var number     paddingInlineSection    '⠀⠀⚬ Padding inline'              [16, 0, 32, 1, 'px']
-@var number     paddingBlockSection     '⠀⠀⚬ Padding block'               [0, 0, 32, 1, 'px']
+@var checkbox   enableSection            '● Customize main section'        0
+@var select     sortDropdownSection      '⠀⠀⚬ Sort dropdown'               ['Default*', 'Sticky', 'Remove']
+@var number     paddingInlineSection     '⠀⠀⚬ Padding inline'              [16, 0, 32, 1, 'px']
+@var number     paddingBlockSection      '⠀⠀⚬ Padding block'               [0, 0, 32, 1, 'px']
+
+
+------------
+Community
+------------
+@var checkbox   enableCommunity         '● Customize community'            1
+@var select     headerWithTypeCommunity '⠀⠀⚬ Header width'                 ['sameAsPosts:Same as posts*', 'Manual']
+@var range      headerWithCommunity     '⠀⠀⠀⠀⚬ Width'                      [100, 30, 100, 1, '%']
+@var number     headerHeightCommunity   '⠀⠀⚬ Header height factor'         [0, -150, 400, 1, 'px']
+@var checkbox   segmentHeaderCommunity  '⠀⠀⚬ Segment header'               0
+@var number     segmentFactorCommunity  '⠀⠀⠀⠀⚬ Alpha'                      [0.05, 0.01, 1, 0.01]
 
 
 ------------
@@ -52,6 +99,17 @@ Posts
 @var checkbox    enablePosts             '● Customize posts'               1 
 @var checkbox    widePosts               '⠀⠀⚬ Wide'                        1
 @var range       widthPosts              '⠀⠀⠀⠀⚬ Width'                     [100, 30, 100, 1, '%']
+@var checkbox    widePostPage            '⠀⠀⠀⠀⚬ Apply to post page'        1
+@var select      countPosts              '⠀⠀⚬ Count'                       ['None*', 'Left-Top', 'Left-Middle', 'Left-Bottom']
+@var select      countSidePosts          '⠀⠀⠀⠀⚬ Side'                      ['Outside*', 'Inside']
+@var checkbox    countBackgroundPosts    '⠀⠀⠀⠀⚬ Show background'           1
+@var select      longTimePosts           '⠀⠀⚬ Show long time'              ['None*', 'title:Readable', 'datetime:ISO 8601']
+@var checkbox    longTimeInvertPosts     '⠀⠀⠀⠀⚬ Invert layout'             0
+@var checkbox    segmentPost             '⠀⠀⚬ Segment post'                0
+@var checkbox    segmentSubNameIcon      '⠀⠀⚬ Segment sub[name/icon]'      0
+@var checkbox    segmentTitle            '⠀⠀⚬ Segment title'               0
+@var checkbox    segmentBody             '⠀⠀⚬ Segment body/content'        0
+@var checkbox    breakLinePost           '⠀⠀⚬ Breakline content in feed'   0
 @var number      marginInlinePost        '⠀⠀⚬ Margin inline'               [0, 0, 32, 1, 'px']
 @var number      marginBlockPost         '⠀⠀⚬ Margin block'                [4, 0, 32, 1, 'px']
 @var number      paddingInlinePost       '⠀⠀⚬ Padding inline'              [16, 0, 32, 1, 'px']
@@ -60,6 +118,10 @@ Posts
 @var checkbox    scalePost               '⠀⠀⚬ Scale on over'               0
 @var checkbox    scalePostShadow         '⠀⠀⠀⠀⚬ Shadow'                    1
 @var number      scalePostFactor         '⠀⠀⠀⠀⚬ Factor'                    [1.03, 0, 10, .01]
+@var checkbox    backButtonPost          '⠀⠀⚬ Adjust back button inside'   0
+@var select      filterModePosts         '⠀⠀⚬ Filter title posts mode'     ['None*', 'Blacklist', 'Whitelist']
+@var text        filterWordsPosts        '⠀⠀⠀⠀⚬ Words; comma-separated'    "Trump, Biden, Elon, Kamala"
+@var checkbox    filterInsensitivePosts  '⠀⠀⠀⠀⚬ Insensitive case'          1
 @var checkbox    postsWithImage          '⠀⠀⚬ Remove post with image'      0
 @var checkbox    postsWithVideo          '⠀⠀⚬ Remove post with video'      0
 @var checkbox    crossPost               '⠀⠀⚬ Remove all crosspost'        0
@@ -68,40 +130,135 @@ Posts
 @var checkbox    separatorPosts          '⠀⠀⚬ Remove separator'            0
 
 
+------------
+Comments
+------------
+@var checkbox   enableComments           '● Customize comments'            0
+@var checkbox   segmentCommentThree      '⠀⠀⚬ Segment three'               0
+@var checkbox   segmentCommentSummary    '⠀⠀⚬ Segment summary'             0
+@var checkbox   segmentCommentContent    '⠀⠀⚬ Segment content'             0
+@var checkbox   segmentCommentActions    '⠀⠀⚬ Segment actions'             0
+@var color      segmentCommentColor      '⠀⠀⚬ Base segment color'          rgba(255, 255, 255, .05)
+@var checkbox   limitSegmentWith         '⠀⠀⚬ Limit segment width'         0
+
+
+------------
+Colors
+------------
+@var checkbox    enableColors            '● Customize colors'              0
+@var color       baseColor               '⠀⠀⚬ Base color'                  hsl(16, 100%, 50%)
+@var number      saturationFactor        '⠀⠀⚬ Saturation factor'           [0, -100, 100, 1]
+@var number      lightnessFactor         '⠀⠀⚬ Lightness factor'            [0, -100, 100, 1]
+@var number      alphaFactor             '⠀⠀⚬ Alpha factor'                [0, 0, 1, 0.01]
+
+
+------------
+Colors
+------------
+@var checkbox   enableFonts              '● Customize fonts'              0
+@var select     rootFontIn               '⠀⠀⚬ Font'                       ['Default*', 'SUSE', 'Arvo', 'Tisa']
+@var select     codeFontIn               '⠀⠀⚬ Font in code'               ['Default*', 'firaCode:Fira Code', 'sourceSansPro:Source Code Pro', 'Monaspace', 'jetbrainsMono:Jetbrains Mono']
+
+
+------------
+Image effets
+------------
+
+@var checkbox    enableImageEffects      '● Customize image' 0
+@var range       imageGrayscale          '⠀⠀⚬ Grayscale' [0, 0, 100, 1, '%']
+@var range       imageSepia              '⠀⠀⚬ Sepia' [0, 0, 100, 1, '%']
+@var range       imageBlur               '⠀⠀⚬ Blur' [0, 0, 20, 1, 'px']
+@var range       imageBrightness         '⠀⠀⚬ Brightness' [100, 0, 360, 1, '%']
+@var range       imageHue                '⠀⠀⚬ Hue rotate' [0, 0, 100, 1, 'deg']
+@var range       imageSaturate           '⠀⠀⚬ Saturate' [100, 0, 1000, 1, '%']
+@var range       imageOpacity            '⠀⠀⚬ Opacity' [100, 0, 100, 1, '%']
+@var range       imageContrast           '⠀⠀⚬ Contrast' [100, 0, 1000, 1, '%']
+@var range       imageInvert             '⠀⠀⚬ Invert' [0, 0, 100, 1, '%']
+@var range       imageRotate             '⠀⠀⚬ Rotate' [0, -360, 360, 1, 'deg']
+
+
 // END
 
 ==/UserStyle== */
-@-moz-document domain("www.reddit.com") {
+
+@-moz-document domain("www.reddit.com"), domain("sh.reddit.com") {
+	/* Reddit */
+
+	/* Fonts */ 
+	@import url('https://zenstorage.github.io/Minimal-Reddit/assets/css/tisa_fontface.css');
+	@import url('https://fonts.googleapis.com/css2?family=SUSE:wght@100..800&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+	@import url('https://zenstorage.github.io/Minimal-Reddit/assets/css/monaspace_fontface.css');
+	@import url('https://zenstorage.github.io/Minimal-Reddit/assets/css/jetbrains_fontface.css');
+   
+
+	/* Variables */
 	i=!important;
-
+	
 	/* Mixins */
-
 	/**
 	 * Property display none
 	 */
 	none() {
 		display: none i;
 	}
+	
+	 /**
+	 * Property display flex, must be inside keys {...}
+	 */
+	flex(props) {
+		display: flex i;
+		for prop, value in props {
+			add-property(prop, value i);
+		}
+	}
+		
+	/**
+	 * Replace components hsla in baseColor
+	 */	
+	createBase(h='', s='', l='', a='') {
+		colorSt = baseColor;
+		if h!='' {
+			colorSt = hue(colorSt, h);
+		}
+		if s!='' {
+			colorSt = saturation(colorSt, s + saturationFactor);
+		}
+		if l!='' {
+			colorSt = lightness(colorSt, l + lightnessFactor);
+		}
+		if a!='' {
+			colorSt = alpha(colorSt, a + alphaFactor);
+		}
+		
+		return colorSt;
+	}
+		
+	/* Vars root */
+	:root {
+		--posts-wide-width: widthPosts;
+		--header-community-width: headerWithCommunity;
+		--width-right-sidebar: 316px;
+		--segment-comments-color: segmentCommentColor;
+		--count-posts-size: 2rem;
+	}
 
 	/* Navbar */
 	if enableNavbar {
-		if userNavbar {
-			div:has(> [bundlename="faceplate_dropdown_menu"]) {
+		if logoNavbar {
+			reddit-header-large [noun="reddit_logo"] {
 				none();
 			}
 		}
-		if chatNavbar {
-			nav [data-part="chat"] {
+		if downloadAppNavbar {
+			nav [data-part="secondary"] {
 				none();
 			}
 		}
-		if notificationsNavbar {
-			nav [data-part="inbox"] {
-				none();
-			}
-		}
-		if createPostNavNavbar {
-			nav [data-part="create"] {
+		if logInNavbar {
+			nav [data-part="primary"] {
 				none();
 			}
 		}
@@ -110,8 +267,23 @@ Posts
 				none();
 			}
 		}
-		if logoNavbar {
-			reddit-header-large [noun="reddit_logo"] {
+		if chatNavbar {
+			nav [data-part="chat"] {
+				none();
+			}
+		}
+		if createPostNavNavbar {
+			nav [data-part="create"] {
+				none();
+			}
+		}
+		if notificationsNavbar {
+			nav [data-part="inbox"] {
+				none();
+			}
+		}
+		if userNavbar {
+			div:has(> [bundlename="faceplate_dropdown_menu"]) {
 				none();
 			}
 		}
@@ -138,20 +310,124 @@ Posts
 			}
 		}
 	}
+	
+	/* Dropdown navbar */
+	if enableDropdownNavbar {
+		if profileDropdown {
+			faceplate-dropdown-menu [noun="profile"] {
+				none();
+			}
+		}
+		if avatarDropdown {
+			faceplate-dropdown-menu [noun="edit_avatar"] {
+				none();
+			}
+		}
+		if achievementsDropdown {			
+			faceplate-dropdown-menu [noun="user_drawer"] {
+				none();
+			}
+		}
+		if contributorDropdown {			
+			faceplate-dropdown-menu [noun="contributor_program"] {
+				none();
+			}
+		}
+		if moderatorDropdown {			
+			faceplate-dropdown-menu shreddit-modmode-setter {
+				none();
+			}
+		}
+		if darkmodeDropdown {			
+			faceplate-dropdown-menu shreddit-darkmode-setter {
+				none();
+			}
+		}
+		if logoutDropdown {			
+			faceplate-dropdown-menu [noun="logout"] {
+				none();
+			}
+		}
+		if profileDropdown && avatarDropdown && achievementsDropdown && contributorDropdown && moderatorDropdown && darkmodeDropdown && logoutDropdown {
+			#user-drawer-content > ul:has([noun="profile"]), #user-drawer-content > ul:has([noun="profile"]) + hr {
+				none();
+			}
+		}
+		if advertiseDropdown {
+			faceplate-dropdown-menu [noun="advertise"] {
+				none();
+			}
+			#user-drawer-content > ul:has([noun="advertise"]:only-child), #user-drawer-content > ul:has([noun="advertise"]:only-child) + hr {
+				none();
+			}
+		}
+		if settingsDropdown {
+			faceplate-dropdown-menu [noun="settings"] {
+				none();
+			}
+			#user-drawer-content > ul:has([noun="settings"]), #user-drawer-content > ul:has([noun="settings"]) + hr {
+				none();
+			}
+		}
+		if premiumDropdown {
+			faceplate-dropdown-menu [noun="premium_menu"] {
+				none();
+			}
+			#user-drawer-content > ul:has([noun="premium_menu"]), #user-drawer-content > ul:has([noun="premium_menu"]) + hr {
+				none();
+			}
+		}
+		if loginRegisterDropdown {
+			faceplate-dropdown-menu [noun="login"] {
+				none();
+			}
+		}
+		if avatarShopDropdown {
+			faceplate-dropdown-menu [noun="avatar_shop"] {
+				none();
+			}
+		}
+		if loginRegisterDropdown && advertiseDropdown && avatarShopDropdown {
+			#user-drawer-content > ul:has([noun="login"]), #user-drawer-content > ul:has([noun="login"]) + hr {
+				none();
+			}
+		}
+		
+	}
 
 	/* Left sidebar */
 	if enableLeftSidebar {
-		if leftSidebarStyle=='Hide' {
-			#left-sidebar-container {
-				display: none i;
+		if leftSidebarStyle=='Collapse' {
+			#navbar-menu-button {
+				display: inline-flex i;
 			}
-		}
-		else if leftSidebarStyle=='Remove' {
-			#left-sidebar-container {
-				display: none i;
+			#left-nav-drawer::part(overlay) {
+			    none();
 			}
-			.grid-container {
+			#left-sidebar-container {
+				none();
+			}
+			shreddit-app:not(:has(> #left-nav-drawer)) .grid-container {
 				grid-template-columns: 0 1fr i;
+			}
+			.rpl-scroll-lock {
+				overflow: auto i;
+			}
+			if leftSidebarCollapseOpen {
+				#left-sidebar-container {
+					display: block i;
+				}
+				shreddit-app:not(:has(> #left-nav-drawer)) .grid-container {
+					grid-template-columns: 272px 1fr i;
+				}
+				shreddit-app:has(> #left-nav-drawer) {
+					#left-sidebar-container, #left-nav-drawer {
+						none();
+					}
+					.grid-container  {
+						grid-template-columns: 0 1fr i;
+					}
+				}
 			}
 		}
 		else if leftSidebarStyle=='Minimize' {
@@ -186,19 +462,105 @@ Posts
 			    }
 			}
 		}
-
-		if widthLeftSidebar!=272 {
-			.grid-container {
-				grid-template-columns: widthLeftSidebar 1fr i;
+		else if leftSidebarStyle=='Hide' {
+			#left-sidebar-container {
+				none();
 			}
+		}
+		else if leftSidebarStyle=='Remove' {
+			#left-sidebar-container {
+				none();
+			}
+			.grid-container {
+				grid-template-columns: 0 1fr i;
+			}
+		}
+		if widthLeftSidebar!=272 {
 			#left-sidebar-container {
 				overflow: hidden i;
+			}
+			#left-sidebar {
+				width: widthLeftSidebar i;
+			}
+		}
+		if topSectionLeftSidebar {
+			left-nav-top-section, left-nav-top-section + hr {
+				none();
+			}
+		}
+		if modSectionLeftSidebar {
+			faceplate-expandable-section-helper:has(#moderation_section), faceplate-expandable-section-helper:has(#moderation_section) + hr {
+				none();
+			}
+		}
+		if feedSectionLeftSidebar {
+			faceplate-expandable-section-helper:has(#multireddits_section), faceplate-expandable-section-helper:has(#multireddits_section) + hr {
+				none();
+			}
+		}
+		if recentSectionLeftSidebar {
+			reddit-recent-pages {
+				none();
+			}
+		}
+		if comSectionLeftSidebar {
+			faceplate-expandable-section-helper:has(#communities_section), faceplate-expandable-section-helper:has(#communities_section) + hr {
+				none();
+			}
+		}
+		if othersSectionLeftSidebar {
+			reddit-sidebar-nav > nav > :is(nav, div:last-child) {
+				none();
 			}
 		}
 	}
 	
+	/* Right sidebar */
+	if enableRightSidebar {
+		if rightSidebaStyle=='Hide' {
+			#right-sidebar-container {
+				visibility: hidden i;
+				opacity: 0 i;
+				pointer-events: none i;
+			}
+		}
+		else if rightSidebaStyle=='Remove' {
+			.main-container {
+				gap: 0 i;
+			}
+			#right-sidebar-container {
+				none();
+			}
+			:root {
+				--width-right-sidebar: 0;
+			}
+		}
+		if rightSidebarRecentPosts {
+			recent-posts {
+				none();
+			}
+		}
+	}
+
 	/* Section */
 	if enableSection {
+		if sortDropdownSection=='Sticky' {
+			div:has(> [bundlename="shreddit_sort_dropdown"]) {
+				position: sticky i;
+				/* header height + margin-top/padding-top */
+				top: calc(var(--shreddit-header-height)) i;
+				margin: 0 i;
+				padding: 0.5rem i;
+				background-color: var(--color-neutral-background) i;
+				border-radius: 0 0 1rem 1rem;
+				z-index: 2;
+			}
+		}
+		else if sortDropdownSection=='Remove' {
+			div:has(> [bundlename="shreddit_sort_dropdown"]) {
+				none();
+			}
+		}
 		if paddingInlineSection!=16 {
 			.subgrid-container {
 				padding-inline: paddingInlineSection i;
@@ -207,6 +569,39 @@ Posts
 		if paddingBlockSection!=0 {
 			.subgrid-container {
 				padding-block: paddingBlockSection i;
+			}
+		}
+	}
+	
+	/* Community */
+	if enableCommunity {
+		if headerWithTypeCommunity=='sameAsPosts' {
+			.masthead {
+			    width: var(--posts-wide-width) i;
+			    margin-inline: auto i;
+			}
+		} else if headerWithTypeCommunity=='Manual' {
+			.masthead {
+				max-width: var(--header-community-width) i;
+			    width: var(--header-community-width) i;
+			    margin-inline: auto i;
+			}
+		}
+		.community-banner {
+			--header-height-factor: headerHeightCommunity;
+			height: calc(8rem + var(--header-height-factor)) i;
+		}
+		@container (min-width:80rem) {
+			.community-banner {
+				height: calc(12rem + var(--header-height-factor)) i;
+			}
+   		}
+		if segmentHeaderCommunity {
+			.masthead section {
+				--segment-community-factor: alpha(segmentCommentColor, segmentFactorCommunity);
+				background-color: var(--segment-community-factor) i;
+				padding: 10px 12px i;
+				border-radius: 1rem i;
 			}
 		}
 	}
@@ -227,10 +622,102 @@ Posts
 			.main-container {
 				justify-content: center i;
 			}
-			main#main-content {
-				max-width: calc(100% - 316px - 16px) i;
-				/* 100% - right sidebar - padding */
-				width: widthPosts i;
+			.wide-posts {
+				/* 100% - right sidebar - gap */
+				max-width: calc(var(--posts-wide-width) - var(--width-right-sidebar) - 16px) i;
+				width: var(--posts-wide-width) i;
+				
+				@media (max-width: 960px) {
+					max-width: var(--posts-wide-width) i; */
+					
+				}
+			}
+			if widePostPage {
+				main#main-content {
+					@extend .wide-posts;
+				}
+			}
+			else {
+				shreddit-app:not([pagetype="post_detail"]) main#main-content {
+					@extend .wide-posts;
+				}
+			}
+		}
+		if countPosts!='None' {
+			shreddit-feed {
+			    counter-reset: post-count i;
+			
+			    & > *:not(hr) {
+			        counter-increment: post-count i;
+			        position: relative i;
+			
+			        &::before {
+			            content: counter(post-count) i;
+			            position: absolute i;
+			            top: countPosts=='Left-Top' ? 8px : countPosts=='Left-Middle' ? calc(50% - var(--count-posts-size)) : countPosts=='Left-Bottom' ? calc(100% - var(--count-posts-size) - 8px) : '' i;
+						right: calc(100% + 8px) i;
+						if countSidePosts=='Inside' {
+							right: unset i;
+							left: 0 i;
+						}
+			            background-color: var(--color-secondary-background) i;
+			            width: var(--count-posts-size) i;
+			            height: var(--count-posts-size) i;
+			            border-radius: .3rem i;
+			            display: flex i;
+			            justify-content: center i;
+			            align-items: center i;
+			        }
+					if countSidePosts=='Inside' {
+						& > shreddit-post {
+							margin-left: calc(var(--count-posts-size) +  8px) i;
+						}
+					}
+			    }
+			}
+			
+		}
+		if longTimePosts!='None' {
+			invert = longTimeInvertPosts;
+			pseudoSelectorTime = invert ? '::after' :'::before';
+			
+			time[title]{pseudoSelectorTime} {
+			    content: invert ? '| ' attr(longTimePosts) : attr(longTimePosts) ' |'  i;
+			    padding-inline: (invert ? 5px 0 : 0 5px) i;
+			}
+		}
+		if segmentPost {
+			shreddit-post {
+				background-color: var(--segment-comments-color) i;
+			}
+		}
+		if segmentSubNameIcon {
+			shreddit-post > [slot="credit-bar"] {
+				background-color: var(--segment-comments-color) i;
+  				padding: 6px 10px i;
+  				border-radius: 1rem i;
+				margin-top: 4px i;
+			}
+		}
+		if segmentTitle {
+			shreddit-post > [id^="post-title-"] {
+				background-color: var(--segment-comments-color) i;
+  				padding: 6px 10px i;
+  				border-radius: 1rem i;
+			}
+		}
+		if segmentBody {
+			shreddit-post > [slot="text-body"] {
+				background-color: var(--segment-comments-color) i;
+  				padding: 6px 10px i;
+  				border-radius: 1rem i;
+				margin-bottom: 4px i;
+			}
+		}
+		if breakLinePost {
+			.feed-card-text-preview {
+				display: flex i;
+  				flex-direction: column i; 
 			}
 		}
 		if marginInlinePost!=0 {
@@ -260,11 +747,35 @@ Posts
 				
 				&:hover  {
 					scale: scalePostFactor i;
-					z-index: 4 i;	
+					z-index: 1 i;	
 					
 					if scalePostShadow {
 						box-shadow: 0 0 20px 0px #000 i;
 					}
+				}
+			}
+		}
+		if backButtonPost {
+			shreddit-post pdp-back-button {
+				position: unset i;
+			}
+		}
+		if filterModePosts!='None' {
+			selector = '';
+			for word in filterWordsPosts {
+				selector += '[post-title~="' + word + (filterInsensitivePosts ? '"i' : '"') + '],';
+			}
+			
+			selectorBlacklist = 'article:has(> shreddit-post:is(' + selector + '))';
+			selectorWhitelist = 'article:not(:has(> shreddit-post:is(' + selector + ')))';
+			
+			if filterModePosts=='Blacklist' {
+				{selectorBlacklist} {
+					border: 1px solid red i;
+				}
+			} else {
+				{selectorWhitelist} {
+					border: 1px solid red i;
 				}
 			}
 		}
@@ -298,5 +809,648 @@ Posts
 				none();
 			}
 		}
+	}
+	
+	/* Comments */
+	if enableComments {
+		if segmentCommentThree {
+			shreddit-comment-tree {
+				--color-neutral-background: transparent i;
+				background-color: var(--segment-comments-color) i;
+  				padding: 10px 12px i;
+  				border-radius: 1rem i;
+			}
+		}
+		if segmentCommentSummary {
+			shreddit-comment {
+				--color-neutral-background: transparent i;
+				background-color: var(--segment-comments-color) i;
+  				padding: 10px 12px i;
+  				border-radius: 1rem i;
+				
+				&:not([depth="0"]) {
+					margin-top: 4px i;
+				}
+			}
+		}
+		if segmentCommentContent {
+			#-post-rtjson-content {
+				background-color: var(--segment-comments-color) i;
+  				padding: 10px 12px i;
+				margin: 0 i;
+  				border-radius: 1rem i;
+			}
+		}
+		if segmentCommentActions {
+			shreddit-comment-action-row {
+				background-color: var(--segment-comments-color) i;
+  				padding: 5px 7px i;
+  				border-radius: 1rem i;
+			}
+		}
+		if limitSegmentWith {
+			shreddit-comment, shreddit-comment-action-row {
+				max-width: max-content i;
+			}
+		}
+		
+	}
+
+	/* Colors */
+	if enableColors {
+		.theme-rpl, .theme-beta, .grid-container {
+		   	--color-ai-background-weaker: #00382B i;
+			--color-ai-plain: #01A484 i;
+			--color-ai-plain-hover: #00C29D i;
+			--color-action-upvote: createBase(s:100,l:43) i;
+			--color-action-downvote: createBase(s:100,l:78) i;
+			--color-upvote-background-hover: createBase(s:100,l:34) i;
+			--color-avatar-gradient: linear-gradient(0deg, #48545Bff, #181C1Fff 75%) i;
+			--color-brand-background: createBase(s:100,l:43) i;
+			--color-brand-background-hover: createBase(s:100,l:34) i;
+			--color-brand-onBackground: createBase(s:100,l:85) i;
+			--color-caution-background: #D8A100 i;
+			--color-caution-background-hover: #FFBF0B i;
+			--color-caution-onBackground: #000000 i;
+			--color-caution-plain: #FFBF0B i;
+			--color-caution-plain-hover: #FFE284 i;
+			--color-danger-background: #bc0117 i;
+			--color-danger-background-disabled: #340F05 i;
+			--color-danger-background-hover: createBase(s:100,l:46) i;
+			--color-danger-background-weaker: #650405 i;
+			--color-danger-content: #FF4F40 i;
+			--color-danger-content-hover: #FF8773 i;
+			--color-danger-onBackground: createBase(s:100,l:85) i;
+			--color-danger-plain: #FF8773 i;
+			--color-danger-plain-hover: #FDB3A4 i;
+			--color-downvote-background: #6A5CFF i;
+			--color-downvote-background-disabled: rgba(106, 92, 255, 0.3) i;
+			--color-downvote-background-hover: #523DFF i;
+			--color-downvote-content: #9580FF i;
+			--color-downvote-content-weak: #6A5CFF i;
+			--color-downvote-disabled: #9580FF4d i;
+			--color-downvote-onBackground: createBase(s:100,l:85) i;
+			--color-downvote-onStrongScrim: #B29FFF i;
+			--color-downvote-onStrongScrim-disabled: rgba(178, 159, 255, 0.3) i;
+			--color-downvote-onStrongScrim-weaker: #9580FF i;
+			--color-downvote-plain: #9580FF i;
+			--color-downvote-plain-disabled: rgba(149, 128, 255, 0.3) i;
+			--color-downvote-plain-weaker: #6A5CFF i;
+			--color-elevation-large1: #0000007F i;
+			--color-elevation-large2: #00000033 i;
+			--color-elevation-medium1: #0000007F i;
+			--color-elevation-medium2: #00000033 i;
+			--color-elevation-small: #00000054 i;
+			--color-elevation-xsmall: #000000AA i;
+			--color-favorite: #B78800 i;
+			--color-global-admin: createBase(s:100,l:43) i;
+			--color-global-black: #000000 i;
+			--color-global-brand-orangered: createBase(s:100,l:50) i;
+			--color-global-focus: #007FAE i;
+			--color-global-gold: #D8A100 i;
+			--color-global-moderator: #008A10 i;
+			--color-global-nsfw: createBase(s:99,l:44) i;
+			--color-category-nsfw: createBase(s:99,l:44) i;
+			--color-global-offline: #667780 i;
+			--color-global-online: #00C61C i;
+			--color-global-orangered: createBase(s:100,l:50) i;
+			--color-global-stars: #D8A100 i;
+			--color-global-white: createBase(s:100,l:85) i;
+			--color-interactive-background-disabled: #FFFFFF0C i;
+			--color-interactive-content-disabled: createBase(s:40,l:80,a:.247) i;
+			--color-interactive-focused: #007FAE i;
+			--color-interactive-pressed: #FFFFFF26 i;
+			--color-inverted-interactive-background-disabled: #0000000C i;
+			--color-inverted-interactive-content-disabled: #0000003F i;
+			--color-inverted-interactive-pressed: #00000026 i;
+			--color-inverted-neutral-background: createBase(s:100,l:85) i;
+			--color-inverted-neutral-background-hover: #F6F8F9 i;
+			--color-inverted-neutral-border: #00000033 i;
+			--color-inverted-neutral-content: createBase(s:13,l:23) i;
+			--color-inverted-neutral-content-strong: createBase(s:13,l:11)i;
+			--color-inverted-secondary-background: #E5EBEE i;
+			--color-inverted-secondary-background-hover: createBase(s:24,l:89) i;
+			--color-inverted-secondary-background-selected: #C9D7DE i;
+			--color-inverted-secondary-onBackground: #000000 i;
+			--color-inverted-secondary-plain: createBase(s:13,l:11)i;
+			--color-inverted-secondary-plain-hover: #000000 i;
+			--color-media-background: rgba(0, 0, 0, 0.6) i;
+			--color-media-background-hover: rgba(0, 0, 0, 0.8) i;
+			--color-media-background-selected: rgba(0, 0, 0, 0.8) i;
+			--color-media-border-selected: createBase(s:100,l:85) i;
+			--color-media-border-weak: #FFFFFF19 i;
+			--color-media-onBackground: createBase(s:100,l:85) i;
+			--color-media-onBackground-disabled: #FFFFFF3F i;
+			--color-media-onBackground-weak: #E5EBEE i;
+			--color-neutral-background: createBase(s:50 ,l:5) i;			
+			--color-neutral-background-container: createBase(s:13,l:11)i;
+			--color-neutral-background-container-hover: createBase(s:12,l:15) i;
+			--color-neutral-background-container-strong: createBase(s:12,l:15) i;
+			--color-neutral-background-container-strong-hover: createBase(l:19,s:12) i;
+			--color-neutral-background-gilded: createBase(s:13,l:11)i;
+			--color-neutral-background-gilded-hover: createBase(s:12,l:15) i;
+			--color-neutral-background-hover: createBase(s:13,l:11) i;
+			--color-neutral-background-medium: #131313 i;
+			--color-neutral-background-pinned: #0E1113 i;
+			--color-neutral-background-selected: createBase(l:19,s:12) i;
+			--color-neutral-background-strong: createBase(s:13,l:11)i;
+			--color-neutral-background-strong-hover: createBase(s:12,l:15) i;
+			--color-neutral-background-weak: createBase(s:30,l:3) i;
+			--color-neutral-background-weak-hover: #0E1113 i;
+			--color-neutral-border: createBase(l:90,a:.1) i;
+			--color-neutral-border-medium: createBase(s:30,l:80,a:.498) i;
+			--color-neutral-border-strong: #F6F8F9 i;
+			--color-neutral-border-weak: #FFFFFF19 i;
+			--color-neutral-content: createBase(s:25,l:77) i;
+			--color-neutral-content-disabled: #303030 i;
+			--color-neutral-content-strong: createBase(s:50,l:90) i;
+			--color-neutral-content-weak: createBase(s:17,l:61) i;
+			--color-offline: #767676 i;
+			--color-online: #01A816 i;
+			--color-opacity-50: #F2F2F280 i;
+			--color-pizzaRed: #c62828 i;
+			--color-primary: createBase(s:96,l:69) i;
+			--color-primary-background: createBase(s:84,l:43) i;
+			--color-primary-background-hover: createBase(s:91,l:53) i;
+			--color-primary-background-selected: createBase(s:96,l:69) i;
+			--color-primary-border: createBase(s:96,l:69) i;
+			--color-primary-border-hover: createBase(s:96,l:78) i;
+			--color-primary-hover: createBase(s:96,l:78) i;
+			--color-primary-onBackground: createBase(s:100,l:85) i;
+			--color-primary-onBackground-selected: #000000 i;
+			--color-primary-plain: createBase(s:96,l:69) i;
+			--color-primary-plain-hover: createBase(s:96,l:78) i;
+			--color-primary-plain-visited: createBase(s:100,l:49) i;
+			--color-primary-visited: createBase(s:100,l:49) i;
+			--color-scrim-background: #00000099 i;
+			--color-scrim-background-strong: #000000CC i;
+			--color-secondary: createBase(s:100,l:85) i;
+			--color-secondary-background: createBase(l:19,s:12) i;
+			--color-secondary-background-hover: createBase(s:13,l:23) i;
+			--color-secondary-background-selected: createBase(s:13,l:27) i;
+			--color-secondary-hover: createBase(s:100,l:90) i;
+			--color-secondary-onBackground: createBase(s:100,l:85) i;
+			--color-secondary-plain: createBase(s:100,l:85) i;
+			--color-secondary-plain-hover: createBase(s:100,l:85) i;
+			--color-secondary-plain-weak: createBase(s:17,l:61) i;
+			--color-secondary-weak: createBase(s:50,l:45) i;
+			--color-success-background: #016E0B i;
+			--color-success-background-hover: #008A10 i;
+			--color-success-content: #01A816 i;
+			--color-success-hover: #00C61C i;
+			--color-success-onBackground: createBase(s:100,l:85) i;
+			--color-success-plain: #00C61C i;
+			--color-success-plain-hover: #58E15B i;
+			--color-tone-1: createBase(l:95) i;
+			--color-tone-2: createBase(s:30,l:67) i;
+			--color-tone-3: createBase(s:30,l:26) i;
+			--color-tone-4: createBase(s:30,l:19) i;
+			--color-tone-5: createBase(s:30,l:12) i;
+			--color-tone-6: createBase(s:30,l:7) i;
+			--color-tone-7: createBase(s:30,l:3) i;
+			--color-transparent-background-hover: #6677801a i;
+			--color-ui-canvas: #080808 i;
+			--color-ui-modalbackground: var(--color-neutral-background-strong) i;
+			--color-upvote-background: createBase(s:100,l:43) i;
+			--color-upvote-background-disabled: rgba(217, 57, 0, 0.3) i;
+			--color-upvote-background-hover: createBase(s:100,l:34) i;
+			--color-upvote-content: createBase(s:100,l:50) i;
+			--color-upvote-content-weak: var(--color-global-brand-orangered) i;
+			--color-upvote-disabled: createBase(s:100,l:50,a:.302) i;
+			--color-upvote-onBackground: createBase(s:100,l:85) i;
+			--color-upvote-onStrongScrim: #FF895D i;
+			--color-upvote-onStrongScrim-disabled: rgba(255, 137, 93, 0.3) i;
+			--color-upvote-onStrongScrim-weaker: createBase(s:100,l:50) i;
+			--color-upvote-plain: #FF895D i;
+			--color-upvote-plain-disabled: rgba(255, 137, 93, 0.3) i;
+			--color-upvote-plain-weaker: createBase(s:100,l:50) i;
+			--color-warning-background: #B78800 i;
+			--color-warning-background-hover: #D8A100 i;
+			--color-warning-content: #B78800 i;
+			--color-warning-content-hover: #D8A100 i;
+			--color-warning-onBackground: #000000 i;
+			--color-button-primary-border-activated: transparent i;
+			--color-button-plain-inverted-activated-text: var(--color-neutral-background) i;
+			--color-input-radio-hover: var(--color-secondary-plain) i;
+			--color-shimmer-background: #ffffff08 i;
+			--color-shimmer-gradient-overlay: linear-gradient(to right, #ffffff00, #ffffff05 20%, #ffffff0f 50%, #ffffff08 70%, #ffffff00 100%) i;
+			--color-category-spoiler: createBase(s:80,l:85) i;
+			
+			--newCommunityTheme-actionIcon: #818384;
+			--newCommunityTheme-actionIconAlpha20: rgba(129,131,132,0.2);
+			--newCommunityTheme-actionIconAlpha50: rgba(129,131,132,0.5);
+			--newCommunityTheme-actionIconShaded80: #676869;
+			--newCommunityTheme-actionIconTinted80: #9a9b9c;
+			--newCommunityTheme-active: #0079D3;
+			--newCommunityTheme-activeAlpha10: rgba(0,121,211,0.1);
+			--newCommunityTheme-activeAlpha20: rgba(0,121,211,0.2);
+			--newCommunityTheme-activeAlpha50: rgba(0,121,211,0.1);
+			--newCommunityTheme-activeLight60: #33a8ff;
+			--newCommunityTheme-activeShaded80: #0060a8;
+			--newCommunityTheme-activeShaded90: #006cbd;
+			--newCommunityTheme-activeTinted05: #f2f8fc;
+			--newCommunityTheme-banner-backgroundColor: #2d97e5;
+			--newCommunityTheme-banner-backgroundImage: initial;
+			--newCommunityTheme-banner-backgroundImagePosition: cover;
+			--newCommunityTheme-banner-communityNameFormat: slashtag;
+			--newCommunityTheme-banner-height: 64;
+			--newCommunityTheme-banner-iconColor: #0079D3;
+			--newCommunityTheme-banner-iconDimensions-borderRadius: 24;
+			--newCommunityTheme-banner-iconDimensions-customSize: 32;
+			--newCommunityTheme-banner-iconDimensions-padding: 6;
+			--newCommunityTheme-banner-iconDimensions-size: 24;
+			--newCommunityTheme-banner-iconImage: initial;
+			--newCommunityTheme-banner-lineHeight: 38;
+			--newCommunityTheme-banner-positionedImage: initial;
+			--newCommunityTheme-banner-positionedImageAlignment: left;
+			--newCommunityTheme-banner-positionedImageHeight: 48;
+			--newCommunityTheme-banner-secondaryBannerPositionedImage: initial;
+			--newCommunityTheme-body: var(--color-neutral-background) i;
+			--newCommunityTheme-bodyAlpha50: rgba(26,26,27,0.5);
+			--newCommunityTheme-bodyAlpha70: rgba(26,26,27,0.7);
+			--newCommunityTheme-bodyAlpha80: rgba(26,26,27,0.8);
+			--newCommunityTheme-bodyFade: #1A1A1B00;
+			--newCommunityTheme-bodyShaded80: #141415;
+			--newCommunityTheme-bodyText: #D7DADC;
+			--newCommunityTheme-bodyTextAlpha03: rgba(215,218,220,0.03);
+			--newCommunityTheme-bodyTextAlpha20: rgba(215,218,220,0.2);
+			--newCommunityTheme-bodyTextShaded20: #2b2b2c;
+			--newCommunityTheme-bodyTextTinted20: #f7f7f8;
+			--newCommunityTheme-bodyTinted50: #8c8c8d;
+			--newCommunityTheme-bodyTinted80: #474748;
+			--newCommunityTheme-button: #D7DADC;
+			--newCommunityTheme-buttonAlpha05: rgba(215,218,220,0.05);
+			--newCommunityTheme-buttonAlpha10: rgba(215,218,220,0.1);
+			--newCommunityTheme-buttonAlpha20: rgba(215,218,220,0.2);
+			--newCommunityTheme-buttonAlpha40: rgba(215,218,220,0.4);
+			--newCommunityTheme-buttonAlpha50: rgba(215,218,220,0.5);
+			--newCommunityTheme-buttonAlpha80: rgba(215,218,220,0.8);
+			--newCommunityTheme-buttonShaded80: #acaeb0;
+			--newCommunityTheme-buttonTinted20: #f7f7f8;
+			--newCommunityTheme-buttonTinted50: #ebeced;
+			--newCommunityTheme-buttonTinted80: #dfe1e3;
+			--newCommunityTheme-canvas: #030303;
+			--newCommunityTheme-checkbox: #FFFFFF;
+			--newCommunityTheme-errorText: #FF0000;
+			--newCommunityTheme-field: var(--color-secondary-background) i;
+			--newCommunityTheme-fieldFade: #27272900;
+			--newCommunityTheme-flair: #343536;
+			--newCommunityTheme-highlight: #17232D;
+			--newCommunityTheme-inactive: #343536;
+			--newCommunityTheme-invertFilter: invert(0.9);
+			--newCommunityTheme-lightText: #FFFFFF;
+			--newCommunityTheme-lightTextAlpha75: rgba(255,255,255,0.75);
+			--newCommunityTheme-line: var(--color-secondary-background) i;
+			--newCommunityTheme-lineShaded80: #292a2b;
+			--newCommunityTheme-lineShaded90: #2e2f30;
+			--newCommunityTheme-lineShadedNinety: #2e2f30;
+			--newCommunityTheme-linkText: #4FBCFF;
+			--newCommunityTheme-linkTextAlpha80: rgba(79,188,255,0.5);
+			--newCommunityTheme-linkTextShaded80: #3f96cc;
+			--newCommunityTheme-linkTextTinted80: #72c9ff;
+			--newCommunityTheme-linkTextWithBody: #4193c6;
+			--newCommunityTheme-menu: #030303;
+			--newCommunityTheme-menuActiveText: #D7DADC;
+			--newCommunityTheme-menuButtonBackground-active: rgba(255,255,255,0.08);
+			--newCommunityTheme-menuButtonBackground-focus: rgba(255,255,255,0.12);
+			--newCommunityTheme-menuButtonBackground-hover: rgba(255,255,255,0.04);
+			--newCommunityTheme-menuInactiveText: #D7DADC;
+			--newCommunityTheme-metaText: #818384;
+			--newCommunityTheme-metaTextAlpha50: rgba(129,131,132,0.5);
+			--newCommunityTheme-metaTextShaded80: #676869;
+			--newCommunityTheme-monospaceColor: #5291f8;
+			--newCommunityTheme-navBar-activeLink: #E9F5FD;
+			--newCommunityTheme-navBar-activeSubmenuCaret: #D7DADC;
+			--newCommunityTheme-navBar-activeSubmenuLink: #D7DADC;
+			--newCommunityTheme-navBar-backgroundColor: #030303;
+			--newCommunityTheme-navBar-backgroundImage: initial;
+			--newCommunityTheme-navBar-hoverLink: #D7DADC;
+			--newCommunityTheme-navBar-inactiveLink: #D7DADC;
+			--newCommunityTheme-navBar-inactiveSubmenuCaret: #D7DADC;
+			--newCommunityTheme-navBar-inactiveSubmenuLink: #D7DADC;
+			--newCommunityTheme-navBar-submenuBackgroundColor: #1A1A1B;
+			--newCommunityTheme-navIcon: var(--color-tone-1) i;
+			--newCommunityTheme-navIconFaded10: rgba(215,218,220,0.1);
+			--newCommunityTheme-nsfw: #ff585b;
+			--newCommunityTheme-nsfwBlocking-bgcolor: #030303;
+			--newCommunityTheme-nsfwBlocking-color: #ffffff;
+			--newCommunityTheme-nsfwBlocking-contentTitleBgColor: #272729;
+			--newCommunityTheme-nsfwBlocking-mainCtaBgColor: #1a1a1b;
+			--newCommunityTheme-pageHeader: #818384;
+			--newCommunityTheme-placeholder: #3A3A3C;
+			--newCommunityTheme-post: #1A1A1B;
+			--newCommunityTheme-postError: #301718;
+			--newCommunityTheme-postFlairText: #FFFFFF;
+			--newCommunityTheme-postIcon: #818384;
+			--newCommunityTheme-postLine: #343536;
+			--newCommunityTheme-postLineShaded80: #292a2b;
+			--newCommunityTheme-postLineShaded90: #2e2f30;
+			--newCommunityTheme-postTinted20: #d1d1d1;
+			--newCommunityTheme-postTransparent20: rgba(26,26,27,0.8);
+			--newCommunityTheme-primaryButtonShadedEighty: #acaeb0;
+			--newCommunityTheme-primaryButtonTintedEighty: #dfe1e3;
+			--newCommunityTheme-primaryButtonTintedFifty: #ebeced;
+			--newCommunityTheme-primaryButtonTintedSixty: #e7e8ea;
+			--newCommunityTheme-quarantine: #ffb000;
+			--newCommunityTheme-report: #1C1402;
+			--newCommunityTheme-search-syntaxHighlightBackgroundColor: #FFF7E5;
+			--newCommunityTheme-search-syntaxHighlightColor: #0a0a0a;
+			--newCommunityTheme-titleText: #D7DADC;
+			--newCommunityTheme-upsell-appleIcon: #7d7d7d;
+			--newCommunityTheme-upsell-ssoButtonBorderColor: #D7DADC;
+			--newCommunityTheme-upsell-ssoButtonTextColor: #D7DADC;
+			--newCommunityTheme-voteIcons-downvoteActive: initial;
+			--newCommunityTheme-voteIcons-downvoteInactive: initial;
+			--newCommunityTheme-voteIcons-upvoteActive: initial;
+			--newCommunityTheme-voteIcons-upvoteInactive: initial;
+			--newCommunityTheme-voteText-base: #818384;
+			--newCommunityTheme-voteText-downvote: #7193FF;
+			--newCommunityTheme-voteText-downvoteShaded80: #5a75cc;
+			--newCommunityTheme-voteText-downvoteTinted80: #8da8ff;
+			--newCommunityTheme-voteText-upvote: #FF4500;
+			--newCommunityTheme-voteText-upvoteShaded80: #cc3700;
+			--newCommunityTheme-voteText-upvoteTinted80: #ff6a32;
+			--newCommunityTheme-widgetColors-appleIcon: #7d7d7d;
+			--newCommunityTheme-widgetColors-lineColor: #343536;
+			--newCommunityTheme-widgetColors-sidebarWidgetBackgroundColor: #1A1A1B;
+			--newCommunityTheme-widgetColors-sidebarWidgetBorderColor: #474748;
+			--newCommunityTheme-widgetColors-sidebarWidgetHeaderColor: #1A1A1B;
+			--newCommunityTheme-widgetColors-sidebarWidgetHeaderColorAlpha60: rgba(26,26,27,0.6);
+			--newCommunityTheme-widgetColors-sidebarWidgetTextColor: #D7DADC;
+			--newCommunityTheme-widgetColors-sidebarWidgetTextColorShaded80: #acaeb0;
+			--newCommunityTheme-widgetColors-sidebarWidgetTitleColor: #818384;
+			--newCommunityTheme-wordmark: #FFFFFF;
+			--newRedditTheme-actionIcon: var(--color-secondary-weak) i;
+			--newRedditTheme-actionIconAlpha20: rgba(129,131,132,0.2);
+			--newRedditTheme-actionIconAlpha50: rgba(129,131,132,0.5);
+			--newRedditTheme-actionIconShaded80: #676869;
+			--newRedditTheme-actionIconTinted80: #9a9b9c;
+			--newRedditTheme-active: createBase(s:100,l:65) i;
+			--newRedditTheme-activeAlpha10: rgba(0,121,211,0.1);
+			--newRedditTheme-activeAlpha20: rgba(0,121,211,0.2);
+			--newRedditTheme-activeAlpha50: rgba(0,121,211,0.5);
+			--newRedditTheme-activeLight60: #33a8ff;
+			--newRedditTheme-activeShaded80: #0060a8;
+			--newRedditTheme-activeShaded90: #006cbd;
+			--newRedditTheme-activeTinted05: #f2f8fc;
+			--newRedditTheme-banner-backgroundColor: #24A0ED;
+			--newRedditTheme-banner-backgroundImage: initial;
+			--newRedditTheme-banner-backgroundImagePosition: cover;
+			--newRedditTheme-banner-communityNameFormat: slashtag;
+			--newRedditTheme-banner-height: 64;
+			--newRedditTheme-banner-iconColor: #24A0ED;
+			--newRedditTheme-banner-iconDimensions-borderRadius: 24;
+			--newRedditTheme-banner-iconDimensions-customSize: 32;
+			--newRedditTheme-banner-iconDimensions-padding: 6;
+			--newRedditTheme-banner-iconDimensions-size: 24;
+			--newRedditTheme-banner-iconImage: initial;
+			--newRedditTheme-banner-lineHeight: 38;
+			--newRedditTheme-banner-positionedImage: initial;
+			--newRedditTheme-banner-positionedImageAlignment: cover;
+			--newRedditTheme-banner-positionedImageHeight: 48;
+			--newRedditTheme-banner-secondaryBannerPositionedImage: initial;
+			--newRedditTheme-body: var(--color-neutral-background) i;
+			--newRedditTheme-bodyAlpha50: rgba(26,26,27,0.5);
+			--newRedditTheme-bodyAlpha70: rgba(26,26,27,0.7);
+			--newRedditTheme-bodyAlpha80: rgba(26,26,27,0.8);
+			--newRedditTheme-bodyFade: #1A1A1B00;
+			--newRedditTheme-bodyShaded80: #141415;
+			--newRedditTheme-bodyText: var(--color-secondary);
+			--newRedditTheme-bodyTextAlpha03: rgba(215,218,220,0.03);
+			--newRedditTheme-bodyTextAlpha20: rgba(215,218,220,0.2);
+			--newRedditTheme-bodyTextShaded20: #2b2b2c;
+			--newRedditTheme-bodyTextTinted20: #f7f7f8;
+			--newRedditTheme-bodyTinted50: #8c8c8d;
+			--newRedditTheme-bodyTinted80: #474748;
+			--newRedditTheme-button: #D7DADC;
+			--newRedditTheme-buttonAlpha05: rgba(215,218,220,0.05);
+			--newRedditTheme-buttonAlpha10: rgba(215,218,220,0.1);
+			--newRedditTheme-buttonAlpha20: rgba(215,218,220,0.2);
+			--newRedditTheme-buttonAlpha40: rgba(215,218,220,0.4);
+			--newRedditTheme-buttonAlpha50: rgba(215,218,220,0.5);
+			--newRedditTheme-buttonAlpha80: rgba(215,218,220,0.8);
+			--newRedditTheme-buttonShaded80: #acaeb0;
+			--newRedditTheme-buttonTinted20: #f7f7f8;
+			--newRedditTheme-buttonTinted50: #ebeced;
+			--newRedditTheme-buttonTinted80: #dfe1e3;
+			--newRedditTheme-canvas: #030303;
+			--newRedditTheme-checkbox: #FFFFFF;
+			--newRedditTheme-errorText: #FF0000;
+			--newRedditTheme-field: var(--color-secondary-background) i;
+			--newRedditTheme-fieldFade: #27272900;
+			--newRedditTheme-flair: #343536;
+			--newRedditTheme-highlight: #17232D;
+			--newRedditTheme-inactive: #343536;
+			--newRedditTheme-invertFilter: invert(0.9);
+			--newRedditTheme-lightText: #FFFFFF;
+			--newRedditTheme-lightTextAlpha75: rgba(255,255,255,0.75);
+			--newRedditTheme-line: var(--color-secondary-background) i;
+			--newRedditTheme-lineShaded80: #292a2b;
+			--newRedditTheme-lineShaded90: #2e2f30;
+			--newRedditTheme-lineShadedNinety: #2e2f30;
+			--newRedditTheme-linkText: #4FBCFF;
+			--newRedditTheme-linkTextAlpha80: rgba(79,188,255,0.5);
+			--newRedditTheme-linkTextShaded80: #3f96cc;
+			--newRedditTheme-linkTextTinted80: #72c9ff;
+			--newRedditTheme-linkTextWithBody: #4193c6;
+			--newRedditTheme-menu: #030303;
+			--newRedditTheme-menuActiveText: #D7DADC;
+			--newRedditTheme-menuButtonBackground-active: rgba(255,255,255,0.08);
+			--newRedditTheme-menuButtonBackground-focus: rgba(255,255,255,0.12);
+			--newRedditTheme-menuButtonBackground-hover: rgba(255,255,255,0.04);
+			--newRedditTheme-menuInactiveText: #D7DADC;
+			--newRedditTheme-metaText: #818384;
+			--newRedditTheme-metaTextAlpha50: rgba(129,131,132,0.5);
+			--newRedditTheme-metaTextShaded80: #676869;
+			--newRedditTheme-monospaceColor: #5291f8;
+			--newRedditTheme-navBar-activeLink: #E9F5FD;
+			--newRedditTheme-navBar-activeSubmenuCaret: #D7DADC;
+			--newRedditTheme-navBar-activeSubmenuLink: #D7DADC;
+			--newRedditTheme-navBar-backgroundColor: #030303;
+			--newRedditTheme-navBar-backgroundImage: initial;
+			--newRedditTheme-navBar-hoverLink: #D7DADC;
+			--newRedditTheme-navBar-inactiveLink: #D7DADC;
+			--newRedditTheme-navBar-inactiveSubmenuCaret: #D7DADC;
+			--newRedditTheme-navBar-inactiveSubmenuLink: #D7DADC;
+			--newRedditTheme-navBar-submenuBackgroundColor: #1A1A1B;
+			--newRedditTheme-navIcon: #D7DADC;
+			--newRedditTheme-navIconFaded10: rgba(215,218,220,0.1);
+			--newRedditTheme-nsfw: #ff585b;
+			--newRedditTheme-nsfwBlocking-bgcolor: #030303;
+			--newRedditTheme-nsfwBlocking-color: #ffffff;
+			--newRedditTheme-nsfwBlocking-contentTitleBgColor: #272729;
+			--newRedditTheme-nsfwBlocking-mainCtaBgColor: #1a1a1b;
+			--newRedditTheme-pageHeader: #818384;
+			--newRedditTheme-placeholder: #3A3A3C;
+			--newRedditTheme-post: #1A1A1B;
+			--newRedditTheme-postError: #301718;
+			--newRedditTheme-postFlairText: #FFFFFF;
+			--newRedditTheme-postIcon: #818384;
+			--newRedditTheme-postLine: #343536;
+			--newRedditTheme-postLineShaded80: #292a2b;
+			--newRedditTheme-postLineShaded90: #2e2f30;
+			--newRedditTheme-postTinted20: #d1d1d1;
+			--newRedditTheme-postTransparent20: rgba(26,26,27,0.8);
+			--newRedditTheme-primaryButtonShadedEighty: #acaeb0;
+			--newRedditTheme-primaryButtonTintedEighty: #dfe1e3;
+			--newRedditTheme-primaryButtonTintedFifty: #ebeced;
+			--newRedditTheme-primaryButtonTintedSixty: #e7e8ea;
+			--newRedditTheme-quarantine: #ffb000;
+			--newRedditTheme-report: #1C1402;
+			--newRedditTheme-search-syntaxHighlightBackgroundColor: #FFF7E5;
+			--newRedditTheme-search-syntaxHighlightColor: #0a0a0a;
+			--newRedditTheme-titleText: #D7DADC;
+			--newRedditTheme-upsell-appleIcon: #7d7d7d;
+			--newRedditTheme-upsell-ssoButtonBorderColor: #D7DADC;
+			--newRedditTheme-upsell-ssoButtonTextColor: #D7DADC;
+			--newRedditTheme-voteIcons-downvoteActive: initial;
+			--newRedditTheme-voteIcons-downvoteInactive: initial;
+			--newRedditTheme-voteIcons-upvoteActive: initial;
+			--newRedditTheme-voteIcons-upvoteInactive: initial;
+			--newRedditTheme-voteText-base: #818384;
+			--newRedditTheme-voteText-downvote: #7193FF;
+			--newRedditTheme-voteText-downvoteShaded80: #5a75cc;
+			--newRedditTheme-voteText-downvoteTinted80: #8da8ff;
+			--newRedditTheme-voteText-upvote: #FF4500;
+			--newRedditTheme-voteText-upvoteShaded80: #cc3700;
+			--newRedditTheme-voteText-upvoteTinted80: #ff6a32;
+			--newRedditTheme-widgetColors-appleIcon: #7d7d7d;
+			--newRedditTheme-widgetColors-lineColor: #343536;
+			--newRedditTheme-widgetColors-sidebarWidgetBackgroundColor: #1A1A1B;
+			--newRedditTheme-widgetColors-sidebarWidgetBorderColor: #474748;
+			--newRedditTheme-widgetColors-sidebarWidgetHeaderColor: #1A1A1B;
+			--newRedditTheme-widgetColors-sidebarWidgetHeaderColorAlpha60: rgba(26,26,27,0.6);
+			--newRedditTheme-widgetColors-sidebarWidgetTextColor: #D7DADC;
+			--newRedditTheme-widgetColors-sidebarWidgetTextColorShaded80: #acaeb0;
+			--newRedditTheme-widgetColors-sidebarWidgetTitleColor: #818384;
+			--newRedditTheme-wordmark: #FFFFFF;
+			--subredditContext-emojiHeight: initial;
+			--subredditContext-emojiWidth: initial;
+		}
+		
+		/* Newreddit ==> Ad button & Karma dropdown text & Color search icon */
+		._2I12Htze2UzJmmfnrgYJOn._1dBtowHdRHcGyLbVEaOL8t ._24UNt1hkbrZxLzs5vkvuDh {
+			background-color: var(--newRedditTheme-field) i;
+		}
+		.Rz5N3cHNgTGZsIQJqBfgk, ._3z4bYCMDgBrJ-Be0By6hNr {
+			color: var(--color-tone-2) i;
+		}
+		.icon-search {
+			color: var(--color-tone-1) i;
+		}
+		
+		/* Custom */
+		:root {
+			--icon-community-color: createBase(s:100,l:90);
+		}
+		
+		/* Scrollbar */
+		.styled-scrollbars {
+			scrollbar-color: transparent transparent i;
+			scrollbar-width: thin i;
+			--scrollbar-background: var(--styled-scrollbar-background, var(--shreddit-content-background)) i;
+			
+			&:hover {
+				scrollbar-color: var(--color-neutral-border) transparent i;
+			}
+		}
+		
+		html {
+			@extend .styled-scrollbars;
+		}
+		
+		/* Icon community color */
+		icon-community {
+			color: createBase(s:100,l:90) i;
+		}
+		
+		/* Faceplate img/placeholder */
+		faceplate-img[style*="background-color"] {
+			color: createBase(s:100,l:90) i;
+			background: createBase(s:100,l:90) i;
+		}
+		
+		/* Background notification unread */
+		notification-item [class*="bg-coolgray"] {
+			background: createBase(s:12,l:15) i;
+			
+			&:hover {
+				background: createBase(s:12,l:19) i;
+			}
+		}
+		
+		/* Links */
+		object > .a {
+			color: var(--color-a-default) i;
+		}
+		
+		/* Reddit icon navbar */
+ 		/* Eyes */
+		.snoo-cls-4, .snoo-cls-7 {
+			fill: createBase(s:100,l:50) i;
+		}
+		/* Body */
+		.snoo-cls-10 {
+			fill: createBase(s:100,l:65) i;
+		}
+		
+		/* Loading/Logo */
+		shreddit-loading, shreddit-logo {
+			filter: hue-rotate(hue(baseColor)) i;
+		}
+		
+		/* Reddit icon empty comments */
+		.snoo-empty-comments {
+			filter: hue-rotate(hue(baseColor)) i;
+		}
+	}
+	
+	if enableFonts {
+		if rootFontIn=='SUSE' {
+			:root {
+				font-family: SUSE, system-ui;
+			}
+		}
+		else if rootFontIn=='Arvo' {
+			:root {
+				font-family: Arvo, system-ui;
+			}
+		}
+		else if rootFontIn=='Tisa' {
+			:root {
+				font-family: Tisa Sans Pro, system-ui;
+			}
+		}
+		if codeFontIn=='firaCode' {
+			code, pre {
+				font-family: Fira Code, system-ui i;
+			}
+		}
+		else if codeFontIn=='sourceSansPro' {
+			code, pre {
+				font-family: Source Code Pro, system-ui i;
+			}
+		}
+		else if codeFontIn=='Monaspace' {
+			code, pre {
+				font-family: Monaspace Xenon, system-ui i;
+			}
+		}
+		else if codeFontIn=='jetbrainsMono' {
+			code, pre {
+				font-family: JetBrains Mono, system-ui i;
+			}
+		}
+		
+	}
+		
+	/* Image effects */
+	if enableImageEffects {
+/* 		if imageGrayscale!=0 || imageSepia!=0 || imageBlur!=0 || imageBrightness!=100 || imageHue!=0 || imageSaturate!=100 || imageOpacity!=100 || imageContrast!=100 || imageInvert!=0 || imageRotate!=0 {
+		} */
+		#post-image {
+			filter: grayscale(imageGrayscale) sepia(imageSepia) blur(imageBlur) brightness(imageBrightness) hue-rotate(imageHue) saturate(imageSaturate) opacity(imageOpacity) contrast(imageContrast) invert(imageInvert) i;
+			transform: rotate(imageRotate) i;
+		}			
 	}
 }
