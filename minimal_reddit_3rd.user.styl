@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit 3rd
 @namespace      https://github.com/zenstorage/minimal-reddit
-@version        6.1.5
+@version        6.1.6
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
 @supportURL     https://github.com/zenstorage/minimal-reddit/issues
@@ -150,10 +150,11 @@ Colors
 @var number      saturationFactor        '⠀⠀⚬ Saturation factor'           [0, -100, 100, 1]
 @var number      lightnessFactor         '⠀⠀⚬ Lightness factor'            [0, -100, 100, 1]
 @var number      alphaFactor             '⠀⠀⚬ Alpha factor'                [0, 0, 1, 0.01]
+@var checkbox    colorIcons              '⠀⠀⚬ Color reddit icon'           0
 
 
 ------------
-Colors
+Fonts
 ------------
 @var checkbox   enableFonts              '● Customize fonts'              0
 @var select     rootFontIn               '⠀⠀⚬ Font'                       ['Default*', 'SUSE', 'Arvo', 'Tisa']
@@ -1338,6 +1339,10 @@ Image effets
 		.icon-search {
 			color: var(--color-tone-1) i;
 		}
+		._1bWuGs_1sq4Pqy099x_yy- * {
+			color: var(--color-global-white) i;
+			fill: var(--color-global-white) i;
+		}
 		
 		/* Custom */
 		:root {
@@ -1359,10 +1364,30 @@ Image effets
 			@extend .styled-scrollbars;
 		}
 		
-		/* Icon community color */
-		icon-community {
-			color: createBase(s:100,l:90) i;
+		if colorIcons {
+			/* Icon community color */
+			icon-community {
+				color: createBase(s:100,l:90) i;
+			}
+			/* Reddit icon navbar */
+	 		/* Eyes */
+			.snoo-cls-4, .snoo-cls-7 {
+				fill: createBase(s:100,l:50) i;
+			}
+			/* Body */
+			.snoo-cls-10 {
+				fill: createBase(s:100,l:65) i;
+			}			
+			/* Reddit icon empty comments */
+			.snoo-empty-comments {
+				filter: hue-rotate(hue(baseColor)) i;
+			}
+			/* Loading/Logo */
+			shreddit-loading, shreddit-logo {
+				filter: hue-rotate(hue(baseColor)) i;
+			}
 		}
+		
 		
 		/* Faceplate img/placeholder */
 		faceplate-img[style*="background-color"] {
@@ -1382,27 +1407,7 @@ Image effets
 		/* Links */
 		object > .a {
 			color: var(--color-a-default) i;
-		}
-		
-		/* Reddit icon navbar */
- 		/* Eyes */
-		.snoo-cls-4, .snoo-cls-7 {
-			fill: createBase(s:100,l:50) i;
-		}
-		/* Body */
-		.snoo-cls-10 {
-			fill: createBase(s:100,l:65) i;
-		}
-		
-		/* Loading/Logo */
-		shreddit-loading, shreddit-logo {
-			filter: hue-rotate(hue(baseColor)) i;
-		}
-		
-		/* Reddit icon empty comments */
-		.snoo-empty-comments {
-			filter: hue-rotate(hue(baseColor)) i;
-		}
+		}	
 	}
 	
 	if enableFonts {
