@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit 3rd
 @namespace      https://github.com/zenstorage/minimal-reddit
-@version        6.1.6
+@version        6.2.4
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
 @supportURL     https://github.com/zenstorage/minimal-reddit/issues
@@ -38,16 +38,18 @@ Dropdown navbar
 @var checkbox    enableDropdownNavbar    '● Customize dropdown navbar'     1
 @var checkbox    profileDropdown         '⠀⠀⚬ Remove profile'              0
 @var checkbox    avatarDropdown          '⠀⠀⚬ Remove edit avatar'          1
-@var checkbox    achievementsDropdown    '⠀⠀⚬ Remove achievements'         1
-@var checkbox    contributorDropdown     '⠀⠀⚬ Remove contributor'          1
+@var checkbox    draftsDropdown          '⠀⠀⚬ Remove drafts'               1
+@var checkbox    achievementsDropdown    '⠀⠀⚬ Remove achievements'         0
+@var checkbox    premiumDropdown         '⠀⠀⚬ Remove premium'              1
 @var checkbox    moderatorDropdown       '⠀⠀⚬ Remove moderator'            0
 @var checkbox    darkmodeDropdown        '⠀⠀⚬ Remove dark mode'            0
 @var checkbox    logoutDropdown          '⠀⠀⚬ Remove log out'              0
 @var checkbox    advertiseDropdown       '⠀⠀⚬ Remove advertise'            1
+@var checkbox    redditProDropdown       '⠀⠀⚬ Remove reddit pro'           1
 @var checkbox    settingsDropdown        '⠀⠀⚬ Remove settings'             0
-@var checkbox    premiumDropdown         '⠀⠀⚬ Remove premium'              1
+@var checkbox    contributorDropdown     '⠀⠀⚬ Remove contributor'          1
 @var checkbox    loginRegisterDropdown   '⠀⠀⚬ Remove login/register'       0
-@var checkbox    avatarShopDropdown      '⠀⠀⚬ Remove avatar shop'          1
+(Deprecated)var checkbox    avatarShopDropdown      '⠀⠀⚬ Remove avatar shop'          1
 
 
 ------------
@@ -91,6 +93,7 @@ Community
 @var number     headerHeightCommunity   '⠀⠀⚬ Header height factor'         [0, -150, 400, 1, 'px']
 @var checkbox   segmentHeaderCommunity  '⠀⠀⚬ Segment header'               0
 @var number     segmentFactorCommunity  '⠀⠀⠀⠀⚬ Alpha'                      [0.05, 0.01, 1, 0.01]
+@var checkbox   removeNSFWWarning       '⠀⠀⚬ Remove NSFW Warning'          1
 
 
 ------------
@@ -126,7 +129,7 @@ Posts
 @var checkbox    postsWithVideo          '⠀⠀⚬ Remove post with video'      0
 @var checkbox    crossPost               '⠀⠀⚬ Remove all crosspost'        0
 @var checkbox    crossPostWithImage      '⠀⠀⚬ Remove crosspost with image' 0
-@var checkbox    crossPostWithVideo      '⠀⠀⚬ Remove crosspost with image' 0
+@var checkbox    crossPostWithVideo      '⠀⠀⚬ Remove crosspost with video' 0
 @var checkbox    separatorPosts          '⠀⠀⚬ Remove separator'            0
 
 
@@ -315,85 +318,91 @@ Image effets
 	/* Dropdown navbar */
 	if enableDropdownNavbar {
 		if profileDropdown {
-			faceplate-dropdown-menu [noun="profile"] {
+			reddit-header-action-items faceplate-tracker[noun="profile"] {
 				none();
 			}
 		}
 		if avatarDropdown {
-			faceplate-dropdown-menu [noun="edit_avatar"] {
+			reddit-header-action-items faceplate-tracker[noun="edit_avatar"] {
+				none();
+			}
+		}
+		if draftsDropdown {
+			#drafts-list-item {
 				none();
 			}
 		}
 		if achievementsDropdown {			
-			faceplate-dropdown-menu [noun="user_drawer"] {
-				none();
-			}
-		}
-		if contributorDropdown {			
-			faceplate-dropdown-menu [noun="contributor_program"] {
-				none();
-			}
-		}
-		if moderatorDropdown {			
-			faceplate-dropdown-menu shreddit-modmode-setter {
-				none();
-			}
-		}
-		if darkmodeDropdown {			
-			faceplate-dropdown-menu shreddit-darkmode-setter {
-				none();
-			}
-		}
-		if logoutDropdown {			
-			faceplate-dropdown-menu [noun="logout"] {
-				none();
-			}
-		}
-		if profileDropdown && avatarDropdown && achievementsDropdown && contributorDropdown && moderatorDropdown && darkmodeDropdown && logoutDropdown {
-			#user-drawer-content > ul:has([noun="profile"]), #user-drawer-content > ul:has([noun="profile"]) + hr {
-				none();
-			}
-		}
-		if advertiseDropdown {
-			faceplate-dropdown-menu [noun="advertise"] {
-				none();
-			}
-			#user-drawer-content > ul:has([noun="advertise"]:only-child), #user-drawer-content > ul:has([noun="advertise"]:only-child) + hr {
-				none();
-			}
-		}
-		if settingsDropdown {
-			faceplate-dropdown-menu [noun="settings"] {
-				none();
-			}
-			#user-drawer-content > ul:has([noun="settings"]), #user-drawer-content > ul:has([noun="settings"]) + hr {
+			reddit-header-action-items faceplate-tracker[source="achievements"] {
 				none();
 			}
 		}
 		if premiumDropdown {
-			faceplate-dropdown-menu [noun="premium_menu"] {
+			reddit-header-action-items faceplate-tracker[noun="premium_menu"] {
 				none();
 			}
-			#user-drawer-content > ul:has([noun="premium_menu"]), #user-drawer-content > ul:has([noun="premium_menu"]) + hr {
+		}
+		if moderatorDropdown {			
+			reddit-header-action-items shreddit-modmode-setter {
+				none();
+			}
+		}
+		if darkmodeDropdown {			
+			reddit-header-action-items shreddit-darkmode-setter {
+				none();
+			}
+		}
+		if logoutDropdown {			
+			reddit-header-action-items user-drawer-logout {
+				none();
+			}
+		}
+		if profileDropdown && avatarDropdown && draftsDropdown && achievementsDropdown && premiumDropdown && moderatorDropdown && darkmodeDropdown && logoutDropdown {
+			reddit-header-action-items ul:has(> [noun="profile"] + [noun="edit_avatar"] + #drafts-list-item + [source="achievements"] + [noun="premium_menu"] + shreddit-modmode-setter + shreddit-darkmode-setter + user-drawer-logout) {
+				none();
+			}
+		}
+		if advertiseDropdown {
+			reddit-header-action-items faceplate-tracker[noun="advertise"] {
+				none();
+			}
+		}
+		if redditProDropdown {
+			reddit-header-action-items faceplate-tracker[noun="try_reddit_pro"] {
+				none();
+			}
+		}
+		if advertiseDropdown && redditProDropdown {
+			reddit-header-action-items ul:has(> [noun="advertise"] + [noun="try_reddit_pro"]) {
+				none();
+			}
+		}
+		if settingsDropdown {
+			reddit-header-action-items faceplate-tracker[noun="settings"] {
+				none();
+			}
+			reddit-header-action-items ul:has(> [noun="settings"]) {
+				none();
+			}
+		}
+		if contributorDropdown {			
+			reddit-header-action-items faceplate-tracker[noun="contributor_program"] {
+				none();
+			}
+			reddit-header-action-items ul:has(> [noun="contributor_program"]) {
 				none();
 			}
 		}
 		if loginRegisterDropdown {
-			faceplate-dropdown-menu [noun="login"] {
+			reddit-header-action-items faceplate-tracker[noun="login"] {
 				none();
 			}
 		}
-		if avatarShopDropdown {
-			faceplate-dropdown-menu [noun="avatar_shop"] {
+/* 		if avatarShopDropdown {
+			reddit-header-action-items faceplate-tracker[noun="avatar_shop"] {
 				none();
 			}
-		}
-		if loginRegisterDropdown && advertiseDropdown && avatarShopDropdown {
-			#user-drawer-content > ul:has([noun="login"]), #user-drawer-content > ul:has([noun="login"]) + hr {
-				none();
-			}
-		}
-		
+		} */
 	}
 
 	/* Left sidebar */
@@ -480,8 +489,11 @@ Image effets
 			#left-sidebar-container {
 				overflow: hidden i;
 			}
-			#left-sidebar {
-				width: widthLeftSidebar i;
+			.grid-container {
+				--flex-nav-width: widthLeftSidebar i;
+			}
+			reddit-sidebar-nav {
+				top: 0 i;
 			}
 		}
 		if topSectionLeftSidebar {
@@ -605,6 +617,15 @@ Image effets
 				border-radius: 1rem i;
 			}
 		}
+		if removeNSFWWarning {
+			#blocking-modal, #nsfw-qr-dialog, body > [style*="blur(4px)"] {
+				display: none i;
+			}
+			body:has(> shreddit-app > #blocking-modal) {
+				pointer-events: auto i;
+  				overflow: auto i;
+			}
+		}
 	}
 	
 	/* Posts */
@@ -623,14 +644,25 @@ Image effets
 			.main-container {
 				justify-content: center i;
 			}
-			.wide-posts {
+			@media (min-width: 960px) {
+				.main-container {
+					grid-template-columns: minmax(0, 100%) minmax(0, 316px) i;
+				}	 
+			}
+			.wide-posts, main.main {
 				/* 100% - right sidebar - gap */
-				max-width: calc(var(--posts-wide-width) - var(--width-right-sidebar) - 16px) i;
+/* 				max-width: calc(var(--posts-wide-width) - var(--width-right-sidebar) - 16px) i; */
 				width: var(--posts-wide-width) i;
+				justify-self: center i;
 				
 				@media (max-width: 960px) {
 					max-width: var(--posts-wide-width) i; */
 					
+				}
+			}
+			if rightSidebaStyle=='Remove' {
+				.wide-posts {
+					grid-column: span 2 i;
 				}
 			}
 			if widePostPage {
@@ -835,7 +867,7 @@ Image effets
 			}
 		}
 		if segmentCommentContent {
-			#-post-rtjson-content {
+			shreddit-comment > [slot="comment"] {
 				background-color: var(--segment-comments-color) i;
   				padding: 10px 12px i;
 				margin: 0 i;
@@ -850,7 +882,7 @@ Image effets
 			}
 		}
 		if limitSegmentWith {
-			shreddit-comment, shreddit-comment-action-row {
+			shreddit-comment, shreddit-comment-action-row, shreddit-comment > [slot="comment"] {
 				max-width: max-content i;
 			}
 		}
@@ -1450,10 +1482,10 @@ Image effets
 	}
 		
 	/* Image effects */
-	if enableImageEffects {
+	if enableImageEffects && (imageGrayscale!=0 || imageSepia!=0 || imageBlur!=0 || imageBrightness!=100 || imageHue!=0 || imageSaturate!=100 || imageOpacity!=100 || imageContrast!=100 || imageInvert!=0 || imageRotate!=0) {
 /* 		if imageGrayscale!=0 || imageSepia!=0 || imageBlur!=0 || imageBrightness!=100 || imageHue!=0 || imageSaturate!=100 || imageOpacity!=100 || imageContrast!=100 || imageInvert!=0 || imageRotate!=0 {
 		} */
-		#post-image {
+		[slot="post-media-container"] img {
 			filter: grayscale(imageGrayscale) sepia(imageSepia) blur(imageBlur) brightness(imageBrightness) hue-rotate(imageHue) saturate(imageSaturate) opacity(imageOpacity) contrast(imageContrast) invert(imageInvert) i;
 			transform: rotate(imageRotate) i;
 		}			
