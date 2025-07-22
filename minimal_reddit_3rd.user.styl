@@ -1,7 +1,7 @@
 /* ==UserStyle==
 @name           Minimal Reddit 3rd
 @namespace      https://github.com/zenstorage/minimal-reddit
-@version        6.2.4
+@version        6.2.5
 @description    Wide posts and remove bloat from homepage
 @homepageURL    https://github.com/zenstorage/minimal-reddit
 @supportURL     https://github.com/zenstorage/minimal-reddit/issues
@@ -40,6 +40,7 @@ Dropdown navbar
 @var checkbox    avatarDropdown          '⠀⠀⚬ Remove edit avatar'          1
 @var checkbox    draftsDropdown          '⠀⠀⚬ Remove drafts'               1
 @var checkbox    achievementsDropdown    '⠀⠀⚬ Remove achievements'         0
+@var checkbox    earnDropdown            '⠀⠀⚬ Remove earn'                 0
 @var checkbox    premiumDropdown         '⠀⠀⚬ Remove premium'              1
 @var checkbox    moderatorDropdown       '⠀⠀⚬ Remove moderator'            0
 @var checkbox    darkmodeDropdown        '⠀⠀⚬ Remove dark mode'            0
@@ -334,6 +335,11 @@ Image effets
 		}
 		if achievementsDropdown {			
 			reddit-header-action-items faceplate-tracker[source="achievements"] {
+				none();
+			}
+		}
+		if earnDropdown {			
+			reddit-header-action-items faceplate-tracker[source="earn"] {
 				none();
 			}
 		}
